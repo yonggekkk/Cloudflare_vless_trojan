@@ -101,7 +101,7 @@ export default {
 					default:
 						// return new Response('Not found', { status: 404 });
 						// For any other path, reverse proxy to 'www.fmprc.gov.cn' and return the original response
-						url.hostname = 'global.cctv.com';
+						url.hostname = 'www.youtube.com/';
 						url.protocol = 'https:';
 						request = new Request(url, request);
 						return await fetch(request);
