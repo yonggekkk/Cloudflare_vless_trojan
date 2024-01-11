@@ -10,7 +10,7 @@
 
 1、UUID必须自定义（第7行）
 
-2、proxyIP支持ChatGPT与CF类网站，可自定义（第9行）
+2、ProxyIP可更换为ProxyIP.txt文件中的ProxyIP，收集来源于网上各位大佬的分享，也可自定义（第9行）
 
 3、伪装网页已更新为微软www.bing.com，可自定义（第104行）
 
