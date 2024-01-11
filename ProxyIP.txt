@@ -1,7 +1,7 @@
 修改文件第九行
-const proxyIPs = ['ipv4地址']
+const proxyIPs = ['替换ipv4地址']
 或者
-const proxyIPs = ["[ipv6地址]"]
+const proxyIPs = ["[替换ipv6地址]"]
 
 以下ProxyIP来源于网络，不定时失效
 23.162.136.169(目前默认使用)
