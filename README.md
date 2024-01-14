@@ -12,7 +12,7 @@
 
 2、ProxyIP可更换为ProxyIP.txt文件中的ProxyIP，收集来源于网上各位大佬的分享，也可自定义（第9行）
 
-3、伪装网页已更新为微软www.bing.com，可自定义（第104行）
+3、伪装网页已更新为www.visa.com与www.wto.org，可自定义（第84行）
 
 重点对workers与pages、有域名与无域名，这4种情况下的节点分享做了优化显示，方便小白们理解操作
 
