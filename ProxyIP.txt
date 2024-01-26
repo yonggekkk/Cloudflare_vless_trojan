@@ -11,7 +11,7 @@ const proxyIPs = ["[替换ipv6地址]"]
 IPV4地址：
 23.162.136.169(目前默认使用)
 
-以下来源于@杨幂的脚CM
+以下ProxyIP来源于@杨幂的脚CM大佬
 域名（IP地区:US）：
 proxyip.fuck.cloudns.biz
 
