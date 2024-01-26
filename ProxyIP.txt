@@ -1,10 +1,10 @@
 修改 _worker.js 文件第九行
 
-const proxyIPs = ['替换ipv4地址']
+const proxyIPs = ['替换为ipv4地址']
 或者
-const proxyIPs = ['替换域名']
+const proxyIPs = ['替换为域名']
 或者
-const proxyIPs = ["[替换ipv6地址]"]
+const proxyIPs = ["[替换为ipv6地址]"]
 
 --------------------------------------------------------------------
 以下ProxyIP来源于网络，不定时更新
