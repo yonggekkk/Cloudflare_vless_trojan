@@ -1,17 +1,25 @@
 修改 _worker.js 文件第九行
+
 const proxyIPs = ['替换ipv4地址']
+或者
+const proxyIPs = ['替换域名']
 或者
 const proxyIPs = ["[替换ipv6地址]"]
 
+--------------------------------------------------------------------
 以下ProxyIP来源于网络，不定时更新
+
+IPV4地址：
 23.162.136.169(目前默认使用)
-199.180.115.167
-5.161.129.191
-2a01:4f8:c2c:123f:64:5:ac40:6c0a
-2a01:4f8:c2c:123f:64:5:ac40:6d0a
-192.210.213.192
-2a00:1098:2b::1:ac40:6d0a
-5.161.127.37
-2a00:1098:2b::1:ac40:6c0a
-2a00:1098:2c::5:ac40:6c0a
-2a00:1098:2c::5:ac40:6d0a
+
+域名（IP地区:US）：
+proxyip.fuck.cloudns.biz
+
+域名（IP地区:SG）：
+proxyip.sg.fuck.cloudns.biz
+
+域名（IP地区:JP）：
+proxyip.jp.fuck.cloudns.biz
+
+域名（IP地区:HK）：
+proxyip.hk.fuck.cloudns.biz
