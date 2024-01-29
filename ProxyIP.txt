@@ -9,13 +9,13 @@ const proxyIPs = ["[替换为ipv6地址]"]
 --------------------------------------------------------------------
 以下ProxyIP来源于@杨幂的脚CM大佬
 域名（IP地区:US）目前默认使用：
-proxyip.fuck.cloudns.biz
+proxyip.fxxk.dedyn.io
 
 域名（IP地区:SG）：
-proxyip.sg.fuck.cloudns.biz
+proxyip.sg.fxxk.dedyn.io 
 
 域名（IP地区:JP）：
-proxyip.jp.fuck.cloudns.biz
+proxyip.jp.fxxk.dedyn.io 
 
 域名（IP地区:HK）：
-proxyip.hk.fuck.cloudns.biz
+proxyip.hk.fxxk.dedyn.io 
