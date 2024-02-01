@@ -7,15 +7,16 @@ const proxyIPs = ['替换为域名']
 const proxyIPs = ["[替换为ipv6地址]"]
 
 --------------------------------------------------------------------
-以下ProxyIP来源于@杨幂的脚CM大佬
-域名（IP地区:US）目前默认使用：
-proxyip.fxxk.dedyn.io
+以下ProxyIP ipv6来源于网络
+2a01:4f8:c2c:123f:64:5:ac40:6c0a（脚本当前默认）
+2a01:4f8:c2c:123f:64:5:ac40:6d0a
+2a00:1098:2b::1:ac40:6d0a
+2a00:1098:2b::1:ac40:6c0a
+2a00:1098:2c::5:ac40:6c0a
+2a00:1098:2c::5:ac40:6d0a
 
-域名（IP地区:SG）：
-proxyip.sg.fxxk.dedyn.io 
-
-域名（IP地区:JP）：
-proxyip.jp.fxxk.dedyn.io 
-
-域名（IP地区:HK）：
-proxyip.hk.fxxk.dedyn.io 
+以下ProxyIP域名来源于@杨幂的脚CM大佬
+阿里云：
+proxyip.aliyun.fxxk.dedyn.io
+甲骨文：
+proxyip.oracle.fxxk.dedyn.io 
