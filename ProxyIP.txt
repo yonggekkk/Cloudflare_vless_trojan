@@ -1,8 +1,6 @@
 修改 _worker.js 文件第九行
 
-const proxyIPs = ['替换为ipv4地址']
-或者
-const proxyIPs = ['替换为域名']
+const proxyIPs = ['替换为ipv4地址或者域名地址']
 或者
 const proxyIPs = ["[替换为ipv6地址]"]
 
@@ -16,7 +14,10 @@ const proxyIPs = ["[替换为ipv6地址]"]
 2a00:1098:2c::5:ac40:6d0a
 
 以下ProxyIP域名来源于@杨幂的脚CM大佬
-阿里云：
-proxyip.aliyun.fxxk.dedyn.io
-甲骨文：
-proxyip.oracle.fxxk.dedyn.io 
+阿里云：proxyip.aliyun.fxxk.dedyn.io
+甲骨文：proxyip.oracle.fxxk.dedyn.io 
+美国：proxyip.fxxk.dedyn.io
+新加坡：proxyip.sg.fxxk.dedyn.io
+日本：proxyip.jp.fxxk.dedyn.io
+香港：proxyip.hk.fxxk.dedyn.io
+
