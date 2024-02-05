@@ -17,12 +17,12 @@
 重点对workers与pages、有域名与无域名，这4种情况下的节点分享做了优化显示，方便小白们理解操作
 
 ---------------------------------
-### CF-CDN优选域名一键脚本，苹果安卓手机平板专用，(请参考教程，在本地网络环境下运行)：
+### CF-CDN优选公共大厂域名脚本，苹果安卓手机平板专用，(请参考教程，在本地网络环境下运行)：
 ```
 curl -sSL https://gitlab.com/rwkgyg/CFwarp/raw/main/point/CFcdnym.sh -o CFcdnym.sh && chmod +x CFcdnym.sh && bash CFcdnym.sh
 ```
 ------------------------------------------------------------------------
-### 2024.2.5更新：CF-优选官方IP+反代IP一键脚本，苹果安卓手机平板专用，(请参考教程，在本地网络环境下运行)：
+### CF-优选官方IP+反代IP二合一脚本，苹果安卓手机平板专用，(请参考教程，在本地网络环境下运行)：
 ```
 curl -sSL https://gitlab.com/rwkgyg/CFwarp/raw/main/point/cfip.sh -o cfip.sh && chmod +x cfip.sh && bash cfip.sh
 ```
