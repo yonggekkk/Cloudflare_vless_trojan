@@ -10,7 +10,7 @@
 
 1、UUID必须自定义（第7行）
 
-2、ProxyIP可更换为ProxyIP.txt文件中的ProxyIP，收集来源于网上各位大佬的分享，也可自定义（第9行）
+2、如果无法访问CF类网站或者ChatGPT，说明ProxyIP失效，可更换ProxyIP.txt文件中的ProxyIP，自定义（第9行）
 
 3、伪装网页已更新为www.visa.com与www.wto.org，可自定义（第84行）
 
