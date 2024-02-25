@@ -39,13 +39,14 @@ export default {
 			if (!upgradeHeader || upgradeHeader !== 'websocket') {
 				const url = new URL(request.url);
 				switch (url.pathname) {
-					case '/cf':
+					case `/cf`: {
 						return new Response(JSON.stringify(request.cf, null, 4), {
 							status: 200,
 							headers: {
 								"Content-Type": "application/json;charset=utf-8",
 							},
 						});
+					}
 					case `/${userID_Path}`: {
 						const vlessConfig = getVLESSConfig(userID, request.headers.get('Host'));
 						return new Response(`${vlessConfig}`, {
@@ -54,72 +55,46 @@ export default {
 								"Content-Type": "text/html; charset=utf-8",
 							}
 						});
-					}
+					};
 					case `/sub/${userID_Path}`: {
 						const url = new URL(request.url);
 						const searchParams = url.searchParams;
-						let vlessConfig = createVLESSSub(userID, request.headers.get('Host'));
-						// If 'format' query param equals to 'clash', convert config to base64
-						if (searchParams.get('format') === 'clash') {
-							vlessConfig = btoa(vlessConfig);
-						}
+						const vlessSubConfig = createVLESSSub(userID, request.headers.get('Host'));
 						// Construct and return response object
-						return new Response(vlessConfig, {
+						return new Response(btoa(vlessSubConfig), {
 							status: 200,
 							headers: {
 								"Content-Type": "text/plain;charset=utf-8",
 							}
 						});
-					}
-					case `/bestip/${userID_Path}`: {
-						const bestiplink = `https://sub.xf.free.hr/auto?host=${request.headers.get('Host')}&uuid=${userID_Path}`
-						const reqHeaders = new Headers(request.headers);
-						const bestipresponse = await fetch(bestiplink, { redirect: 'manual', headers: reqHeaders, });
-						// Construct and return response object
-						return bestipresponse
-					}
+					};
 					default:
 						// return new Response('Not found', { status: 404 });
-						// For any other path, reverse proxy to 'www.fmprc.gov.cn' and return the original response, caching it in the process
-						const hostnames = ['www.visa.com', 'www.wto.org'];
-						url.hostname = hostnames[Math.floor(Math.random() * hostnames.length)];
-						url.protocol = 'https:';
-
+						// For any other path, reverse proxy to 'ramdom website' and return the original response, caching it in the process
+						const randomHostname = cn_hostnames[Math.floor(Math.random() * cn_hostnames.length)];
 						const newHeaders = new Headers(request.headers);
-						newHeaders.set('cf-connecting-ip', newHeaders.get('x-forwarded-for') || newHeaders.get('cf-connecting-ip'));
-						newHeaders.set('x-forwarded-for', newHeaders.get('cf-connecting-ip'));
-						newHeaders.set('x-real-ip', newHeaders.get('cf-connecting-ip'));
-						newHeaders.set('referer', 'https://www.google.com/q=edtunnel');
-
-						request = new Request(url, {
+						newHeaders.set('cf-connecting-ip', '1.2.3.4');
+						newHeaders.set('x-forwarded-for', '1.2.3.4');
+						newHeaders.set('x-real-ip', '1.2.3.4');
+						newHeaders.set('referer', 'https://www.google.com/search?q=edtunnel');
+						// Use fetch to proxy the request to 15 different domains
+						const proxyUrl = 'https://' + randomHostname + url.pathname + url.search;
+						let modifiedRequest = new Request(proxyUrl, {
 							method: request.method,
 							headers: newHeaders,
 							body: request.body,
-							redirect: request.redirect,
+							redirect: 'manual',
 						});
-
-						const cache = caches.default;
-						let response = await cache.match(request);
-
-						if (!response) {
-							try {
-								response = await fetch(request, { redirect: 'manual' });
-							} catch (err) {
-								url.protocol = 'http:';
-								url.hostname = hostnames[Math.floor(Math.random() * hostnames.length)];
-								request = new Request(url, {
-									method: request.method,
-									headers: newHeaders,
-									body: request.body,
-									redirect: request.redirect,
-								});
-								response = await fetch(request, { redirect: 'manual' });
-							}
-
-							const cloneResponse = response.clone();
-							ctx.waitUntil(cache.put(request, cloneResponse));
+						const proxyResponse = await fetch(modifiedRequest, { redirect: 'manual' });
+						// Check for 302 or 301 redirect status and return an error response
+						if ([301, 302].includes(proxyResponse.status)) {
+							return new Response(`Redirects to ${randomHostname} are not allowed.`, {
+								status: 403,
+								statusText: 'Forbidden',
+							});
 						}
-						return response;
+						// Return the response from the proxy server
+						return proxyResponse;
 				}
 			} else {
 				return await vlessOverWSHandler(request);
@@ -713,7 +688,7 @@ async function handleUDPOutBound(webSocket, vlessResponseHeader, log) {
  * @param {string} userID - single or comma separated userIDs
  * @param {string | null} hostName
  * @returns {string}
- */  
+ */
 function getVLESSConfig(userID, hostName) {
 	const wvlessws = `vless://${userID}@www.who.int:8880?encryption=none&security=none&type=ws&host=${hostName}&path=%2F%3Fed%3D2048#${hostName}`;
 	const pvlesswstls = `vless://${userID}@www.who.int:8443?encryption=none&security=tls&type=ws&host=${hostName}&sni=${hostName}&fp=random&path=%2F%3Fed%3D2048#${hostName}`;
@@ -818,5 +793,6 @@ function getVLESSConfig(userID, hostName) {
   `;
 	}
   }
-
-
+const cn_hostnames = [
+'www.wto.org'
+];
