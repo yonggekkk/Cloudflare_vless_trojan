@@ -794,5 +794,5 @@ function getVLESSConfig(userID, hostName) {
 	}
   }
 const cn_hostnames = [
-'www.google.com'
+'jackadam.top'
 ];
