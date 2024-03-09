@@ -6,8 +6,8 @@ const proxyIPs = ["[替换为ipv6地址]"]
 
 --------------------------------------------------------------------
 以下ProxyIP域名来源于@杨幂的脚CM大佬
-proxyip.fxxk.dedyn.io (默认使用)
-proxyip.aliyun.fxxk.dedyn.io
+proxyip.fxxk.dedyn.io
+proxyip.aliyun.fxxk.dedyn.io(默认使用)
 proxyip.oracle.fxxk.dedyn.io 
 proxyip.sg.fxxk.dedyn.io
 proxyip.jp.fxxk.dedyn.io
