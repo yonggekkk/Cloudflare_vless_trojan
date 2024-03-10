@@ -4,9 +4,9 @@ import { connect } from 'cloudflare:sockets';
 
 // How to generate your own UUID:
 // [Windows] Press "Win + R", input cmd and run:  Powershell -NoExit -Command "[guid]::NewGuid()"
-let userID = '77a571fb-4fd2-4b37-8596-1b7d9728bb5c';
+let userID = '7898609d-f80c-4313-8ab6-c652ccf9aa2f';
 
-const proxyIPs = ['proxyip.aliyun.fxxk.dedyn.io'];//['cdn.xn--b6gac.eu.org', 'cdn-all.xn--b6gac.eu.org', 'edgetunnel.anycast.eu.org'];
+const proxyIPs = ['HK.vsva911.eu.org', 'SG.vsva911.eu.org'];//['cdn.xn--b6gac.eu.org', 'cdn-all.xn--b6gac.eu.org', 'edgetunnel.anycast.eu.org'];
 
 let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
 
@@ -794,5 +794,5 @@ function getVLESSConfig(userID, hostName) {
 	}
   }
 const cn_hostnames = [
-'www.wto.org'
+'tv.cctv.com'
 ];
