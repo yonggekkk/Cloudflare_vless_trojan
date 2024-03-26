@@ -1,11 +1,11 @@
 修改 _worker.js 文件第九行
 
-const proxyIPs = ['替换为ipv4地址或者域名地址']
+const proxyIPs = ["替换为ipv4地址或者域名地址"]
 或者
 const proxyIPs = ["[替换为ipv6地址]"]
 
 --------------------------------------------------------------------
-workers.bestip.one(默认使用)
+workers.cloudflare.cyou(默认使用)
 
 以下ProxyIP域名来源于@杨幂的脚CM大佬
 proxyip.fxxk.dedyn.io
