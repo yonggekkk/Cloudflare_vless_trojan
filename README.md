@@ -1,8 +1,8 @@
 ## Cloudflare-workers/pages代理脚本
 
-### 方案一支持workers部署，使用_workers.txt文件(暂时移除网页/uuid显示节点功能)，实现vless+ws+tls与vless+ws两种代理节点
+### 方案一支持workers部署，实现vless+ws+tls与vless+ws两种代理节点
 
-### 方案二支持pages部署，使用_worker.js修改文件上传，仅实现vless+ws+tls代理节点
+### 方案二支持pages部署，仅实现vless+ws+tls代理节点
 
 ### 详细说明教程请参考[甬哥博客及视频教程](https://ygkkk.blogspot.com/2023/07/cfworkers-vless.html)
 --------------------------------
@@ -12,7 +12,7 @@
 
 2、如果无法访问CF类网站或者ChatGPT，说明ProxyIP失效，可更换ProxyIP，自定义（第9行）
 
-3、伪装网页目前留空，显示为400界面，可自定义（pages文件第797行/workers第667行）
+3、伪装网页目前留空，显示为400界面，可自定义（第797行）
 
 重点对workers与pages、有域名与无域名，这4种情况下的节点分享做了优化显示，方便小白们理解操作
 
