@@ -1,6 +1,6 @@
 ## Cloudflare-workers/pages代理脚本
 
-### 方案一支持workers部署，使用CF_workers_vless.txt文件(暂时移除网页/uuid显示节点功能)，实现vless+ws+tls与vless+ws两种代理节点
+### 方案一支持workers部署，使用_workers.txt文件(暂时移除网页/uuid显示节点功能)，实现vless+ws+tls与vless+ws两种代理节点
 
 ### 方案二支持pages部署，使用_worker.js修改文件上传，仅实现vless+ws+tls代理节点
 
