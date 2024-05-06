@@ -21,8 +21,8 @@
 ### 可在CF-workers/pages界面中使用变量，方便修改
 | 变量作用 | 变量名称| 变量值| 不添加该变量说明|
 | :--- | :--- | :--- | :--- |
-| uuid密码ID | uuid |符合uuid规定格式 |万人骑uuid：77a571fb-4fd2-4b37-8596-1b7d9728bb5c|
-| 能上CF类网站 | proxyip |填写ipv4地址、域名、[ipv6地址]|默认域名：workers.cloudflare.cyou|
+| uuid密码ID | uuid |符合uuid规定格式 |默认万人骑uuid：77a571fb-4fd2-4b37-8596-1b7d9728bb5c|
+| 能上CF类网站 | proxyip |ipv4地址、域名、[ipv6地址]|默认域名：workers.cloudflare.cyou|
 
 
 ---------------------------------
