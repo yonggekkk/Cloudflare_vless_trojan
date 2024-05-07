@@ -1,6 +1,4 @@
 # Cloudflare-workers/pages代理脚本
---------------------------------
-## Cloudflare-workers/pages代理脚本的方案说明
 
 支持workers部署，实现vless+ws+tls与vless+ws两种代理节点
 
