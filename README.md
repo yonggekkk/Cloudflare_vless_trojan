@@ -24,7 +24,7 @@
 | 1、必要的uuid | uuid |符合uuid规定格式 |万人骑uuid：77a571fb-4fd2-4b37-8596-1b7d9728bb5c|
 | 2、能上CF类网站 | proxyip |ipv4地址、域名、[ipv6地址]|proxyip域名：workers.cloudflare.cyou|
 
-### 查看相关分享链接，在网页输入：(workers/pages/自定义)域名/自定义uuid
+### CF vless查看相关分享链接，在网页输入：(workers/pages/自定义)域名/自定义uuid
 
 ### 详细说明教程请参考[甬哥博客及视频教程](https://ygkkk.blogspot.com/2023/07/cfworkers-vless.html)
 
