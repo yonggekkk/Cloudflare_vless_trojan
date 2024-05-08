@@ -4,7 +4,8 @@ const proxyIPs = ["替换为ipv4地址或者域名地址"]
 或者
 const proxyIPs = ["[替换为ipv6地址]"]
 
-目前脚本使用来源于网络分享的proxyIP：workers.cloudflare.cyou
+目前脚本使用来源于网络分享的proxyIP域名：
+workers.cloudflare.cyou
 cdn.xn--b6gac.eu.org
 cdn-all.xn--b6gac.eu.org
 bestproxy.onecf.eu.org
