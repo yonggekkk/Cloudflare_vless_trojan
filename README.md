@@ -40,7 +40,7 @@
 #### 也可CF-workers/pages界面中使用变量设置，注：变量设置结果将覆盖本地修改结果
 | 变量作用 | 变量名称| 变量值要求| 变量默认值|
 | :--- | :--- | :--- | :--- |
-| 1、必要的密码 | pswd |随意字符号 |万人骑密码：trojan|
+| 1、必要的密码 | pswd |任意字符号 |万人骑密码：trojan|
 | 2、能上CF类网站 | proxyip |ipv4地址、域名、[ipv6地址]|proxyip域名：cdn.xn--b6gac.eu.org|
 
 #### CF Trojan查看相关分享链接，在网页输入：(workers/pages/自定义)域名/自定义密码
