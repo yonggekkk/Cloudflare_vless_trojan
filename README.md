@@ -22,8 +22,6 @@
 | 1、必要的uuid | uuid |符合uuid规定格式 |万人骑uuid：77a571fb-4fd2-4b37-8596-1b7d9728bb5c|
 | 2、能上CF类网站 | proxyip |ipv4地址、域名、[ipv6地址]|proxyip域名：cdn.xn--b6gac.eu.org|
 
-#### CF vless查看相关分享链接，在网页输入：(workers/pages/自定义)域名/自定义uuid
-
 #### 详细说明教程请参考[甬哥博客及视频教程](https://ygkkk.blogspot.com/2023/07/cfworkers-vless.html)
 ---------------------------------
 
@@ -43,13 +41,22 @@
 | 1、必要的密码 | pswd |任意字符号 |万人骑密码：trojan|
 | 2、能上CF类网站 | proxyip |ipv4地址、域名、[ipv6地址]|proxyip域名：cdn.xn--b6gac.eu.org|
 
-#### CF Trojan查看相关分享链接，在网页输入：(workers/pages/自定义)域名/自定义密码
-
 #### 详细说明教程请参考[甬哥博客及视频教程]
+---------------------------------
+## 三：查看相关分享链接（单节点，非订阅）
+#### CF Vless分享链接，在网页输入：(workers/pages/自定义)域名/自定义uuid
+#### CF Trojan分享链接，在网页输入：(workers/pages/自定义)域名/自定义密码
+
+注意： 由于workers域名是被全网TLS阻断的、pages域名被中国移动TLS阻断
+
+可使用自定义域或者开启代理下才可正常查看，但如果你了解CF-workers/pages节点的特点，可直接手搓相关节点
 
 ---------------------------------
 ---------------------------------
 ---------------------------------
+---------------------------------
+# 优选域名、优选官方IP+反代IP一键脚本：
+
 ### CF-CDN优选公共大厂域名脚本，苹果安卓手机平板专用，(请参考教程，在本地网络环境下运行)：
 ```
 curl -sSL https://gitlab.com/rwkgyg/CFwarp/raw/main/point/CFcdnym.sh -o CFcdnym.sh && chmod +x CFcdnym.sh && bash CFcdnym.sh
