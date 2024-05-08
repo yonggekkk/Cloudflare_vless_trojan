@@ -1,8 +1,8 @@
 # Cloudflare-workers/pages代理脚本
 
-支持workers部署，实现vless+ws+tls与vless+ws两种代理节点
+支持workers部署，实现vless/trojan+ws+tls与vless/trojan+ws
 
-支持pages部署，仅实现vless+ws+tls代理节点
+支持pages部署，仅实现vless/trojan+ws+tls代理节点
 
 --------------------------------
 
