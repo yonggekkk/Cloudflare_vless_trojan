@@ -44,8 +44,8 @@
 #### 详细说明教程请参考[甬哥博客及视频教程]
 ---------------------------------
 ## 三：查看相关分享链接（单节点，非订阅）
-#### CF Vless分享链接，在网页输入：(workers/pages/自定义)域名/自定义uuid
-#### CF Trojan分享链接，在网页输入：(workers/pages/自定义)域名/自定义密码
+#### CF Vless分享链接，在网页输入： https:// workers域名 或者 pages域名 或者 自定义域名/自定义uuid
+#### CF Trojan分享链接，在网页输入：https:// workers域名 或者 pages域名 或者 自定义域名/自定义密码
 
 注意： 由于workers域名已被全网TLS阻断、pages域名已被中国移动TLS阻断
 
