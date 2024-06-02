@@ -675,7 +675,8 @@ async function handleUDPOutBound(webSocket, vlessResponseHeader, log) {
 function getVLESSConfig(userID, hostName) {
   const wvlessws = `vless://${userID}\u0040www.visa.com.sg:8880?encryption=none&security=none&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#${hostName}`;
   const pvlesswstls = `vless://${userID}\u0040www.visa.com.sg:8443?encryption=none&security=tls&type=ws&host=${hostName}&sni=${hostName}&fp=random&path=%2F%3Fed%3D2560#${hostName}`;
-  const note = `甬哥博客地址：https://ygkkk.blogspot.com\n甬哥YouTube频道：https://www.youtube.com/@ygkkk\n甬哥TG电报群组：https://t.me/+jZHc6-A-1QQ5ZGVl\n甬哥TG电报频道：https://t.me/+DkC9ZZUgEFQzMTZl\n\n\n正在使用的ProxyIP：${proxyIP}`;
+  const note = `甬哥博客地址：https://ygkkk.blogspot.com\n甬哥YouTube频道：https://www.youtube.com/@ygkkk\n甬哥TG电报群组：https://t.me/+jZHc6-A-1QQ5ZGVl\n甬哥TG电报频道：https://t.me/+DkC9ZZUgEFQzMTZl\n\n正在使用的ProxyIP：${proxyIP}`;
+  const noteshow = note.replace(/\n/g, '<br>');
   const displayHtml = `
 <head>
 <meta charset="UTF-8">
@@ -712,8 +713,10 @@ ${displayHtml}
     <div class="row">
         <div class="col-md-12">
             <h2>配置详解</h2>
-            <p>${note}</p>
+            <p>${noteshow}</p>
             <hr>
+            <br>
+            <br>
             <h3>CF-pages-vless+ws+tls节点，分享链接如下：</h3>
 			<table class="table">
 				<thead>
@@ -758,9 +761,9 @@ ${displayHtml}
     <div class="row">
         <div class="col-md-12">
             <h2>配置详解</h2>
-            <p>${note}</p>
+            <p>${noteshow}</p>
             <hr>
-            <h3>CF-workers-vless+ws节点，分享链接如下：</h3>
+            <h3>1：CF-workers-vless+ws节点，分享链接如下：</h3>
 			<table class="table">
 				<thead>
 					<tr>
@@ -790,7 +793,9 @@ ${displayHtml}
                 <li>路径(path)：/?ed=2048</li>
             </ul>
             <hr>
-            <h3>CF-workers-vless+ws+tls 或者 CF-pages-vless+ws+tls节点，分享链接如下：</h3>
+            <br>
+            <br>
+            <h3>2：CF-workers-vless+ws+tls 或者 CF-pages-vless+ws+tls节点，分享链接如下：</h3>
 			<table class="table">
 				<thead>
 					<tr>
