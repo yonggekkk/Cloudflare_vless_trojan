@@ -30,7 +30,7 @@ export default {
       if (!upgradeHeader || upgradeHeader !== "websocket") {
         const url = new URL(request.url);
         switch (url.pathname) {
-          case "/cf":
+          case "/":
             return new Response(JSON.stringify(request.cf, null, 4), {
               status: 200,
               headers: {
