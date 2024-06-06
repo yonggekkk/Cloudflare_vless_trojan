@@ -1,7 +1,7 @@
 // src/worker.js
 import { connect } from "cloudflare:sockets";
 
-let Pswd = "trojan";
+let Pswd = "F288DFD7-F681-2903-C15C-8CCC962A04A1";
 const proxyIPs = ["cdn.xn--b6gac.eu.org"]; //workers.cloudflare.cyou bestproxy.onecf.eu.org cdn-all.xn--b6gac.eu.org cdn.xn--b6gac.eu.org
 let hostnames = [""];
 
@@ -367,7 +367,7 @@ export { worker_default as default };
 function gettrojanConfig(Pswd, hostName) {
   const wtrojanws = `trojan://${Pswd}\u0040www.visa.com.sg:8880?security=none&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#${hostName}`;
   const ptrojanwstls = `trojan://${Pswd}\u0040www.visa.com.sg:8443?security=tls&type=ws&host=${hostName}&sni=${hostName}&fp=random&path=%2F%3Fed%3D2560#${hostName}`;
-  const note = `甬哥博客地址：https://ygkkk.blogspot.com\n甬哥YouTube频道：https://www.youtube.com/@ygkkk\n甬哥TG电报群组：https://t.me/+jZHc6-A-1QQ5ZGVl\n甬哥TG电报频道：https://t.me/+DkC9ZZUgEFQzMTZl\n\n正在使用的ProxyIP：${proxyIP}`;
+ 
   const noteshow = note.replace(/\n/g, '<br>');
   const displayHtml = `
 <head>
