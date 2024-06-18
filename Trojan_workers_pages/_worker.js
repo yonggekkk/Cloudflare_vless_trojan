@@ -43,7 +43,7 @@ const worker_default = {
           default:
             // return new Response('Not found', { status: 404 });
             // For any other path, reverse proxy to 'ramdom website' and return the original response, caching it in the process
-            if (cn_hostnames.includes('')) {
+            if (hostnames.includes('')) {
             return new Response(JSON.stringify(request.cf, null, 4), {
               status: 200,
               headers: {
