@@ -1,3 +1,5 @@
+# 2024.7月即将更新。。。。
+
 # Cloudflare-workers/pages代理脚本
 
 支持workers部署，实现vless+ws+tls、trojan+ws+tls、vless+ws、trojan+ws代理节点
