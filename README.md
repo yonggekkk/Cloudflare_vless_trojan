@@ -1,3 +1,5 @@
+# 2024.7月，更新中………………
+
 # Cloudflare-workers/pages代理脚本
 
 支持workers部署，实现vless+ws+tls、trojan+ws+tls、vless+ws、trojan+ws代理节点
@@ -47,7 +49,7 @@
 | :--- | :--- | :--- | :--- |
 | 1、必要的密码 | pswd |任意字符号 |万人骑密码：trojan|
 | 2、能上CF类网站 | proxyip |ipv4地址、域名、[ipv6地址]|proxyip域名：cdn.xn--b6gac.eu.org|
-| 3、订阅节点优选IP | ip1到ip13 |CF官方IP、CF反代IP、CF优选域名| CF官方不同地区的visa域名visa域名|
+| 3、订阅节点优选IP | ip1到ip13 |CF官方IP、CF反代IP、CF优选域名| CF官方不同地区的visa域名|
 | 4、优选IP对应端口 | pt1到pt13 |CF13个标准端口、反代IP对应端口| CF13个标准端口|
 
 ---------------------------------
@@ -55,7 +57,7 @@
 
 支持IPV4、IPV6(需中括号)、域名三种方式
 
-可在客户端上的path设置处直接修改：/pyip=IPV4地址 或者 /pyip=[IPV6地址] 或者 /pyip=域名
+可在客户端上的path设置处直接修改：/pyip=IPV4地址  ；  /pyip=[IPV6地址]  ；  /pyip=域名
 
 ---------------------------------
 
@@ -64,6 +66,8 @@
 CF Vless：在网页输入 https:// workers域名 或者 pages域名 或者 自定义域名 /自定义uuid
 
 CF Trojan：在网页输入 https:// workers域名 或者 pages域名 或者 自定义域名 /自定义密码
+
+支持单节点链接、通用节点订阅、sing-box节点订阅、clash节点订阅
 
 ---------------------------------
 ### 相关说明及注意点请查看[甬哥博客](https://ygkkk.blogspot.com/2023/07/cfworkers-vless.html)
