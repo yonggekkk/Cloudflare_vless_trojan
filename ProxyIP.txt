@@ -5,6 +5,7 @@ const proxyIPs = ["替换为ipv4地址或者域名地址"]
 const proxyIPs = ["[替换为ipv6地址]"]
 
 目前脚本使用来源于网络分享的proxyIP域名：
+ts.hpc.tw
 workers.cloudflare.cyou
 cdn.xn--b6gac.eu.org
 cdn-all.xn--b6gac.eu.org
