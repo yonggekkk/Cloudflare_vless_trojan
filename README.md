@@ -84,7 +84,7 @@ CF Trojan：在网页输入 https:// workers域名 或者 pages域名 或者 自
 [v2rayN](https://github.com/2dust/v2rayN/tags)
 [Hiddify](https://github.com/hiddify/hiddify-next/releases)
 
-苹果：Shadowrocket、Streisand、Karing
+苹果：Shadowrocket、Streisand
 
 ---------------------------------
 ### 相关说明及注意点请查看[甬哥博客](https://ygkkk.blogspot.com/2023/07/cfworkers-vless.html)
