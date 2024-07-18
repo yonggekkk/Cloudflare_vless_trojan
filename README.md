@@ -74,6 +74,19 @@ CF Trojan：在网页输入 https:// workers域名 或者 pages域名 或者 自
 支持单节点链接、通用节点订阅、sing-box节点订阅、clash节点订阅
 
 ---------------------------------
+客户端推荐(支持分片)：
+
+安卓：
+[v2rayNG](https://github.com/2dust/v2rayNG/tags)
+[Nekobox](https://github.com/maskedeken/NekoBoxForAndroid/tags)
+
+电脑：
+[v2rayN](https://github.com/2dust/v2rayN/tags)
+[Hiddify](https://github.com/hiddify/hiddify-next/releases)
+
+苹果：Shadowrocket、Streisand、Karing
+
+---------------------------------
 ### 相关说明及注意点请查看[甬哥博客](https://ygkkk.blogspot.com/2023/07/cfworkers-vless.html)
 
 ### 视频教程：
