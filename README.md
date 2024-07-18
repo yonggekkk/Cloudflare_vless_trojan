@@ -74,7 +74,7 @@ CF Trojan：在网页输入 https:// workers域名 或者 pages域名 或者 自
 支持单节点链接、通用节点订阅、sing-box节点订阅、clash节点订阅
 
 ---------------------------------
-客户端推荐(支持分片)：
+## 客户端推荐(支持分片)：
 
 安卓：
 [v2rayNG](https://github.com/2dust/v2rayNG/tags)
