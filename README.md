@@ -2,7 +2,7 @@
 
 # Cloudflare-workers/pages代理脚本
 
-### 注意：本项目不含有订阅器、自动优选、节点转换等第三方外链接引用，全套本地化
+### 注意：本项目不依赖于订阅器、节点转换等第三方外链引用，全套独立本地化
 
 支持workers部署，实现vless+ws+tls、trojan+ws+tls、vless+ws、trojan+ws代理节点
 
