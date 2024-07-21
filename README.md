@@ -29,7 +29,7 @@
 | 1、必要的uuid | uuid |符合uuid规定格式 |万人骑uuid：77a571fb-4fd2-4b37-8596-1b7d9728bb5c|
 | 2、能上CF类网站 | proxyip |ipv4地址、域名、[ipv6地址]|proxyip域名：cdn.xn--b6gac.eu.org|
 | 3、订阅节点优选IP | ip1到ip13 |CF官方IP、CF反代IP、CF优选域名| CF官方不同地区的visa域名|
-| 4、优选IP对应端口 | pt1到pt13 |CF13个标准端口、反代IP对应端口| CF13个标准端口|
+| 4、优选IP对应端口 | pt1到pt13 |CF13个标准端口、反代IP对应高位端口| CF13个标准端口|
 
 ---------------------------------
 
@@ -52,7 +52,7 @@
 | 1、必要的密码 | pswd |任意字符号 |万人骑密码：trojan|
 | 2、能上CF类网站 | proxyip |ipv4地址、域名、[ipv6地址]|proxyip域名：cdn.xn--b6gac.eu.org|
 | 3、订阅节点优选IP | ip1到ip13 |CF官方IP、CF反代IP、CF优选域名| CF官方不同地区的visa域名|
-| 4、优选IP对应端口 | pt1到pt13 |CF13个标准端口、反代IP对应端口| CF13个标准端口|
+| 4、优选IP对应端口 | pt1到pt13 |CF13个标准端口、反代IP对应高位端口| CF13个标准端口|
 
 ---------------------------------
 ## 三：CF Vless/trojan的单节点支持path路径自定义proxyip
@@ -71,7 +71,7 @@ CF Vless：在网页输入 https:// workers域名 或者 pages域名 或者 自�
 
 CF Trojan：在网页输入 https:// workers域名 或者 pages域名 或者 自定义域名 /自定义密码
 
-支持单节点链接、通用节点订阅、sing-box节点订阅、clash节点订阅
+支持单节点链接、聚合通用节点订阅、sing-box节点订阅、clash节点订阅
 
 ---------------------------------
 ## 客户端推荐(支持分片，更新中……)：
