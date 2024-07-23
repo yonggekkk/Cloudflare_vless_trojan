@@ -133,9 +133,9 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 [CF workers永久免费Trojan节点搭建教程（三）：无需自定义域名，workers与pages两方案部署优选IP节点；CF Trojan与CF Vless对比总结；如何看待Trojan被识别](https://youtu.be/lmhhL8M1k0I)
 
-[CF vless/trojan永久免费节点教程（四）：解读优选官方IP、优选反代IP、优选域名三者的关系与特点；ProxyIP存在的意义](https://youtu.be/NaLd-orwFUE)
+强烈推荐：[CF vless/trojan永久免费节点教程（四）：解读优选官方IP、优选反代IP、优选域名三者的关系与特点；ProxyIP存在的意义](https://youtu.be/NaLd-orwFUE)
 
-[CF vless/trojan永久免费节点教程（五）：不用域名？不用订阅器？30秒手搓CF“不死”节点；独家总结CF节点与域名的结构关系(独家彩蛋图)](https://youtu.be/8s-ELRuFaeE)
+最新推荐：[CF vless/trojan永久免费节点教程（五）：不用域名？不用订阅器？30秒手搓CF“不死”节点；CF节点与域名的结构关系(独家彩蛋图)](https://youtu.be/8s-ELRuFaeE)
 
 [直播精选回顾：CF workers vless免费节点四大特点，节点被断流阻断问题](https://youtu.be/9OHGpWlfdJ0)
 
