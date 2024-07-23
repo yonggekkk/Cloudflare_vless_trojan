@@ -1,12 +1,12 @@
-# 2024.7月23日14:00发布视频教程，更新中………………
-
 # Cloudflare-workers/pages代理脚本
 
 ### 注意：本项目不依赖于订阅器、节点转换等第三方外链引用，全套独立本地化
 
-支持workers部署，实现vless+ws+tls、trojan+ws+tls、vless+ws、trojan+ws代理节点
+#### workers本地部署：支持vless+ws+tls、trojan+ws+tls、vless+ws、trojan+ws代理节点
 
-支持pages部署，实现vless+ws+tls、trojan+ws+tls代理节点
+#### pages本地部署：支持vless+ws+tls、trojan+ws+tls代理节点
+
+#### 支持单节点链接、聚合通用节点订阅、sing-box节点订阅、clash节点订阅
 
 --------------------------------
 
@@ -61,17 +61,17 @@
 
 可在客户端上的path设置处直接修改：/pyip=IPV4地址  ；  /pyip=[IPV6地址]  ；  /pyip=域名
 
-此项设置仅影响当前客户端使用的单节点，并不影响其他单节点或者订阅节点
+注意：此项设置仅影响当前客户端使用的单节点，并不影响其他单节点或者订阅节点的proxyip
 
 ---------------------------------
 
 ## 四：查看配置信息与分享链接
 
-CF Vless：在网页输入 https:// workers域名 或者 pages域名 或者 自定义域名 /自定义uuid
+CF Vless：在网页地址栏输入 https:// workers域名 或者 pages域名 或者 自定义域名 /自定义uuid
 
-CF Trojan：在网页输入 https:// workers域名 或者 pages域名 或者 自定义域名 /自定义密码
+CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 或者 自定义域名 /自定义密码
 
-支持单节点链接、聚合通用节点订阅、sing-box节点订阅、clash节点订阅
+注意：使用自定域时，原先workers域名 或者 pages域名下的节点依旧可用
 
 ---------------------------------
 ## 客户端推荐(支持分片，更新中……)：
@@ -99,7 +99,7 @@ CF Trojan：在网页输入 https:// workers域名 或者 pages域名 或者 自
 
 [CF vless/trojan永久免费节点教程（四）：解读优选官方IP、优选反代IP、优选域名三者的关系与特点；ProxyIP存在的意义](https://youtu.be/NaLd-orwFUE)
 
-[CF vless/trojan永久免费节点教程（五）：不用域名？不用订阅器？30秒手搓CF“不死”节点；独家总结CF节点与域名的结构关系](https://youtu.be/8s-ELRuFaeE)
+[CF vless/trojan永久免费节点教程（五）：不用域名？不用订阅器？30秒手搓CF“不死”节点；独家总结CF节点与域名的结构关系(独家彩蛋图)](https://youtu.be/8s-ELRuFaeE)
 
 [直播精选回顾：CF workers vless免费节点四大特点，节点被断流阻断问题](https://youtu.be/9OHGpWlfdJ0)
 
