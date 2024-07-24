@@ -112,13 +112,16 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 ---------------------------------
 ## 客户端推荐 (支持分片功能，更新中……)：
 
-#### 安卓Android：[v2rayNG](https://github.com/2dust/v2rayNG/tags)、[Nekobox](https://github.com/maskedeken/NekoBoxForAndroid/tags)
+#### 安卓Android：[v2rayNG](https://github.com/2dust/v2rayNG/tags)、[Nekobox](https://github.com/maskedeken/NekoBoxForAndroid/tags)、v2box
+
 
 #### 电脑Windows：[v2rayN](https://github.com/2dust/v2rayN/tags)、[Hiddify](https://github.com/hiddify/hiddify-next/releases)
 
-#### 苹果Ios：Shadowrocket、Streisand
+#### 苹果Ios：Shadowrocket、Streisand、v2box
 
 注意：其他平台客户端未开启分片功能情况下，workers域的6个443系TLS节点是不可用的。自定义域或pages域无需开启分片就可使用TLS节点
+
+xray与clash内核的客户端，基本不支持trojan+ws节点，必须开tls才行。sing-box内核的客户端无此问题
 
 ---------------------------------
 ### 相关说明及注意点请查看[甬哥博客](https://ygkkk.blogspot.com/2023/07/cfworkers-vless.html)
