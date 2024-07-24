@@ -118,7 +118,7 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 #### 苹果Ios：Shadowrocket、Streisand
 
-注意：其他平台客户端未开启分片功能情况下，使用workers域的6个443系TLS节点是不可用的。自定义域或pages域无需设置分片就可使用TLS节点
+注意：其他平台客户端未开启分片功能情况下，workers域的6个443系TLS节点是不可用的。自定义域或pages域无需开启分片就可使用TLS节点
 
 ---------------------------------
 ### 相关说明及注意点请查看[甬哥博客](https://ygkkk.blogspot.com/2023/07/cfworkers-vless.html)
