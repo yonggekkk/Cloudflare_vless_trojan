@@ -71,7 +71,7 @@ CF Vless：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 或者 自定义域名 /自定义密码
 
-注意：使用自定域时，原先workers域名 或者 pages域名下的节点依旧可用
+注意：使用自定域时，原先workers域名 或者 pages域名下的配置信息与分享链接依旧可用
 
 ---------------------------------
 
