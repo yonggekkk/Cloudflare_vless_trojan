@@ -1158,6 +1158,8 @@ return `{
         "password": "${Pswd}"
       },
       {
+        "tcp_fast_open": true,
+        "udp_fragment": true,
         "server": "${IP8}",
         "server_port": ${PT8},
         "tag": "CF_T8_${IP8}_${PT8}",
@@ -1183,6 +1185,8 @@ return `{
         "password": "${Pswd}"
       },
       {
+        "tcp_fast_open": true,
+        "udp_fragment": true,      
         "server": "${IP9}",
         "server_port": ${PT9},
         "tag": "CF_T9_${IP9}_${PT9}",
@@ -1208,6 +1212,8 @@ return `{
         "password": "${Pswd}"
       },
       {
+        "tcp_fast_open": true,
+        "udp_fragment": true,      
         "server": "${IP10}",
         "server_port": ${PT10},
         "tag": "CF_T10_${IP10}_${PT10}",
@@ -1233,6 +1239,8 @@ return `{
         "password": "${Pswd}"
       },
       {
+        "tcp_fast_open": true,
+        "udp_fragment": true,      
         "server": "${IP11}",
         "server_port": ${PT11},
         "tag": "CF_T11_${IP11}_${PT11}",
@@ -1258,6 +1266,8 @@ return `{
         "password": "${Pswd}"
       },
       {
+        "tcp_fast_open": true,
+        "udp_fragment": true,
         "server": "${IP12}",
         "server_port": ${PT12},
         "tag": "CF_T12_${IP12}_${PT12}",
@@ -1283,6 +1293,8 @@ return `{
         "password": "${Pswd}"
       },
       {
+        "tcp_fast_open": true,
+        "udp_fragment": true,      
         "server": "${IP13}",
         "server_port": ${PT13},
         "tag": "CF_T13_${IP13}_${PT13}",
