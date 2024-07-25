@@ -112,13 +112,13 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 注意：多个CF节点在客户端使用负载均衡或者自动选择时，建议所有应用的节点都为同一个国家地区，以避免不同国家之间的IP乱跳现象
 
 ---------------------------------
-## 客户端推荐 (支持分片功能，更新中……)：
+## 支持分片功能的客户端推荐 (更新中……)：
 
-#### 安卓Android：[v2rayNG](https://github.com/2dust/v2rayNG/tags)、[Nekobox](https://github.com/maskedeken/NekoBoxForAndroid/tags)、v2box
+#### 安卓Android：[v2rayNG](https://github.com/2dust/v2rayNG/tags)、[Nekobox](https://github.com/maskedeken/NekoBoxForAndroid/tags)、[Karing](https://github.com/KaringX/karing/tags)、v2box
 
-#### 电脑Windows：[v2rayN](https://github.com/2dust/v2rayN/tags)、[Hiddify](https://github.com/hiddify/hiddify-next/releases)
+#### 电脑Windows：[v2rayN](https://github.com/2dust/v2rayN/tags)、[Hiddify](https://github.com/hiddify/hiddify-next/releases)、[Karing](https://github.com/KaringX/karing/tags)
 
-#### 苹果Ios：Shadowrocket(小火箭)、Streisand、v2box
+#### 苹果Ios：Karing、Shadowrocket(小火箭)、Streisand、v2box
 
 注意：其他平台客户端未开启分片功能情况下，workers域的6个443系TLS节点是不可用的。自定义域或pages域无需开启分片就可使用TLS节点
 
