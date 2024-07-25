@@ -543,7 +543,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-trojan代理脚本 V24.7.21</h1>
+            <h1>Cloudflare-workers/pages-trojan代理脚本 V24.7.25</h1>
 			<hr>
             <p>${noteshow}</p>
             <hr>
@@ -616,8 +616,8 @@ ${displayHtml}
 			<br>
 			<h3>3：聚合通用、Clash-meta、Sing-box订阅链接如下：</h3>
 			<hr>
-			<p>注意：<br>1、默认每个订阅链接包含TLS+非TLS共13个端口节点 (Clash节点仅6个TLS节点)<br>2、当前workers域名作为订阅链接，需通过代理进行订阅更新<br>3、需要开启分片功能使TLS节点可用，否则仅非TLS节点可用</p>
-			<hr>
+			<p>注意：<br>1、默认每个订阅链接包含TLS+非TLS共13个端口节点 (Clash节点仅6个TLS节点)<br>2、当前workers域名作为订阅链接，需通过代理进行订阅更新<br>3、sing-box订阅已集成分片功能，并不保证每个客户端可用，否则仅非TLS节点可用</p>			
+                        <hr>
 			<table class="table">
 					<thead>
 						<tr>
@@ -675,7 +675,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-trojan代理脚本 V24.7.21</h1>
+            <h1>Cloudflare-workers/pages-trojan代理脚本 V24.7.25</h1>
 			<hr>
             <p>${noteshow}</p>
             <hr>
