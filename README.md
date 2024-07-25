@@ -2,6 +2,8 @@
 
 ### 注意：本项目不依赖于订阅器、节点转换等第三方外链引用，全套独立本地化
 
+#### 本项目定位懒人小白使用，默认节点都为官方IP，无需频繁更换客户端优选IP，如有特殊情况会第一时间更新
+
 #### workers本地部署：支持vless+ws+tls、trojan+ws+tls、vless+ws、trojan+ws代理节点
 
 #### pages本地部署：支持vless+ws+tls、trojan+ws+tls代理节点
