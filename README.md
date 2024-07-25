@@ -1,3 +1,5 @@
+# 2024.8月初教程即将更新…………
+
 # Cloudflare-workers/pages代理脚本
 
 ### 注意：本项目不依赖于订阅器、节点转换等第三方外链引用，全套独立本地化
@@ -137,7 +139,9 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 强烈推荐：[CF vless/trojan永久免费节点教程（四）：解读优选官方IP、优选反代IP、优选域名三者的关系与特点；ProxyIP存在的意义](https://youtu.be/NaLd-orwFUE)
 
-最新推荐：[CF vless/trojan永久免费节点教程（五）：不用域名？不用订阅器？30秒手搓CF“不死”节点；CF节点与域名的结构关系(独家彩蛋图)](https://youtu.be/8s-ELRuFaeE)
+最新推荐：[CF vless/trojan永久免费节点教程（五）：不用自定义域名？不用频繁优选IP？不用订阅器？总结CF节点与域名的结构关系图](https://youtu.be/8s-ELRuFaeE)
+
+2024.8月即将更新：…………
 
 [直播精选回顾：CF workers vless免费节点四大特点，节点被断流阻断问题](https://youtu.be/9OHGpWlfdJ0)
 
