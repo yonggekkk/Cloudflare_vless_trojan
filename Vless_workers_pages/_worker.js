@@ -924,7 +924,7 @@ ${displayHtml}
 			<br>
 			<h3>3：聚合通用、Clash-meta、Sing-box订阅链接如下：</h3>
 			<hr>
-			<p>注意：<br>1、默认每个订阅链接包含TLS+非TLS共13个端口节点<br>2、当前workers域名作为订阅链接，需通过代理进行订阅更新<br>3、sing-box订阅已集成分片功能，并不保证每个客户端可用，否则仅非TLS节点可用</p>
+			<p>注意：<br>1、默认每个订阅链接包含TLS+非TLS共13个端口节点<br>2、当前workers域名作为订阅链接，需通过代理进行订阅更新<br>3、如使用的客户端不支持分片功能，则TLS节点不可用</p>
 			<hr>
 			<table class="table">
 					<thead>
@@ -1591,9 +1591,7 @@ return `{
 		  "type": "vless",
 		  "uuid": "${userID}"
 		},
-		{
-		  "tcp_fast_open": true,
-		  "udp_fragment": true,      
+		{     
 		  "server": "${IP8}",
 		  "server_port": ${PT8},
 		  "tag": "CF_V8_${IP8}_${PT8}",
@@ -1620,8 +1618,6 @@ return `{
 		  "uuid": "${userID}"
 		},
 		{
-		  "tcp_fast_open": true,
-		  "udp_fragment": true, 
 		  "server": "${IP9}",
 		  "server_port": ${PT9},
 		  "tag": "CF_V9_${IP9}_${PT9}",
@@ -1648,8 +1644,6 @@ return `{
 		  "uuid": "${userID}"
 		},
 		{
-		  "tcp_fast_open": true,
-		  "udp_fragment": true, 
 		  "server": "${IP10}",
 		  "server_port": ${PT10},
 		  "tag": "CF_V10_${IP10}_${PT10}",
@@ -1676,8 +1670,6 @@ return `{
 		  "uuid": "${userID}"
 		},
 		{
-		  "tcp_fast_open": true,
-		  "udp_fragment": true, 
 		  "server": "${IP11}",
 		  "server_port": ${PT11},
 		  "tag": "CF_V11_${IP11}_${PT11}",
@@ -1704,8 +1696,6 @@ return `{
 		  "uuid": "${userID}"
 		},
 		{
-		  "tcp_fast_open": true,
-		  "udp_fragment": true, 
 		  "server": "${IP12}",
 		  "server_port": ${PT12},
 		  "tag": "CF_V12_${IP12}_${PT12}",
@@ -1732,8 +1722,6 @@ return `{
 		  "uuid": "${userID}"
 		},
 		{
-		  "tcp_fast_open": true,
-		  "udp_fragment": true, 
 		  "server": "${IP13}",
 		  "server_port": ${PT13},
 		  "tag": "CF_V13_${IP13}_${PT13}",
