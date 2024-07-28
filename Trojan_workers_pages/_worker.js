@@ -616,7 +616,7 @@ ${displayHtml}
 			<br>
 			<h3>3：聚合通用、Clash-meta、Sing-box订阅链接如下：</h3>
 			<hr>
-			<p>注意：<br>1、默认每个订阅链接包含TLS+非TLS共13个端口节点 (Clash节点仅6个TLS节点)<br>2、当前workers域名作为订阅链接，需通过代理进行订阅更新<br>3、如使用的客户不支持分片功能，则TLS节点不可用</p>	
+			<p>注意：<br>1、默认每个订阅链接包含TLS+非TLS共13个端口节点 (Clash节点仅6个TLS节点)<br>2、当前workers域名作为订阅链接，需通过代理进行订阅更新<br>3、如使用的客户端不支持分片功能，则TLS节点不可用</p>	
                         <hr>
 			<table class="table">
 					<thead>
