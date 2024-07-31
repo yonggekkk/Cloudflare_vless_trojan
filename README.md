@@ -128,6 +128,8 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 #### 苹果Ios：Karing、Shadowrocket(小火箭)、Streisand、v2box
 
+#### 软路由Openwrt：homeproxy
+
 注意：其他平台客户端未开启分片功能情况下，workers域的6个443系TLS节点是不可用的。自定义域或pages域无需开启分片就可使用TLS节点
 
 注意：Shadowrocket(小火箭)、v2box、v2rayn、v2rayng客户端对trojan+ws有强制开启TLS问题，造成trojan+ws不通。且clash订阅没有trojan+ws节点。特此说明
