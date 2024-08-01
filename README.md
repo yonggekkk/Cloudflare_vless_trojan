@@ -4,7 +4,7 @@
 ### 本项目独立本地化，不依赖订阅器、节点转换等第三方外链引用，无需担心节点订阅被盗查
 --------------------------------
 ## 脚本特色：
-### 懒人小白专用！默认节点都为CF官方IP，无需频繁更新客户端优选IP，如有特殊情况会第一时间更新
+### 懒人小白专用！默认节点都为CF官方IP，无需频繁更新订阅获取客户端优选IP
 #### workers本地部署：支持vless+ws+tls、trojan+ws+tls、vless+ws、trojan+ws代理节点
 #### pages本地部署：支持vless+ws+tls、trojan+ws+tls代理节点
 #### CF Vless/trojan的单节点支持path路径自定义（IPV4、IPV6、域名）三类proxyip
