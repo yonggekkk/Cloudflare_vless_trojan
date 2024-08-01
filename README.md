@@ -1,13 +1,13 @@
 # 2024.8月初教程即将更新…………
 
 # Cloudflare-workers/pages代理脚本
-### 本项目独立本地化，不依赖订阅器、节点转换等第三方外链引用，无需担心节点订阅被盗查
+### 本项目仅支持本地化部署，不依赖订阅器、节点转换等第三方外链引用，无需担心节点订阅被盗查
 --------------------------------
 ## 脚本特色：
 ### 懒人小白专用！默认节点都为CF官方IP，无需频繁更新订阅获取客户端优选IP
-#### workers本地部署：支持vless+ws+tls、trojan+ws+tls、vless+ws、trojan+ws代理节点
-#### pages本地部署：支持vless+ws+tls、trojan+ws+tls代理节点
-#### CF Vless/trojan的单节点支持path路径自定义（IPV4、IPV6、域名）三类proxyip
+#### Workers方式：支持vless+ws+tls、trojan+ws+tls、vless+ws、trojan+ws代理节点
+#### Pages方式：支持vless+ws+tls、trojan+ws+tls代理节点
+#### CF Vless/Trojan的单节点支持path路径自定义三类proxyip（IPV4形式、IPV6形式、域名形式）
 #### 支持单节点链接、聚合通用节点订阅、sing-box节点订阅、clash节点订阅
 
 --------------------------------
