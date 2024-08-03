@@ -118,11 +118,11 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 注意：多个CF节点在客户端使用负载均衡或者自动选择时，建议所有应用的节点都为同一个国家地区，以避免不同国家之间的IP乱跳现象
 
 ---------------------------------
-## 客户端推荐 (更新中……)
+## 客户端推荐
 
 ### 启用分片(Fragment)功能的好处：无视域名被墙TLS阻断，从而让workers域名支持TLS
-
-#### 目前支持该功能的平台客户端如下
+ 
+目前支持该功能的平台客户端如下 (更新中……)
 
 1、安卓Android：[v2rayNG](https://github.com/2dust/v2rayNG/tags)、[Nekobox](https://github.com/maskedeken/NekoBoxForAndroid/tags)、[Karing](https://github.com/KaringX/karing/tags)、v2box
 
