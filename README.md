@@ -130,7 +130,7 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 3、苹果Ios：Karing、Shadowrocket(小火箭)、Streisand、v2box
 
-4、软路由Openwrt：[homeproxy](https://github.com/yonggekkk/homeproxy/tags)
+4、软路由Openwrt：[homeproxy](https://github.com/kiddin9/openwrt-packages)
 
 注意：其他平台客户端未开启分片功能情况下，workers域的6个443系TLS节点是不可用的。自定义域或pages域无需开启分片就可使用TLS节点
 
