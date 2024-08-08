@@ -120,7 +120,7 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 ---------------------------------
 ## 客户端推荐
 
-### 启用分片(Fragment)功能的好处：无视域名被墙TLS阻断，从而让workers等被墙的域名支持TLS
+### 启用分片(Fragment)功能的好处：无视域名被墙TLS阻断，从而让workers等被墙的域名支持TLS节点，自定义域名或pages域名无需开启分片就可使用TLS节点
  
 目前支持该功能的平台客户端如下 (更新中……)
 
@@ -132,7 +132,7 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 4、软路由Openwrt：[homeproxy](https://github.com/kiddin9/openwrt-packages)
 
-注意：其他平台客户端未开启分片功能情况下，workers域的6个443系TLS节点是不可用的。自定义域或pages域无需开启分片就可使用TLS节点
+注意：其他平台客户端未开启分片功能情况下，workers域的6个443系TLS节点是不可用的
 
 注意：Shadowrocket(小火箭)、v2box、v2rayn、v2rayng客户端对trojan+ws有强制开启TLS问题，造成trojan+ws不通。且clash订阅没有trojan+ws节点。特此说明
 
