@@ -498,7 +498,7 @@ export { worker_default as default };
 function gettrojanConfig(Pswd, hostName) {
   const wtrojanws = `trojan://${Pswd}\u0040${CDNIP}:8880?security=none&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#${hostName}`;
   const ptrojanwstls = `trojan://${Pswd}\u0040${CDNIP}:8443?security=tls&type=ws&host=${hostName}&sni=${hostName}&fp=random&path=%2F%3Fed%3D2560#${hostName}`;
-  const note = `甬哥博客地址：https://ygkkk.blogspot.com\n甬哥YouTube频道：https://www.youtube.com/@ygkkk\n甬哥TG电报群组：https://t.me/+jZHc6-A-1QQ5ZGVl\n甬哥TG电报频道：https://t.me/+DkC9ZZUgEFQzMTZl\n\nProxyIP全局运行中：${proxyIP}`;
+  const note = `甬哥博客地址：https://ygkkk.blogspot.com\n甬哥YouTube频道：https://www.youtube.com/@ygkkk\n甬哥TG电报群组：https://t.me/ygkkktg\n甬哥TG电报频道：https://t.me/ygkkktgpd\n\nProxyIP全局运行中：${proxyIP}`;
   const ty = `https://${hostName}/${Pswd}/ty`
   const cl = `https://${hostName}/${Pswd}/cl`
   const sb = `https://${hostName}/${Pswd}/sb`
