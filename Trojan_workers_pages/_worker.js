@@ -2,7 +2,7 @@
 import { connect } from "cloudflare:sockets";
  
 let Pswd = "trojan";
-const proxyIPs = ["cdn.xn--b6gac.eu.org"]; //ts.hpc.tw workers.cloudflare.cyou bestproxy.onecf.eu.org cdn-all.xn--b6gac.eu.org cdn.xn--b6gac.eu.org
+const proxyIPs = ["proxy.xxxxxxxx.tk"]; //ts.hpc.tw edgetunnel.anycast.eu.org bestproxy.onecf.eu.org cdn-all.xn--b6gac.eu.org cdn.xn--b6gac.eu.org proxy.xxxxxxxx.tk
 let cn_hostnames = [''];
 let CDNIP = 'www.visa.com.sg'
 // http_ip
@@ -498,7 +498,7 @@ export { worker_default as default };
 function gettrojanConfig(Pswd, hostName) {
   const wtrojanws = `trojan://${Pswd}\u0040${CDNIP}:8880?security=none&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#${hostName}`;
   const ptrojanwstls = `trojan://${Pswd}\u0040${CDNIP}:8443?security=tls&type=ws&host=${hostName}&sni=${hostName}&fp=random&path=%2F%3Fed%3D2560#${hostName}`;
-  const note = `甬哥博客地址：https://ygkkk.blogspot.com\n甬哥YouTube频道：https://www.youtube.com/@ygkkk\n甬哥TG电报群组：https://t.me/+jZHc6-A-1QQ5ZGVl\n甬哥TG电报频道：https://t.me/+DkC9ZZUgEFQzMTZl\n\nProxyIP全局运行中：${proxyIP}`;
+  const note = `甬哥博客地址：https://ygkkk.blogspot.com\n甬哥YouTube频道：https://www.youtube.com/@ygkkk\n甬哥TG电报群组：https://t.me/ygkkktg\n甬哥TG电报频道：https://t.me/ygkkktgpd\n\nProxyIP全局运行中：${proxyIP}`;
   const ty = `https://${hostName}/${Pswd}/ty`
   const cl = `https://${hostName}/${Pswd}/cl`
   const sb = `https://${hostName}/${Pswd}/sb`
@@ -543,7 +543,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-trojan代理脚本</h1>
+            <h1>Cloudflare-workers/pages-trojan代理脚本 V24.7.25</h1>
 			<hr>
             <p>${noteshow}</p>
             <hr>
@@ -614,14 +614,14 @@ ${displayHtml}
 			<hr>
 			<br>	
 			<br>
-			<h3>3：通用、Clash-meta、Sing-box订阅链接如下：</h3>
+			<h3>3：聚合通用、Clash-meta、Sing-box订阅链接如下：</h3>
 			<hr>
-			<p>注意：<br>1、默认每个订阅链接包含TLS+非TLS共13个端口节点 (Clash节点仅6个TLS节点)<br>2、当前workers域名作为订阅链接，需通过代理进行订阅更新<br>3、需要开启分片功能使TLS节点可用，否则仅非TLS节点可用</p>
-			<hr>
+			<p>注意：<br>1、默认每个订阅链接包含TLS+非TLS共13个端口节点 (Clash节点仅6个TLS节点)<br>2、当前workers域名作为订阅链接，需通过代理进行订阅更新<br>3、如使用的客户端不支持分片功能，则TLS节点不可用</p>	
+                        <hr>
 			<table class="table">
 					<thead>
 						<tr>
-							<th>通用订阅链接：</th>
+							<th>聚合通用订阅链接：</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -675,7 +675,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-trojan代理脚本</h1>
+            <h1>Cloudflare-workers/pages-trojan代理脚本 V24.7.25</h1>
 			<hr>
             <p>${noteshow}</p>
             <hr>
@@ -715,14 +715,14 @@ ${displayHtml}
 			<hr>
             <br>
             <br>
-			<h3>2：通用、Clash-meta、Sing-box订阅链接如下：</h3>
+			<h3>2：聚合通用、Clash-meta、Sing-box订阅链接如下：</h3>
 			<hr>
 			<p>注意：以下订阅链接仅6个TLS端口节点</p>
 			<hr>
 			<table class="table">
 					<thead>
 						<tr>
-							<th>通用订阅链接：</th>
+							<th>聚合通用订阅链接：</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -1182,7 +1182,7 @@ return `{
         "type": "trojan",
         "password": "${Pswd}"
       },
-      {
+      {     
         "server": "${IP9}",
         "server_port": ${PT9},
         "tag": "CF_T9_${IP9}_${PT9}",
@@ -1207,7 +1207,7 @@ return `{
         "type": "trojan",
         "password": "${Pswd}"
       },
-      {
+      {     
         "server": "${IP10}",
         "server_port": ${PT10},
         "tag": "CF_T10_${IP10}_${PT10}",
@@ -1232,7 +1232,7 @@ return `{
         "type": "trojan",
         "password": "${Pswd}"
       },
-      {
+      {     
         "server": "${IP11}",
         "server_port": ${PT11},
         "tag": "CF_T11_${IP11}_${PT11}",
@@ -1282,7 +1282,7 @@ return `{
         "type": "trojan",
         "password": "${Pswd}"
       },
-      {
+      {     
         "server": "${IP13}",
         "server_port": ${PT13},
         "tag": "CF_T13_${IP13}_${PT13}",

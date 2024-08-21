@@ -1,12 +1,14 @@
-# 2024.7月21日发布视频教程，更新中………………
+# 24.8月底将更新最最关键的教程……
 
 # Cloudflare-workers/pages代理脚本
-
-### 注意：本项目不依赖于订阅器、节点转换等第三方外链引用，全套独立本地化
-
-支持workers部署，实现vless+ws+tls、trojan+ws+tls、vless+ws、trojan+ws代理节点
-
-支持pages部署，实现vless+ws+tls、trojan+ws+tls代理节点
+### 本项目仅支持本地化部署，不依赖订阅器、节点转换等第三方外链引用，无需担心节点订阅被盗查
+--------------------------------
+## 脚本特色：
+### 懒人小白专用！默认节点都为CF官方IP，无需频繁更新订阅获取客户端优选IP
+#### Workers方式：支持vless+ws+tls、trojan+ws+tls、vless+ws、trojan+ws代理节点
+#### Pages方式：支持vless+ws+tls、trojan+ws+tls代理节点
+#### CF Vless/Trojan的单节点支持path路径自定义三类proxyip（IPV4形式、IPV6形式、域名形式）
+#### 支持单节点链接、聚合通用节点订阅、sing-box节点订阅、clash节点订阅
 
 --------------------------------
 
@@ -27,9 +29,9 @@
 | 变量作用 | 变量名称| 变量值要求| 变量默认值|
 | :--- | :--- | :--- | :--- |
 | 1、必要的uuid | uuid |符合uuid规定格式 |万人骑uuid：77a571fb-4fd2-4b37-8596-1b7d9728bb5c|
-| 2、能上CF类网站 | proxyip |ipv4地址、域名、[ipv6地址]|proxyip域名：cdn.xn--b6gac.eu.org|
+| 2、能上CF类网站 | proxyip |ipv4地址、域名、[ipv6地址]|proxyip域名：代码第9行|
 | 3、订阅节点优选IP | ip1到ip13 |CF官方IP、CF反代IP、CF优选域名| CF官方不同地区的visa域名|
-| 4、优选IP对应端口 | pt1到pt13 |CF13个标准端口、反代IP对应端口| CF13个标准端口|
+| 4、优选IP对应端口 | pt1到pt13 |CF13个标准端口、反代IP对应任意端口| CF13个标准端口|
 
 ---------------------------------
 
@@ -50,9 +52,9 @@
 | 变量作用 | 变量名称| 变量值要求| 变量默认值|
 | :--- | :--- | :--- | :--- |
 | 1、必要的密码 | pswd |任意字符号 |万人骑密码：trojan|
-| 2、能上CF类网站 | proxyip |ipv4地址、域名、[ipv6地址]|proxyip域名：cdn.xn--b6gac.eu.org|
+| 2、能上CF类网站 | proxyip |ipv4地址、域名、[ipv6地址]|proxyip域名：代码第5行|
 | 3、订阅节点优选IP | ip1到ip13 |CF官方IP、CF反代IP、CF优选域名| CF官方不同地区的visa域名|
-| 4、优选IP对应端口 | pt1到pt13 |CF13个标准端口、反代IP对应端口| CF13个标准端口|
+| 4、优选IP对应端口 | pt1到pt13 |CF13个标准端口、反代IP对应任意端口| CF13个标准端口|
 
 ---------------------------------
 ## 三：CF Vless/trojan的单节点支持path路径自定义proxyip
@@ -61,30 +63,79 @@
 
 可在客户端上的path设置处直接修改：/pyip=IPV4地址  ；  /pyip=[IPV6地址]  ；  /pyip=域名
 
-此项设置仅影响当前客户端使用的单节点，并不影响其他单节点或者订阅节点
+注意：仅影响当前客户端正在设置的单节点，并不影响其他单节点或者订阅节点的proxyip
 
 ---------------------------------
 
 ## 四：查看配置信息与分享链接
 
-CF Vless：在网页输入 https:// workers域名 或者 pages域名 或者 自定义域名 /自定义uuid
+CF Vless：在网页地址栏输入 https:// workers域名 或者 pages域名 或者 自定义域名 /自定义uuid
 
-CF Trojan：在网页输入 https:// workers域名 或者 pages域名 或者 自定义域名 /自定义密码
+CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 或者 自定义域名 /自定义密码
 
-支持单节点链接、通用节点订阅、sing-box节点订阅、clash节点订阅
+注意：使用自定域时，原先workers域名 或者 pages域名下的配置信息与分享链接依旧可用
 
 ---------------------------------
-## 客户端推荐(支持分片，更新中……)：
 
-安卓：
-[v2rayNG](https://github.com/2dust/v2rayNG/tags)、
-[Nekobox](https://github.com/maskedeken/NekoBoxForAndroid/tags)
+## 五：优选IP应用
 
-电脑：
-[v2rayN](https://github.com/2dust/v2rayN/tags)、
-[Hiddify](https://github.com/hiddify/hiddify-next/releases)
+如果你没有天天最高速度或者选择国家的需求，使用默认的CF官方不同地区的visa域名即可（IP落地地区都为美国）
 
-苹果：Shadowrocket、Streisand
+推荐好记的懒人专属CF官方IP如下（IP落地地区都为美国，支持13个标准端口切换），称之为"冲在最前的不死IP"
+
+104.16.0.0 
+
+104.17.0.0 
+
+104.18.0.0 
+
+104.19.0.0 
+
+104.20.0.0 
+
+104.21.0.0 
+
+104.22.0.0 
+
+104.24.0.0 
+
+104.25.0.0 
+
+104.26.0.0 
+
+104.27.0.0 
+
+172.66.0.0
+
+172.67.0.0
+
+162.159.0.0
+
+2606:4700:: 需IPV6环境
+
+通过配置变量修改，可使用他人分享的IP或者域名，也可以自行本地优选，相关优选应用与脚本可参考视频教程
+
+注意：多个CF节点在客户端使用负载均衡或者自动选择时，建议所有应用的节点都为同一个国家地区，以避免不同国家之间的IP乱跳现象
+
+---------------------------------
+## 客户端推荐
+
+#### 启用分片(Fragment)功能的好处：无视域名被墙TLS阻断，从而让workers等被墙的域名支持TLS节点
+#### 提示：未被墙TLS阻断的自定义域名或pages域名无需开启分片就可使用TLS节点
+ 
+目前支持该功能的平台客户端如下 (更新中……)
+
+1、安卓Android：[v2rayNG](https://github.com/2dust/v2rayNG/tags)、[Nekobox](https://github.com/maskedeken/NekoBoxForAndroid/tags)、[Karing](https://github.com/KaringX/karing/tags)、v2box
+
+2、电脑Windows：[v2rayN](https://github.com/2dust/v2rayN/tags)、[Hiddify](https://github.com/hiddify/hiddify-next/tags)、[Karing](https://github.com/KaringX/karing/tags)
+
+3、苹果Ios：Karing、Shadowrocket(小火箭)、Streisand、v2box
+
+4、软路由Openwrt：[homeproxy](https://github.com/kiddin9/openwrt-packages)
+
+注意：其他平台客户端未开启分片功能情况下，workers域的6个443系TLS节点是不可用的
+
+注意：Shadowrocket(小火箭)、v2box、v2rayn、v2rayng客户端对trojan+ws有强制开启TLS问题，造成trojan+ws不通。且clash订阅没有trojan+ws节点。特此说明
 
 ---------------------------------
 ### 相关说明及注意点请查看[甬哥博客](https://ygkkk.blogspot.com/2023/07/cfworkers-vless.html)
@@ -97,7 +148,11 @@ CF Trojan：在网页输入 https:// workers域名 或者 pages域名 或者 自
 
 [CF workers永久免费Trojan节点搭建教程（三）：无需自定义域名，workers与pages两方案部署优选IP节点；CF Trojan与CF Vless对比总结；如何看待Trojan被识别](https://youtu.be/lmhhL8M1k0I)
 
-[CF vless/trojan永久免费节点教程（四）：解读优选官方IP、优选反代IP、优选域名三者的关系与特点；ProxyIP存在的意义](https://youtu.be/NaLd-orwFUE)
+强烈推荐：[CF vless/trojan永久免费节点教程（四）：解读优选官方IP、优选反代IP、优选域名三者的关系与特点；ProxyIP存在的意义](https://youtu.be/NaLd-orwFUE)
+
+强烈推荐：[CF vless/trojan永久免费节点教程（五）：不用自定义域名？不用频繁优选IP？不用订阅器？总结CF节点与域名的结构关系图](https://youtu.be/8s-ELRuFaeE)
+
+最新推荐：[CF vless/trojan永久免费节点教程（六）：节点不能用，问题出在哪？多平台免费客户端设置指南及避坑说明](https://youtu.be/8E0l0nQWLxs)
 
 [直播精选回顾：CF workers vless免费节点四大特点，节点被断流阻断问题](https://youtu.be/9OHGpWlfdJ0)
 
@@ -107,14 +162,14 @@ CF Trojan：在网页输入 https:// workers域名 或者 pages域名 或者 自
 ---------------------------------
 ---------------------------------
 ---------------------------------
-# 优选域名、优选官方IP+反代IP一键脚本：
+## 优选域名、优选官方IP+反代IP一键脚本（在本地网络环境下利用termux或者ish运行）：
 
-### CF-CDN优选公共大厂域名脚本，苹果安卓手机平板专用，(请参考教程，在本地网络环境下运行)：
+### CF-CDN优选公共大厂域名脚本，苹果安卓手机平板专用：
 ```
 curl -sSL https://gitlab.com/rwkgyg/CFwarp/raw/main/point/CFcdnym.sh -o CFcdnym.sh && chmod +x CFcdnym.sh && bash CFcdnym.sh
 ```
 ------------------------------------------------------------------------
-### CF-优选官方IP+反代IP二合一脚本，苹果安卓手机平板专用，(请参考教程，在本地网络环境下运行)：
+### CF-优选官方IP+反代IP二合一脚本，苹果安卓手机平板专用：
 ```
 curl -sSL https://gitlab.com/rwkgyg/CFwarp/raw/main/point/cfip.sh -o cfip.sh && chmod +x cfip.sh && bash cfip.sh
 ```

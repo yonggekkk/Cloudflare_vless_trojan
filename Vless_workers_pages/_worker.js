@@ -6,7 +6,9 @@ import { connect } from "cloudflare:sockets";
 // [Windows] Press "Win + R", input cmd and run:  Powershell -NoExit -Command "[guid]::NewGuid()"
 let userID = "5db5edff-54dd-4ffa-b001-b1991d722308";
 
-const proxyIPs = ["workers.cloudflare.cyou"]; //ts.hpc.tw workers.cloudflare.cyou bestproxy.onecf.eu.org cdn-all.xn--b6gac.eu.org cdn.xn--b6gac.eu.org
+
+const proxyIPs = ["proxy.xxxxxxxx.tk"]; //ts.hpc.tw edgetunnel.anycast.eu.org bestproxy.onecf.eu.org cdn-all.xn--b6gac.eu.org cdn.xn--b6gac.eu.org proxy.xxxxxxxx.tk
+
 const cn_hostnames = [''];
 let CDNIP = 'www.visa.com.sg'
 // http_ip
@@ -806,7 +808,7 @@ async function handleUDPOutBound(webSocket, vlessResponseHeader, log) {
 function getVLESSConfig(userID, hostName) {
   const wvlessws = `vless://${userID}\u0040${CDNIP}:8880?encryption=none&security=none&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#${hostName}`;
   const pvlesswstls = `vless://${userID}\u0040${CDNIP}:8443?encryption=none&security=tls&type=ws&host=${hostName}&sni=${hostName}&fp=random&path=%2F%3Fed%3D2560#${hostName}`;
-  const note = `甬哥博客地址：https://ygkkk.blogspot.com\n甬哥YouTube频道：https://www.youtube.com/@ygkkk\n甬哥TG电报群组：https://t.me/+jZHc6-A-1QQ5ZGVl\n甬哥TG电报频道：https://t.me/+DkC9ZZUgEFQzMTZl\n\nProxyIP全局运行中：${proxyIP}`;
+  const note = `甬哥博客地址：https://ygkkk.blogspot.com\n甬哥YouTube频道：https://www.youtube.com/@ygkkk\n甬哥TG电报群组：https://t.me/ygkkktg\n甬哥TG电报频道：https://t.me/ygkkktgpd\n\nProxyIP全局运行中：${proxyIP}`;
   const ty = `https://${hostName}/${userID}/ty`
   const cl = `https://${hostName}/${userID}/cl`
   const sb = `https://${hostName}/${userID}/sb`
@@ -851,7 +853,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-vless代理脚本</h1>
+            <h1>Cloudflare-workers/pages-vless代理脚本 V24.7.25</h1>
 	    <hr>
             <p>${noteshow}</p>
             <hr>
@@ -922,14 +924,14 @@ ${displayHtml}
 			<hr>
 			<br>	
 			<br>
-			<h3>3：通用、Clash-meta、Sing-box订阅链接如下：</h3>
+			<h3>3：聚合通用、Clash-meta、Sing-box订阅链接如下：</h3>
 			<hr>
-			<p>注意：<br>1、默认每个订阅链接包含TLS+非TLS共13个端口节点<br>2、当前workers域名作为订阅链接，需通过代理进行订阅更新<br>3、需要开启分片功能使TLS节点可用，否则仅非TLS节点可用</p>
+			<p>注意：<br>1、默认每个订阅链接包含TLS+非TLS共13个端口节点<br>2、当前workers域名作为订阅链接，需通过代理进行订阅更新<br>3、如使用的客户端不支持分片功能，则TLS节点不可用</p>
 			<hr>
 			<table class="table">
 					<thead>
 						<tr>
-							<th>通用订阅链接：</th>
+							<th>聚合通用订阅链接：</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -983,7 +985,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-vless代理脚本</h1>
+            <h1>Cloudflare-workers/pages-vless代理脚本 V24.7.25</h1>
 			<hr>
             <p>${noteshow}</p>
             <hr>
@@ -1023,14 +1025,14 @@ ${displayHtml}
 			<hr>
             <br>
             <br>
-			<h3>2：通用、Clash-meta、Sing-box订阅链接如下：</h3>
+			<h3>2：聚合通用、Clash-meta、Sing-box订阅链接如下：</h3>
 			<hr>
 			<p>注意：以下订阅链接仅6个TLS端口节点</p>
 			<hr>
 			<table class="table">
 					<thead>
 						<tr>
-							<th>通用订阅链接：</th>
+							<th>聚合通用订阅链接：</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -1591,7 +1593,7 @@ return `{
 		  "type": "vless",
 		  "uuid": "${userID}"
 		},
-		{
+		{     
 		  "server": "${IP8}",
 		  "server_port": ${PT8},
 		  "tag": "CF_V8_${IP8}_${PT8}",
