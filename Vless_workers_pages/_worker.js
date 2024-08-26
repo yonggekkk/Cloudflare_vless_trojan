@@ -45,7 +45,7 @@ let PT13 = '2096'
 
 let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
 
-if (!isValidUUID(userID)) {
+if (!isValidUUID(e85dfd33-6788-4c04-be1e-20ba10708e52)) {
   throw new Error("uuid is not valid");
 }
 
