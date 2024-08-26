@@ -167,7 +167,7 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 强烈推荐：[CF vless/trojan永久免费节点教程（六）：节点不能用，问题出在哪？多平台免费客户端设置指南及避坑说明](https://youtu.be/8E0l0nQWLxs)
 
-最新推荐：[CF vless/trojan永久免费节点最终教程（七）：全网独家演示真正的 "固定IP"，twitch.tv、chatgpt客户端不报错的秘密；一键reality协议自制反代IP与ProxyIP](https://youtu.be/QOnMVULADko)
+最新推荐：[CF vless/trojan永久免费节点最终教程（七）：全网独家演示真正的"固定IP"，解决twitch、chatgpt客户端报错问题；一键自制反代IP与ProxyIP；揭秘你被他人偷扫IP的风险](https://youtu.be/QOnMVULADko)
 
 [直播精选回顾：CF workers vless免费节点四大特点，节点被断流阻断问题](https://youtu.be/9OHGpWlfdJ0)
 
