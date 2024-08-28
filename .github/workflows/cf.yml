@@ -1,0 +1,106 @@
+name: ⛅ CF Worker
+on:
+  # docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow
+  # docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#workflow_dispatch
+  # docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#onworkflow_dispatchinputs
+  workflow_dispatch:
+    # github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/
+    # docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#inputs
+    inputs:
+      # docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_dispatchinputs
+      environment:
+        description: 'wrangler env to deploy to'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+        - dev
+        - prod
+        - one
+      commit:
+        description: 'git tip commit to deploy'
+        default: 'main'
+        required: true
+
+  push:
+    # TODO: inputs.environment and inputs.commit
+    branches:
+      - "main"
+    tags:
+      - "v*"
+    paths-ignore:
+      - ".github/**"
+      - "!.github/workflows/cf.yml"
+      - ".env.example"
+      - ".eslintrc.cjs"
+      - ".prettierignore"
+      - "fly.toml"
+      - "README.md"
+      - "node.Dockerfile"
+      - "deno.Dockerfile"
+      - "import_map.json"
+      - ".vscode/*"
+      - ".husky/*"
+      - ".prettierrc.json"
+      - "LICENSE"
+      - "run"
+  repository_dispatch:
+
+env:
+  GIT_REF: ${{ github.event.inputs.commit || github.ref }}
+  # default is 'dev' which is really empty/no env
+  WORKERS_ENV: ''
+
+jobs:
+  deploy:
+    name: 🚀 Deploy worker
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.3.0
+        with:
+          ref: ${{ env.GIT_REF }}
+          fetch-depth: 0
+
+      - name: 🛸 Env?
+        # 'dev' env deploys to default WORKERS_ENV, which is, '' (an empty string)
+        if: github.event.inputs.environment == 'prod' || github.event.inputs.environment == 'one'
+        run: |
+          echo "WORKERS_ENV=${WENV}" >> $GITHUB_ENV
+          echo "COMMIT_SHA=${COMMIT_SHA}" >> $GITHUB_ENV
+        shell: bash
+        env:
+          WENV: ${{ github.event.inputs.environment }}
+          COMMIT_SHA: ${{ github.sha }}
+
+      - name: 🎱 Tag?
+        # docs.github.com/en/actions/learn-github-actions/contexts#github-context
+        if: github.ref_type == 'tag'
+        run: |
+          echo "WORKERS_ENV=${WENV}" >> $GITHUB_ENV
+          echo "COMMIT_SHA=${COMMIT_SHA}" >> $GITHUB_ENV
+        shell: bash
+        env:
+          # tagged deploys always deploy to prod
+          WENV: 'prod'
+          COMMIT_SHA: ${{ github.sha }}
+
+        # npm (and node16) are installed by wrangler-action in a pre-job setup
+      - name: 🏗 Get dependencies
+        run: npm i
+
+      - name: 📚 Wrangler publish
+        # github.com/cloudflare/wrangler-action
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          # input overrides env-defaults, regardless
+          environment: ${{ env.WORKERS_ENV }}
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          GIT_COMMIT_ID: ${{ env.GIT_REF }}
+
+      - name: 🎤 Notice
+        run: |
+          echo "::notice::Deployed to ${WORKERS_ENV} / ${GIT_REF} @ ${COMMIT_SHA}"
