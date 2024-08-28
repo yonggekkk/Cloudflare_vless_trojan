@@ -1,0 +1,39 @@
+name: "🌲 Create many branches"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create_branches:
+    runs-on: ubuntu-latest
+    name: "🌲 Create and push branches"
+    env:
+      EMAIL: ${{ secrets.GH_EMAIL }}
+      NAME: ${{ secrets.GH_USERNAME }}
+      TOKEN: ${{ secrets.TOKEN }}
+      REMOTE_NAME: origin
+      BRANCH_BASE_NAME: proxyip
+      BRANCH_COUNT: 300
+
+    steps:
+      - name: ⚙️ Set up Git config
+        run: |
+          git config --global user.email "${{ env.EMAIL }}"
+          git config --global user.name "${{ env.NAME }}"
+
+      - name: 📦 Clone repository
+        run: |
+          git clone https://${{ env.TOKEN }}@github.com/${{github.repository}}.git
+          cd $(echo ${{github.repository}} | awk -F'/' '{print $2}')
+
+      - name: 🌿 Create and push branches
+        run: |
+          cd $(echo ${{github.repository}} | awk -F'/' '{print $2}')
+          for ((i=1; i<=${{ env.BRANCH_COUNT }}; i++)); do
+              branch_name="${{ env.BRANCH_BASE_NAME }}${i}"
+              git branch $branch_name
+              git checkout $branch_name
+              git commit --allow-empty -m "Create branch ${branch_name}"
+              git push ${{ env.REMOTE_NAME }} $branch_name
+              git checkout main
+          done
