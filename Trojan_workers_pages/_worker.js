@@ -2,8 +2,8 @@
 import { connect } from "cloudflare:sockets";
  
 let Pswd = "trojan";
-const proxyIPs = ["proxy.xxxxxxxx.tk"]; //ts.hpc.tw edgetunnel.anycast.eu.org bestproxy.onecf.eu.org cdn-all.xn--b6gac.eu.org cdn.xn--b6gac.eu.org proxy.xxxxxxxx.tk
-let cn_hostnames = [''];
+const proxyIPs = ["35.219.50.99"]; //ts.hpc.tw edgetunnel.anycast.eu.org bestproxy.onecf.eu.org cdn-all.xn--b6gac.eu.org cdn.xn--b6gac.eu.org proxy.xxxxxxxx.tk
+let cn_hostnames = ['trojan-go.paok17.workers.dev'];
 let CDNIP = 'www.visa.com.sg'
 // http_ip
 let IP1 = 'www.visa.com'
