@@ -116,16 +116,20 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 注意：多个CF节点在客户端使用负载均衡或者自动选择时，建议所有应用的节点都为同一个国家地区，以避免不同国家之间的IP乱跳现象
 
 ---------------------------------
-## 六：无需socks5！小白一键自制proxyip、80系/443系的任意端口反代IP
+## 六：无需socks5！小白利用reality协议一键自制proxyip、80系/443系的任意端口反代IP
 
 #### 推荐使用 离中国近、便宜、流量多的纯IPV6的vps进行搭建！
 #### 切记：近可能避免使用IPV4！因为IPV4大概率被大佬们偷扫反代IP，成为他们的公益或收费反代IP库！
 
-搭建proxyip与反代ip的脚本推荐：
+可选择现实1：仅用于客户端优选IP，即CF节点访问非CF网站的落地IP地区与VPS地区一致，访问CF网站落地IP地区根据proxyip决定
 
-[x-ui-yg脚本](https://github.com/yonggekkk/x-ui-yg)
+可选择现实2：仅用于proxyip，即CF节点访问CF网站的落地IP地区与VPS地区一致，访问非CF网站落地IP地区根据客户端优选IP决定
 
-[sing-box-yg脚本](https://github.com/yonggekkk/sing-box_hysteria2_tuic_argo_reality)
+可选择现实3：同时用于客户端优选IP与proxyip，即CF节点访问CF网站的落地IP地区、访问非CF网站落地IP地区，两者都与VPS地区一致（仅支持443端口的TLS节点）
+
+可选择现实4：通过在VPS安装WARP全局双栈V4+V6功能，即访问非CF网站的客户端优选IP的落地IP（104.28……/2a09:……）现实固定，或访问CF网站的proxyip的落地IP（104.28……/2a09:……）现实WARP解锁功能效果
+
+搭建proxyip与反代ip的脚本推荐：[x-ui-yg脚本](https://github.com/yonggekkk/x-ui-yg)、[sing-box-yg脚本](https://github.com/yonggekkk/sing-box_hysteria2_tuic_argo_reality)
 
 相关操作请看[视频教程](https://youtu.be/QOnMVULADko)
 
