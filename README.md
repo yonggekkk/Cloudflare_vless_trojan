@@ -139,7 +139,7 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 #### 启用分片(Fragment)功能的好处：无视域名被墙TLS阻断，从而让workers等被墙的域名支持TLS节点
 #### 提示：未被墙TLS阻断的自定义域名或pages域名无需开启分片就可使用TLS节点
  
-目前支持该功能的平台客户端如下 (更新中……)
+目前支持该功能的平台客户端如下（点击名称即跳转到官方下载地址）
 
 1、安卓Android：[v2rayNG](https://github.com/2dust/v2rayNG/tags)、[Nekobox](https://github.com/maskedeken/NekoBoxForAndroid/tags)、[Karing](https://github.com/KaringX/karing/tags)、v2box
 
