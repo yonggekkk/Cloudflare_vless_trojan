@@ -29,7 +29,7 @@
 | 变量作用 | 变量名称| 变量值要求| 变量默认值|
 | :--- | :--- | :--- | :--- |
 | 1、必要的uuid | uuid |符合uuid规定格式 |万人骑uuid：77a571fb-4fd2-4b37-8596-1b7d9728bb5c|
-| 2、能上CF类网站 | proxyip |ipv4地址、域名、[ipv6地址]|proxyip域名：代码第9行|
+| 2、能上CF类网站 | proxyip |443端口：ipv4地址、域名、[ipv6地址]。非443端口：IPV4地址:端口、[IPV6地址]:端口、域名:端口|proxyip域名：代码第9行|
 | 3、订阅节点优选IP | ip1到ip13 |CF官方IP、CF反代IP、CF优选域名| CF官方不同地区的visa域名|
 | 4、优选IP对应端口 | pt1到pt13 |CF13个标准端口、反代IP对应任意端口| CF13个标准端口|
 
@@ -52,16 +52,20 @@
 | 变量作用 | 变量名称| 变量值要求| 变量默认值|
 | :--- | :--- | :--- | :--- |
 | 1、必要的密码 | pswd |任意字符号 |万人骑密码：trojan|
-| 2、能上CF类网站 | proxyip |ipv4地址、域名、[ipv6地址]|proxyip域名：代码第5行|
+| 2、能上CF类网站 | proxyip |443端口：ipv4地址、域名、[ipv6地址]。非443端口：IPV4地址:端口、[IPV6地址]:端口、域名:端口|proxyip域名：代码第5行|
 | 3、订阅节点优选IP | ip1到ip13 |CF官方IP、CF反代IP、CF优选域名| CF官方不同地区的visa域名|
 | 4、优选IP对应端口 | pt1到pt13 |CF13个标准端口、反代IP对应任意端口| CF13个标准端口|
 
 ---------------------------------
 ## 三：CF Vless/trojan的单节点支持path路径自定义proxyip
 
-支持IPV4、IPV6(需中括号)、域名三种方式
+支持IPV4、IPV6、域名三种方式（端口为443时，可不写:端口）
 
-可在客户端上的path设置处直接修改：/pyip=IPV4地址  ；  /pyip=[IPV6地址]  ；  /pyip=域名
+可在客户端上的path设置处直接修改，形式如下：
+
+443端口：/pyip=IPV4地址 ； /pyip=[IPV6地址] ； /pyip=域名
+
+非443端口：/pyip=IPV4地址:端口 ； /pyip=[IPV6地址]:端口 ； /pyip=域名:端口
 
 注意：仅影响当前客户端正在设置的单节点，并不影响其他单节点或者订阅节点的proxyip
 
@@ -73,7 +77,11 @@ CF Vless：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 或者 自定义域名 /自定义密码
 
-注意：使用自定域时，原先workers域名 或者 pages域名下的配置信息与分享链接依旧可用
+注意：
+
+1、workers域名 或者 pages域名 或者 自定义域名如果都被墙，必须开代理才能打开
+
+2、使用自定域时，原先workers域名 或者 pages域名下的配置信息与分享链接依旧可用
 
 ---------------------------------
 
@@ -128,11 +136,11 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 可选择现实2：仅用于proxyip，即CF节点访问CF网站的落地IP地区与VPS地区一致，访问非CF网站落地IP地区根据客户端优选IP决定
 
-可选择现实3：同时用于客户端优选IP与proxyip，即CF节点访问CF网站的落地IP地区、访问非CF网站落地IP地区，两者都与VPS地区一致（仅支持443端口的TLS节点）
+可选择现实3：同时用于客户端优选IP与proxyip，即CF节点访问CF网站的落地IP地区、访问非CF网站落地IP地区，两者都与VPS地区一致
 
 可选择现实4：通过在VPS安装WARP全局双栈V4+V6功能，即访问非CF网站的客户端优选IP的落地IP（104.28……/2a09:……）现实固定，或访问CF网站的proxyip的落地IP（104.28……/2a09:……）现实WARP解锁功能效果
 
-搭建proxyip与反代ip的脚本推荐：[x-ui-yg脚本](https://github.com/yonggekkk/x-ui-yg)、[sing-box-yg脚本](https://github.com/yonggekkk/sing-box_hysteria2_tuic_argo_reality)
+搭建proxyip与反代ip的脚本推荐：[x-ui-yg脚本](https://github.com/yonggekkk/x-ui-yg)、[sing-box-yg脚本](https://github.com/yonggekkk/sing-box-yg)
 
 相关操作请看[视频教程](https://youtu.be/QOnMVULADko)
 
