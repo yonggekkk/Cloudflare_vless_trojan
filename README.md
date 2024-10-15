@@ -5,7 +5,7 @@
 ### 懒人小白专用！默认节点都为CF官方IP，无需频繁更新订阅获取客户端优选IP
 #### Workers方式：支持vless+ws+tls、trojan+ws+tls、vless+ws、trojan+ws代理节点
 #### Pages方式：支持vless+ws+tls、trojan+ws+tls代理节点
-#### CF Vless/Trojan的单节点支持path路径自定义或者自建三类proxyip（IPV4形式、IPV6形式、域名形式）
+#### CF Vless/Trojan的单节点支持path路径自定义三类proxyip（IPV4形式、IPV6形式、域名形式）
 #### 支持单节点链接、聚合通用节点订阅、sing-box节点订阅、clash节点订阅
 
 --------------------------------
@@ -55,15 +55,25 @@
 | 4、优选IP对应端口 | pt1到pt13 |CF13个标准端口、反代IP对应任意端口| CF13个标准端口|
 
 ---------------------------------
-## 三：CF Vless/trojan的单节点支持path路径自定义proxyip
+## 三：自定义proxyip
+
+虽说脚本默认自带其他大佬的proxyip，但同时也支持自定义proxyip
 
 支持IPV4、IPV6、域名三种方式（端口为443时，可不写:端口）
 
-可在客户端上的path设置处直接修改，形式如下：
+1、聚合订阅节点变量形式（上文一与二已说明）：
 
-443端口：/pyip=IPV4地址 ； /pyip=[IPV6地址] ； /pyip=域名
+| proxyip端口 | IPv4形式| IPv6形式| 域名形式|
+| :--- | :--- | :--- | :--- |
+| 443端口 | IPV4地址 |[IPV6地址] |域名|
+| 非443端口 | IPV4地址:端口 |[IPV6地址]:端口 |域名:端口|
 
-非443端口：/pyip=IPV4地址:端口 ； /pyip=[IPV6地址]:端口 ； /pyip=域名:端口
+2、单节点path路径形式：
+
+| proxyip端口 | IPv4形式| IPv6形式| 域名形式|
+| :--- | :--- | :--- | :--- |
+| 443端口 | /pyip=IPV4地址 |/pyip=[IPV6地址] |/pyip=域名|
+| 非443端口 | /pyip=IPV4地址:端口 |/pyip=[IPV6地址]:端口 |/pyip=域名:端口|
 
 注意：仅影响当前客户端正在设置的单节点，并不影响其他单节点或者订阅节点的proxyip
 
