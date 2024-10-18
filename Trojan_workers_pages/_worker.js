@@ -1503,7 +1503,7 @@ proxies:
   password: ${Pswd}
   udp: false
   sni: ${hostName}
-  network: ws}
+  network: ws
   ws-opts:
     path: "/?ed=2560"
     headers:
