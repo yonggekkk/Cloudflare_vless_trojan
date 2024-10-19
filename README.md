@@ -154,7 +154,7 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 搭建proxyip与反代ip的脚本推荐：[x-ui-yg脚本](https://github.com/yonggekkk/x-ui-yg)、[sing-box-yg脚本](https://github.com/yonggekkk/sing-box-yg)
 
-相关操作请看[视频教程](https://youtu.be/QOnMVULADko)
+相关操作请看[视频教程高阶1](https://youtu.be/QOnMVULADko)、[视频教程高阶2](https://youtu.be/CVZStM0t8BA)
 
 ---------------------------------
 ## 七：客户端推荐
