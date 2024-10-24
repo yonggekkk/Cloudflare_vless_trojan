@@ -58,7 +58,7 @@ curl -L -o cf -# --retry 2 --insecure https://raw.githubusercontent.com/yonggekk
 curl -s -o locations.json https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/locations.json
 curl -s -o ips-v4.txt https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/ips-v4.txt
 curl -s -o ips-v6.txt https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/ips-v6.txt
-chmod +x /root/cf
+chmod +x cf
 echo "接下来进行优选……此过程可能需要30秒……" && sleep 2
 if [ "$menu" = "1" ]; then
 ip=4
