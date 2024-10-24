@@ -54,7 +54,8 @@ echo "1、仅IPV4优选"
 echo "2、仅IPV6优选"
 echo "3、IPV4+IPV6优选"
 echo "4、重置配置文件"
-read -p "请选择【1-3】:" menu
+echo "5、退出"
+read -p "请选择【1-4】:" menu
 if [ ! -e cf ]; then
 curl -L -o cf -# --retry 2 --insecure https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/$cpu
 chmod +x cf
@@ -87,6 +88,8 @@ result
 elif [ "$menu" = "4" ]; then
 rm -rf 6.csv 4.csv locations.json ips-v4.txt ips-v6.txt cf
 echo "已重置成功" && exit
+else
+exit
 fi
 clear
 if [ -e 4.csv ]; then
