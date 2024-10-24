@@ -91,7 +91,7 @@ echo "已重置成功" && exit
 else
 exit
 fi
-clear
+#clear
 if [ -e 4.csv ]; then
 echo "IPV4最佳可用节点如下（取前三名）："
 echo "美国IPV4优选结果："
