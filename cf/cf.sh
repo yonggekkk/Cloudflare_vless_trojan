@@ -71,18 +71,18 @@ curl -s -o ips-v6.txt https://raw.githubusercontent.com/yonggekkk/Cloudflare_vle
 fi
 if [ "$menu" = "1" ]; then
 ip=4
-./cf -ips $ip -outfile $ip.csv
+./cf -ips 4 -outfile 4.csv
 result
 elif [ "$menu" = "2" ]; then
 ip=6
-./cf -ips $ip -outfile $ip.csv
+./cf -ips 6 -outfile 6.csv
 result
 elif [ "$menu" = "3" ]; then
 ip=4
-./cf -ips $ip -outfile $ip.csv
+./cf -ips 4 -outfile 4.csv
 result
 ip=6
-./cf -ips $ip -outfile $ip.csv
+./cf -ips 6 -outfile 6.csv
 result
 elif [ "$menu" = "4" ]; then
 rm -rf 6.csv 4.csv locations.json ips-v4.txt ips-v6.txt cf
