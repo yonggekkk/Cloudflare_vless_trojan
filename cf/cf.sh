@@ -53,12 +53,21 @@ echo "请选择优选类型"
 echo "1、仅IPV4优选"
 echo "2、仅IPV6优选"
 echo "3、IPV4+IPV6优选"
+echo "4、重置配置文件"
 read -p "请选择【1-3】:" menu
+if [ ! -e cf ]; then
 curl -L -o cf -# --retry 2 --insecure https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/$cpu
-curl -s -o locations.json https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/locations.json
-curl -s -o ips-v4.txt https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/ips-v4.txt
-curl -s -o ips-v6.txt https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/ips-v6.txt
 chmod +x cf
+fi
+if [ ! -e locations.json ]; then
+curl -s -o locations.json https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/locations.json
+fi
+if [ ! -e ips-v4.txt ]; then
+curl -s -o ips-v4.txt https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/ips-v4.txt
+fi
+if [ ! -e ips-v6.txt ]; then
+curl -s -o ips-v6.txt https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/ips-v6.txt
+fi
 echo "接下来进行优选……此过程可能需要30秒……" && sleep 2
 if [ "$menu" = "1" ]; then
 ip=4
@@ -75,6 +84,9 @@ result
 ip=6
 ./cf -ips $ip -outfile $ip.csv
 result
+elif [ "$menu" = "4" ]; then
+rm -rf 6.csv 4.csv locations.json ips-v4.txt ips-v6.txt cf
+echo "已重置成功"
 fi
 clear
 if [ -e 4.csv ]; then
