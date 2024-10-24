@@ -69,7 +69,6 @@ fi
 if [ ! -e ips-v6.txt ]; then
 curl -s -o ips-v6.txt https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/ips-v6.txt
 fi
-echo "接下来进行优选……此过程可能需要30秒……" && sleep 2
 if [ "$menu" = "1" ]; then
 ip=4
 ./cf -ips $ip -outfile $ip.csv
