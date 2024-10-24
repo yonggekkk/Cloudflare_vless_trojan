@@ -141,7 +141,7 @@ CDN优选域名V23.8.18(电脑win64)
 
 CF优选反代IP(电脑版)
 
-CF优选官方IP(无测速三地区电脑版)
+CF优选官方IP(一键美、亚、欧三地区电脑版)
 
 CF优选官方IP(电脑版)
 
@@ -229,7 +229,7 @@ curl -sSL https://gitlab.com/rwkgyg/CFwarp/raw/main/point/cfip.sh -o cfip.sh && 
 ```
 
 -------------------------------------------------------------
-### CF-优选官方IP(默认三地区)，苹果安卓手机平板专用：
+### CF-优选官方IP(默认美、亚、欧三地区)，苹果安卓手机平板专用：
 ```
 curl -sSL https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/cf.sh -o cf.sh && chmod +x cf.sh && bash cf.sh
 ```
