@@ -85,7 +85,7 @@ ip=6
 ./cf -ips 6 -outfile 6.csv
 result
 elif [ "$menu" = "4" ]; then
-rm -rf 6.csv 4.csv locations.json ips-v4.txt ips-v6.txt cf
+rm -rf 6.csv 4.csv locations.json ips-v4.txt ips-v6.txt cf cf.sh
 echo "已重置成功" && exit
 else
 exit
