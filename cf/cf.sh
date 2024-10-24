@@ -86,7 +86,7 @@ ip=6
 result
 elif [ "$menu" = "4" ]; then
 rm -rf 6.csv 4.csv locations.json ips-v4.txt ips-v6.txt cf
-echo "已重置成功"
+echo "已重置成功" && exit
 fi
 clear
 if [ -e 4.csv ]; then
