@@ -55,7 +55,7 @@ echo "2、仅IPV6优选"
 echo "3、IPV4+IPV6优选"
 echo "4、重置配置文件"
 echo "5、退出"
-read -p "请选择【1-4】:" menu
+read -p "请选择【1-5】:" menu
 if [ ! -e cf ]; then
 curl -L -o cf -# --retry 2 --insecure https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/$cpu
 chmod +x cf
