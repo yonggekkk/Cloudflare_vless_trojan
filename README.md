@@ -139,13 +139,13 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 本地电脑端优选项目推荐（可在上面代码区直接下载）：
 
-CDN优选域名V23.8.18(电脑win64)
+1、CDN优选域名V23.8.18 (电脑win64)
 
-CF优选反代IP(电脑版)
+2、CF优选反代IP (电脑版)
 
-CF优选官方IP(无交互美、亚、欧三地区电脑版！推荐！！！)
+3、CF优选官方IP (美、亚、欧三地区无交互电脑版！强烈推荐！！！)
 
-CF优选官方IP(电脑版)
+4、CF优选官方IP (电脑版)
 
 注意：多个CF节点在客户端使用负载均衡或者自动选择时，建议所有应用的节点都为同一个国家地区，以避免不同国家之间的IP乱跳现象
 
@@ -220,6 +220,13 @@ CF优选官方IP(电脑版)
 ---------------------------------
 ## 优选域名、优选官方IP+反代IP一键脚本（在本地网络环境下利用termux或者ish运行）：
 
+-------------------------------------------------------------
+### CF-优选官方IP (默认美、亚、欧三地区 强烈推荐！！！)，安卓手机平板专用：
+```
+curl -sSL https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/cf.sh -o cf.sh && chmod +x cf.sh && bash cf.sh
+```
+-------------------------------------------------------------
+
 ### CF-CDN优选公共大厂域名脚本，苹果安卓手机平板专用：
 ```
 curl -sSL https://gitlab.com/rwkgyg/CFwarp/raw/main/point/CFcdnym.sh -o CFcdnym.sh && chmod +x CFcdnym.sh && bash CFcdnym.sh
@@ -228,12 +235,6 @@ curl -sSL https://gitlab.com/rwkgyg/CFwarp/raw/main/point/CFcdnym.sh -o CFcdnym.
 ### CF-优选官方IP+反代IP二合一脚本，苹果安卓手机平板专用：
 ```
 curl -sSL https://gitlab.com/rwkgyg/CFwarp/raw/main/point/cfip.sh -o cfip.sh && chmod +x cfip.sh && bash cfip.sh
-```
-
--------------------------------------------------------------
-### CF-优选官方IP(默认美、亚、欧三地区)，苹果安卓手机平板专用：
-```
-curl -sSL https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/cf.sh -o cf.sh && chmod +x cf.sh && bash cf.sh
 ```
 
 -------------------------------------------------------------
