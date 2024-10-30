@@ -57,17 +57,17 @@ echo "4、重置配置文件"
 echo "5、退出"
 read -p "请选择【1-5】:" menu
 if [ ! -e cf ]; then
-curl -L -o cf -# --retry 2 --insecure https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/$cpu
+curl -L -o cf -# --retry 2 --insecure https://ghp.ci/https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/$cpu
 chmod +x cf
 fi
 if [ ! -e locations.json ]; then
-curl -s -o locations.json https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/locations.json
+curl -s -o locations.json https://ghp.ci/https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/locations.json
 fi
 if [ ! -e ips-v4.txt ]; then
-curl -s -o ips-v4.txt https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/ips-v4.txt
+curl -s -o ips-v4.txt https://ghp.ci/https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/ips-v4.txt
 fi
 if [ ! -e ips-v6.txt ]; then
-curl -s -o ips-v6.txt https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/ips-v6.txt
+curl -s -o ips-v6.txt https://ghp.ci/https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/ips-v6.txt
 fi
 if [ "$menu" = "1" ]; then
 ip=4
