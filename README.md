@@ -180,7 +180,7 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 2、电脑Windows：[v2rayN](https://github.com/2dust/v2rayN/tags)、[Hiddify](https://github.com/hiddify/hiddify-next/tags)、[Karing](https://github.com/KaringX/karing/tags)
 
-3、苹果Ios：Karing、Shadowrocket(小火箭)、Streisand、v2box
+3、苹果Ios：Karing、Hiddify Proxy & VPN、Shadowrocket(小火箭)、Streisand、v2box
 
 4、软路由Openwrt：[homeproxy](https://github.com/kiddin9/openwrt-packages)
 
