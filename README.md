@@ -140,11 +140,11 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 1、CDN优选域名V23.8.18 (电脑win64)
 
-2、CF优选反代IP (电脑版)
+2、CF优选反代IP (电脑版，带测速)
 
 3、CF优选官方IP (美、亚、欧三地区无交互电脑版！强烈推荐！！！)
 
-4、CF优选官方IP (电脑版)
+4、CF优选官方IP (电脑版，带测速)
 
 注意：多个CF节点在客户端使用负载均衡或者自动选择时，建议所有应用的节点都为同一个国家地区，以避免不同国家之间的IP乱跳现象
 
@@ -235,7 +235,7 @@ curl -sSL https://ghp.ci/https://raw.githubusercontent.com/yonggekkk/Cloudflare_
 curl -sSL https://gitlab.com/rwkgyg/CFwarp/raw/main/point/CFcdnym.sh -o CFcdnym.sh && chmod +x CFcdnym.sh && bash CFcdnym.sh
 ```
 ------------------------------------------------------------------------
-### CF-优选官方IP+反代IP二合一脚本，苹果安卓手机平板专用：
+### CF-优选官方IP+反代IP二合一脚本（带测速），苹果安卓手机平板专用：
 ```
 curl -sSL https://gitlab.com/rwkgyg/CFwarp/raw/main/point/cfip.sh -o cfip.sh && chmod +x cfip.sh && bash cfip.sh
 ```
