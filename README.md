@@ -181,7 +181,7 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 3、苹果Ios：Karing、Hiddify Proxy & VPN、Shadowrocket(小火箭)、Streisand、v2box
 
-4、软路由Openwrt：[homeproxy](https://github.com/kiddin9/openwrt-packages)
+4、软路由Openwrt：[homeproxy](https://github.com/kiddin9/openwrt-packages)，建议使用系统自带的软件库查找更新
 
 注意：其他平台客户端未开启分片功能情况下，workers域的6个443系TLS节点是不可用的
 
@@ -223,25 +223,25 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 1、安卓请使用termux官方项目下载客户端：https://github.com/termux/termux-app/releases/tag/v0.118.1
 
-首次安装后，请先安装依赖：```pkg upgrade```
+首次安装后，请先安装依赖：```pkg upgrade```，然后运行以下你要使用的脚本
 
-2、苹果手机用户，由于ISH最新版有BUG导致脚本运行卡住，请使用ISH_1.2.2版本：安装包已上传到项目目录，大家自行下载，可配合爱思助手等安装工具直接安装到苹果手机上
+2、苹果手机用户，由于ISH最新版有BUG导致脚本运行卡住，请使用ISH_1.2.2版本：安装包已上传到项目目录，大家自行下载，可配合电脑端爱思助手连接苹果手机，把IPA安装包直接拖到爱思助手应用栏中即可自动安装到苹果手机上
 
-首次安装后，请先安装依赖：```apk add curl bash```
+首次安装后，请先安装依赖：```apk add curl bash```，然后运行以下你要使用的脚本
 
 -------------------------------------------------------------
-### CF-优选官方IP (默认美、亚、欧三地区 强烈推荐！！！)，安卓苹果手机平板专用：
+### 脚本1：CF-优选官方IP (默认美、亚、欧三地区 强烈推荐！！！)，安卓苹果手机平板专用：
 ```
 curl -sSL https://ghp.ci/https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/cf/cf.sh -o cf.sh && chmod +x cf.sh && bash cf.sh
 ```
 -------------------------------------------------------------
 
-### CF-CDN优选公共大厂域名脚本，苹果安卓手机平板专用：
+### 脚本2：CF-CDN优选公共大厂域名脚本，苹果安卓手机平板专用：
 ```
 curl -sSL https://gitlab.com/rwkgyg/CFwarp/raw/main/point/CFcdnym.sh -o CFcdnym.sh && chmod +x CFcdnym.sh && bash CFcdnym.sh
 ```
 ------------------------------------------------------------------------
-### CF-优选官方IP+反代IP二合一脚本（带测速），苹果安卓手机平板专用：
+### 脚本3：CF-优选官方IP+反代IP二合一脚本（带测速），苹果安卓手机平板专用：
 ```
 curl -sSL https://gitlab.com/rwkgyg/CFwarp/raw/main/point/cfip.sh -o cfip.sh && chmod +x cfip.sh && bash cfip.sh
 ```
