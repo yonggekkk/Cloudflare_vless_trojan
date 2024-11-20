@@ -213,7 +213,7 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 [ClouDNS永久免费域名最终教程：CF pages vless自定义域名直接部署](https://youtu.be/PN0BLANXh4I)
 
-小白优选IP应用推荐：[CF优选IP解放小白最终方案：一键自动生成美国、香港、欧洲三区优选官方IP，电脑端+手机端通吃](https://youtu.be/6kKIzObEZ2c)
+小白优选IP应用推荐：[CF优选IP解放小白最终方案：一键自动生成美国、香港、欧洲三区优选官方IP，电脑WIN、安卓android、苹果ios多平台一键通用](https://youtu.be/6kKIzObEZ2c)
 
 ---------------------------------
 ---------------------------------
