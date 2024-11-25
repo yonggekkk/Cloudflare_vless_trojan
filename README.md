@@ -167,7 +167,7 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 相关操作请看[视频教程高阶1](https://youtu.be/QOnMVULADko)、[视频教程高阶2](https://youtu.be/CVZStM0t8BA)
 
-#### 关于serv00能否搭建reality-Proxyip问题：如果可以建reality协议就可以：把脚本中这行"server_name": "默认域名" 与 这行"server": "默认域名"中的这两处默认域名，改为cf域名后进行部署，由于serv00不支持443端口，所以只能建非标准端口的Proxyip，就算serv00 IP被墙也可使用。
+#### 关于serv00能否搭建reality-Proxyip问题：如果可以建reality协议就可以：把脚本中这行```"server_name": "默认域名" ```与 这行```"server": "默认域名"```中的这两处默认域名，改为cf域名后进行部署，由于serv00不支持443端口，所以只能建非标准端口的Proxyip，就算serv00 IP被墙也可使用。
 
 ---------------------------------
 ## 七：客户端推荐
