@@ -11,16 +11,9 @@
 
 --------------------------------
 
-### CF针对关键字报错1101，_worker.js代码已混淆加密，
+### CF针对关键字报错1101，_worker.js代码已混淆加密
 
-### 请复制_worker.js文件的内容使用，如依旧显示1101，请添加自定义域
-
-### 本地设置参数方式已取消，要用CF变量形式(如下图)
-
-![a389e45df8ef73865fbfe3bad363133](https://github.com/user-attachments/assets/07d8eb4a-ed87-471d-93d5-d5a38ba70bc3)
-
-![2ad45bc51cd07e9dc94f31b14752f4c](https://github.com/user-attachments/assets/4fedfaf0-9765-480a-9948-85be8ddca886)
-
+### 参数变量修改请参考视频教程：https://youtu.be/cVLxDKHTv6w?si=j3y-T8fMxdoBNIlS&t=40
 
 ## 一：CF Vless节点可设置的变量内容
 
