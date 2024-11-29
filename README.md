@@ -8,7 +8,7 @@
 #### Pages方式：支持vless+ws+tls、trojan+ws+tls代理节点
 #### CF Vless/Trojan的单节点支持path路径自定义三类proxyip（IPV4形式、IPV6形式、域名形式）
 #### 支持单节点链接、聚合通用节点订阅、sing-box节点订阅、clash节点订阅
-#### CF针对关键字报错1101，_worker.js代码已混淆加密，请使用_worker.js文件里的乱码进行部署。
+#### CF针对经常通过关键字报错1101，为长久稳定考虑，_worker.js代码已混淆加密，请使用_worker.js文件里的乱码进行部署
 -------------------------------------------------------------
 
 ### 交流平台：[甬哥博客地址](https://ygkkk.blogspot.com)、[甬哥YouTube频道](https://www.youtube.com/@ygkkk)、[甬哥TG电报群组](https://t.me/+jZHc6-A-1QQ5ZGVl)、[甬哥TG电报频道](https://t.me/+DkC9ZZUgEFQzMTZl)
@@ -18,9 +18,11 @@
 
 ### 最新参数变量修改请参考视频教程：https://youtu.be/cVLxDKHTv6w?si=j3y-T8fMxdoBNIlS&t=40
 
-### 小白们注意：以电脑端V2rayN为例，唯一标准是右下角 "当前延迟：-1 ms" 时，说明选择的节点不可用。
+### 小白们注意：以电脑端V2rayN为例，唯一标准是右下角 "当前延迟：-1 ms" 时，说明选择的节点不可用
 
 ---------------------------------------------
+
+## 因_worker.js代码已混淆加密，目前仅支持通过变量修改参数，不支持本地修改
 
 ## 一：CF Vless节点可设置的变量内容
 
