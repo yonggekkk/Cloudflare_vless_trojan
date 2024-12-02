@@ -442,11 +442,12 @@ cat > list.txt <<EOF
 Vless-reality分享链接如下：
 vless://$UUID@$IP:$vless_port?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.speedtest.net&fp=chrome&pbk=$public_key&type=tcp&headerType=none#$NAME-reality
 
-Proxyip(带端口)信息如下：
+Proxyip(带端口)与非标端口反代IP的信息如下：
 可在 https://github.com/yonggekkk/Cloudflare_vless_trojan 项目中创建CF vless/trojan 节点
 方式一全局应用：设置变量名：proxyip    设置变量值：$IP:$vless_port  
 方式二单节点应用：path路径改为：/pyip=$IP:$vless_port
-注：如果serv00的IP被墙，proxyip依旧有效！
+也可用作于非标端口的反代IP，用作于客户端优选地址，目前默认仅支持TLS节点
+注：如果serv00的IP被墙，proxyip依旧有效，但用作于客户端优选地址将不可用！
 
 HY2分享链接如下：
 hysteria2://$UUID@$IP:$hy2_port?sni=www.bing.com&alpn=h3&insecure=1#$NAME-hy2
@@ -467,18 +468,18 @@ menu() {
    echo ""
    purple "=== 修改自Serv00|ct8老王sing-box安装脚本 https://github.com/eooce/Sing-box ===\n"
    purple "=== 支持一键三协议：vless-reality、hysteria2、tuic ===\n"
-   echo -e "${green}主要增加reality协议默认支持 CF vless/trojan 节点的proxyip功能${re}\n"
+   echo -e "${green}主要增加reality协议默认支持 CF vless/trojan 节点的proxyip/非标端口反代i功能${re}\n"
    purple "转载请著名处自老王，请勿滥用\n"
    green  "1. 安装sing-box"
-   echo   "======================"
+   echo   "=================================="
    red    "2. 卸载sing-box"
-   echo   "======================"
-   green  "3. 查看节点及proxyip信息"
-   echo   "======================"
+   echo   "=================================="
+   green  "3. 查看节点及proxyip/非标端口反代ip"
+   echo   "=================================="
    yellow "4. 清理所有进程"
-   echo   "======================"
+   echo   "=================================="
    red    "0. 退出脚本"
-   echo   "======================"
+   echo   "=================================="
    reading "请输入选择(0-4): " choice
    echo ""
     case "${choice}" in
