@@ -468,7 +468,7 @@ menu() {
    echo ""
    purple "=== 修改自Serv00|ct8老王sing-box安装脚本 https://github.com/eooce/Sing-box ===\n"
    purple "=== 支持一键三协议：vless-reality、hysteria2、tuic ===\n"
-   echo -e "${green}主要增加reality协议默认支持 CF vless/trojan 节点的proxyip/非标端口反代i功能${re}\n"
+   echo -e "${green}主要增加reality协议默认支持 CF vless/trojan 节点的proxyip/非标端口优选反代ip功能${re}\n"
    purple "转载请著名处自老王，请勿滥用\n"
    green  "1. 安装sing-box"
    echo   "=================================="
