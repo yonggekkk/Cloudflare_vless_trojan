@@ -82,14 +82,14 @@
 ---------------------------------
 ## 四：无需socks5！小白利用reality协议一键自制proxyip、80系/443系的任意端口反代IP
 
-### 一、Serv00专用：
+### 1、Serv00专用：
 
 修改自Serv00|ct8老王sing-box安装脚本，支持一键三协议：vless-reality、hysteria2、tuic。主要增加reality协议默认支持 CF vless/trojan 节点的proxyip功能
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/serv00_proxyip.sh)
 ```
 
-### 二、VPS专用：
+### 2、VPS专用：
 
 推荐使用 离中国近、便宜、流量多的纯IPV6的vps进行搭建。近可能避免使用IPV4，因为IPV4大概率被大佬们偷扫反代IP，成为他们的公益或收费反代IP库。如果非要用IPV4，请时常关注下自己VPS的流量，使用proxyip与客户端优选IP都会消耗VPS流量
 
