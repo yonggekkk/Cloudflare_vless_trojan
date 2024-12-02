@@ -50,7 +50,7 @@
 
 #### 注：workers的变量更改会自动刷新。pages的变量更改必须点击创建部署选项，重新上传一次原始pages文件来使新变量生效
 
-#### 注：单节点可随意DIY修改并无限克隆节点，具体见相关手搓节点的视频教程
+#### 注：单节点可随意DIY修改并无限克隆节点，具体见相关[手搓节点的视频教程](https://youtu.be/WwAeLyEz6jY)
 
 ---------------------------------
 ## 三：自定义proxyip
@@ -84,7 +84,9 @@
 
 ### 1、Serv00专用：
 
-修改自Serv00|ct8老王sing-box安装脚本，支持一键三协议：vless-reality、hysteria2、tuic。主要增加reality协议默认支持 CF vless/trojan 节点的proxyip功能
+修改自Serv00|ct8老王sing-box安装脚本，支持一键三协议：vless-reality、hysteria2、tuic。
+
+主要增加reality协议默认支持 CF vless/trojan 节点的proxyip以及非标端口的优选反代IP功能，脚本默认输出结果
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/serv00_proxyip.sh)
 ```
