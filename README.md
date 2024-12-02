@@ -93,7 +93,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_tro
 
 推荐使用 离中国近、便宜、流量多的纯IPV6的vps进行搭建。近可能避免使用IPV4，因为IPV4大概率被大佬们偷扫反代IP，成为他们的公益或收费反代IP库。如果非要用IPV4，请时常关注下自己VPS的流量，使用proxyip与客户端优选IP都会消耗VPS流量
 
-可现实以下四种情况：
+可现实以下四种情况(推荐在TLS节点环境下)：
 
 可选择现实1：仅用于客户端优选IP，即CF节点访问非CF网站的落地IP地区与VPS地区一致，访问CF网站落地IP地区根据proxyip决定
 
