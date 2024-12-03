@@ -92,7 +92,7 @@ reading "\n确定继续安装吗？【y/n】: " choice
   case "$choice" in
     [Yy])
         cd $WORKDIR
-        read_nz_variables
+        #read_nz_variables
 	echo
 	read_uuid
  	echo
