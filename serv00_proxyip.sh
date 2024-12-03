@@ -459,10 +459,11 @@ vless://$UUID@$IP:$vless_port?encryption=none&flow=xtls-rprx-vision&security=rea
 1、Proxyip(带端口)信息如下：
 方式一全局应用：设置变量名：proxyip    设置变量值：$IP:$vless_port  
 方式二单节点应用：path路径改为：/pyip=$IP:$vless_port
+CF节点的TLS可开可关
 用于CF节点落地到CF网站的地区为$IP所在地区
 
 2、非标端口反代IP信息如下：
-客户端优选IP地址为：$IP，端口：$vless_port，TLS必须开启
+客户端优选IP地址为：$IP，端口：$vless_port，CF节点的TLS必须开启
 用于CF节点落地到非CF网站的地区为$IP所在地区
 
 注：如果serv00的IP被墙，proxyip依旧有效，但用于客户端的优选IP将不可用！
