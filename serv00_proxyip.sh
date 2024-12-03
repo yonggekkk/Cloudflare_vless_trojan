@@ -25,9 +25,17 @@ export NEZHA_KEY=${NEZHA_KEY:-''}
 read_uuid() {
         reading "请输入统一的uuid密码 (建议回车默认随机): " UUID
         if [[ -z "$UUID" ]]; then
-	    UUID=$(uuidgen -r)
+	         UUID=$(uuidgen -r)
         fi
 	green "你的uuid为: $UUID"
+}
+
+read_reym() {
+        reading "请输入reality域名 (回车默认CF域名，支持proxyip+非标端口反代ip功能): " reym
+        if [[ -z "$reym" ]]; then
+	         reym=www.speedtest.net
+        fi
+	green "输入的reality域名为: $reym"
 }
 
 read_vless_port() {
@@ -93,6 +101,8 @@ reading "\n确定继续安装吗？【y/n】: " choice
     [Yy])
         cd $WORKDIR
         #read_nz_variables
+	echo
+        read_reym
 	echo
 	read_uuid
  	echo
@@ -274,11 +284,11 @@ openssl req -new -x509 -days 3650 -key "private.key" -out "cert.pem" -subj "/CN=
         ],
         "tls": {
             "enabled": true,
-            "server_name": "www.speedtest.net",
+            "server_name": "$reym",
             "reality": {
                 "enabled": true,
                 "handshake": {
-                    "server": "www.speedtest.net",
+                    "server": "$reym",
                     "server_port": 443
                 },
                 "private_key": "$private_key",
@@ -439,15 +449,25 @@ get_name() { if [ "$HOSTNAME" = "s1.ct8.pl" ]; then SERVER="CT8"; else SERVER=$(
 NAME="$ISP-$(get_name)"
 yellow "注意：v2ray或其他软件的跳过证书验证需设置为true,否则hy2或tuic节点可能不通\n"
 cat > list.txt <<EOF
-Vless-reality分享链接如下：
-vless://$UUID@$IP:$vless_port?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.speedtest.net&fp=chrome&pbk=$public_key&type=tcp&headerType=none#$NAME-reality
 
-Proxyip(带端口)与非标端口反代IP的信息如下：
+Vless-reality分享链接如下：
+vless://$UUID@$IP:$vless_port?encryption=none&flow=xtls-rprx-vision&security=reality&sni=$reym&fp=chrome&pbk=$public_key&type=tcp&headerType=none#$NAME-reality
+
+-------------------------------------------------------------------------------------------------
+如果之前输入的reality域名为CF域名，将激活以下功能：
 可在 https://github.com/yonggekkk/Cloudflare_vless_trojan 项目中创建CF vless/trojan 节点
+1、Proxyip(带端口)信息如下：
 方式一全局应用：设置变量名：proxyip    设置变量值：$IP:$vless_port  
 方式二单节点应用：path路径改为：/pyip=$IP:$vless_port
-也可用作于非标端口的反代IP，用作于客户端优选地址，目前默认仅支持TLS节点
-注：如果serv00的IP被墙，proxyip依旧有效，但用作于客户端优选地址将不可用！
+用于CF节点落地到CF网站的地区为$IP所在地区
+
+2、非标端口反代IP信息如下：
+客户端优选IP地址为：$IP，端口：$vless_port，TLS必须开启
+用于CF节点落地到非CF网站的地区为$IP所在地区
+
+注：如果serv00的IP被墙，proxyip依旧有效，但用于客户端的优选IP将不可用！
+注：必定有大佬会扫Serv00的反代IP作为其共享IP库或者出售，请慎重将reality域名设置为CF域名
+-------------------------------------------------------------------------------------------------
 
 HY2分享链接如下：
 hysteria2://$UUID@$IP:$hy2_port?sni=www.bing.com&alpn=h3&insecure=1#$NAME-hy2
@@ -466,8 +486,7 @@ rm -rf config.json sb.log core fake_useragent_0.2.0.json
 menu() {
    clear
    echo ""
-   purple "=== 修改自Serv00|ct8老王sing-box安装脚本https://github.com/eooce/Sing-box ===\n"
-   purple "=== 支持一键三协议：vless-reality、hysteria2、tuic ===\n"
+   purple "=== 修改自Serv00|ct8老王sing-box安装脚本，支持一键三协议：vless-reality、hysteria2、tuic ===\n"
    echo -e "${green}甬哥侃侃侃主要增加reality协议默认支持 CF vless/trojan 节点的proxyip/非标端口优选反代ip功能${re}\n"
    purple "转载请著名处自老王，请勿滥用\n"
    green  "1. 安装sing-box"
