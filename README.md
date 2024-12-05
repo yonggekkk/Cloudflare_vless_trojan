@@ -8,7 +8,7 @@
 #### Pages方式：支持vless+ws+tls、trojan+ws+tls代理节点
 #### CF Vless/Trojan的单节点支持path路径自定义三类proxyip（IPV4形式、IPV6形式、域名形式）
 #### 支持单节点链接、聚合通用节点订阅、sing-box节点订阅、clash节点订阅
-### 目前CF Vless/Trojan分为混淆版与未混淆版，两者无区别，都可使用
+### 目前CF Vless/Trojan仅提供乱码混淆版，修改参数需要使用变量
 -------------------------------------------------------------
 
 ### 交流平台：[甬哥博客地址](https://ygkkk.blogspot.com)、[甬哥YouTube频道](https://www.youtube.com/@ygkkk)、[甬哥TG电报群组](https://t.me/+jZHc6-A-1QQ5ZGVl)、[甬哥TG电报频道](https://t.me/+DkC9ZZUgEFQzMTZl)
@@ -44,7 +44,7 @@
 
 1、重点：首次pages部署好后，其域名可能要等1分钟才能生效打开
 
-2、重点：pages的变量更改好后，必须点击右上角创建部署选项，重新上传一次原始pages文件来使新变量生效
+2、重点：pages的变量更改好后，必须点击右上角创建部署选项，重新上传一次原始混淆pages文件来使新变量生效
 ![photo_2024-12-02_15-17-19](https://github.com/user-attachments/assets/31a659ef-8e2c-46be-b806-d16ae7ccc69f)
 
 3、ip1到ip7，pt1到pt7，在订阅分享链接中，仅支持80系端口关TLS节点
