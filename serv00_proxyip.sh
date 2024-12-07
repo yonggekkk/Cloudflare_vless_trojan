@@ -150,7 +150,7 @@ reading "\n清理所有进程将退出ssh连接，确定继续清理吗？【y/n
 # Generating argo Config
 argo_configure() {
   if [[ -z $ARGO_AUTH || -z $ARGO_DOMAIN ]]; then
-      reading "是否需要使用固定argo隧道？【y/n】: " argo_choice
+      reading "选择 y 表示使用固定argo隧道(需要域名)；选择 n 表示使用临时隧道（无需域名）【y/n】: " argo_choice
       [[ -z $argo_choice ]] && return
       [[ "$argo_choice" != "y" && "$argo_choice" != "Y" && "$argo_choice" != "n" && "$argo_choice" != "N" ]] && { red "无效的选择，请输入y或n"; return; }
       if [[ "$argo_choice" == "y" || "$argo_choice" == "Y" ]]; then
