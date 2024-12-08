@@ -107,7 +107,7 @@ read_nz_variables() {
 
 install_singbox() {
 if [[ -e $WORKDIR/list.txt ]]; then
-yellow "已安装sing-box，请先选择2卸载，再执行安装"
+yellow "已安装sing-box，请先选择2卸载，再执行安装" && exit
 fi
 echo -e "${yellow}本脚本同时三协议共存${purple}(vless-reality、vmess+ws/argo、hysteria2)${re}"
 echo -e "${yellow}开始运行前，请确保在面板${purple}已开放3个端口，两个tcp端口和一个udp端口${re}"
@@ -572,12 +572,506 @@ vmess://$(echo "{ \"v\": \"2\", \"ps\": \"$NAME-vmess-ws-argo\", \"add\": \"icoo
 三、HY2分享链接如下：
 hysteria2://$UUID@$IP:$hy2_port?sni=www.bing.com&alpn=h3&insecure=1#$NAME-hy2
 
+四、查看sing-box与clash-meta配置文件，请进入主菜单选择4
+
 =================================================================================================
 
 EOF
 cat list.txt
+
+cat > sing_box.txt <<EOF
+{
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "timestamp": true
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "ui",
+      "external_ui_download_url": "",
+      "external_ui_download_detour": "",
+      "secret": "",
+      "default_mode": "Rule"
+       },
+      "cache_file": {
+            "enabled": true,
+            "path": "cache.db",
+            "store_fakeip": true
+        }
+    },
+    "dns": {
+        "servers": [
+            {
+                "tag": "proxydns",
+                "address": "tls://8.8.8.8/dns-query",
+                "detour": "select"
+            },
+            {
+                "tag": "localdns",
+                "address": "h3://223.5.5.5/dns-query",
+                "detour": "direct"
+            },
+            {
+                "tag": "dns_fakeip",
+                "address": "fakeip"
+            }
+        ],
+        "rules": [
+            {
+                "outbound": "any",
+                "server": "localdns",
+                "disable_cache": true
+            },
+            {
+                "clash_mode": "Global",
+                "server": "proxydns"
+            },
+            {
+                "clash_mode": "Direct",
+                "server": "localdns"
+            },
+            {
+                "rule_set": "geosite-cn",
+                "server": "localdns"
+            },
+            {
+                 "rule_set": "geosite-geolocation-!cn",
+                 "server": "proxydns"
+            },
+             {
+                "rule_set": "geosite-geolocation-!cn",         
+                "query_type": [
+                    "A",
+                    "AAAA"
+                ],
+                "server": "dns_fakeip"
+            }
+          ],
+           "fakeip": {
+           "enabled": true,
+           "inet4_range": "198.18.0.0/15",
+           "inet6_range": "fc00::/18"
+         },
+          "independent_cache": true,
+          "final": "proxydns"
+        },
+      "inbounds": [
+    {
+      "type": "tun",
+           "tag": "tun-in",
+	  "address": [
+      "172.19.0.1/30",
+	  "fd00::1/126"
+      ],
+      "auto_route": true,
+      "strict_route": true,
+      "sniff": true,
+      "sniff_override_destination": true,
+      "domain_strategy": "prefer_ipv4"
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "select",
+      "type": "selector",
+      "default": "auto",
+      "outbounds": [
+        "auto",
+        "vless-$NAME",
+        "vmess-$NAME",
+        "hy2-$NAME",
+"vmess-tls-argo-$NAME",
+"vmess-argo-$NAME"
+      ]
+    },
+    {
+      "type": "vless",
+      "tag": "vless-$NAME",
+      "server": "$IP",
+      "server_port": $vless_port,
+      "uuid": "$UUID",
+      "packet_encoding": "xudp",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "$reym",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+      "reality": {
+          "enabled": true,
+          "public_key": "$public_key",
+          "short_id": ""
+        }
+      }
+    },
+{
+            "server": "$IP",
+            "server_port": $vmess_port,
+            "tag": "vmess-$NAME",
+            "tls": {
+                "enabled": false,
+                "server_name": "",
+                "insecure": false,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": "chrome"
+                }
+            },
+            "packet_encoding": "packetaddr",
+            "transport": {
+                "headers": {
+                    "Host": [
+                        ""
+                    ]
+                },
+                "path": "/$UUID-vm",
+                "type": "ws"
+            },
+            "type": "vmess",
+            "security": "auto",
+            "uuid": "$UUID"
+        },
+
+    {
+        "type": "hysteria2",
+        "tag": "hy2-$NAME",
+        "server": "$IP",
+        "server_port": $hy2_port,
+        "password": "$UUID",
+        "tls": {
+            "enabled": true,
+            "server_name": "www.bing.com",
+            "insecure": true,
+            "alpn": [
+                "h3"
+            ]
+        }
+    },
+{
+            "server": "icook.hk",
+            "server_port": 8443,
+            "tag": "vmess-tls-argo-$NAME",
+            "tls": {
+                "enabled": true,
+                "server_name": "$argodomain",
+                "insecure": false,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": "chrome"
+                }
+            },
+            "packet_encoding": "packetaddr",
+            "transport": {
+                "headers": {
+                    "Host": [
+                        "$argodomain"
+                    ]
+                },
+                "path": "/$UUID-vm",
+                "type": "ws"
+            },
+            "type": "vmess",
+            "security": "auto",
+            "uuid": "$UUID"
+        },
+{
+            "server": "icook.hk",
+            "server_port": 8880,
+            "tag": "vmess-argo-$NAME",
+            "tls": {
+                "enabled": false,
+                "server_name": "$argodomain",
+                "insecure": false,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": "chrome"
+                }
+            },
+            "packet_encoding": "packetaddr",
+            "transport": {
+                "headers": {
+                    "Host": [
+                        "$argodomain"
+                    ]
+                },
+                "path": "/$UUID-vm",
+                "type": "ws"
+            },
+            "type": "vmess",
+            "security": "auto",
+            "uuid": "$UUID"
+        },
+    {
+      "tag": "direct",
+      "type": "direct"
+    },
+    {
+      "tag": "auto",
+      "type": "urltest",
+      "outbounds": [
+        "vless-$NAME",
+        "vmess-$NAME",
+        "hy2-$NAME",
+"vmess-tls-argo-$NAME",
+"vmess-argo-$NAME"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50,
+      "interrupt_exist_connections": false
+    }
+  ],
+  "route": {
+      "rule_set": [
+            {
+                "tag": "geosite-geolocation-!cn",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
+                "download_detour": "select",
+                "update_interval": "1d"
+            },
+            {
+                "tag": "geosite-cn",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-cn.srs",
+                "download_detour": "select",
+                "update_interval": "1d"
+            },
+            {
+                "tag": "geoip-cn",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs",
+                "download_detour": "select",
+                "update_interval": "1d"
+            }
+        ],
+    "auto_detect_interface": true,
+    "final": "select",
+    "rules": [
+      {
+      "inbound": "tun-in",
+      "action": "sniff"
+      },
+      {
+      "protocol": "dns",
+      "action": "hijack-dns"
+      },
+      {
+      "port": 443,
+      "network": "udp",
+      "action": "reject"
+      },
+      {
+        "clash_mode": "Direct",
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "Global",
+        "outbound": "select"
+      },
+      {
+        "rule_set": "geoip-cn",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-cn",
+        "outbound": "direct"
+      },
+      {
+      "ip_is_private": true,
+      "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-geolocation-!cn",
+        "outbound": "select"
+      }
+    ]
+  },
+    "ntp": {
+    "enabled": true,
+    "server": "time.apple.com",
+    "server_port": 123,
+    "interval": "30m",
+    "detour": "direct"
+  }
+}
+EOF
+
+cat > clash_meta.txt <<EOF
+port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+unified-delay: true
+global-client-fingerprint: chrome
+dns:
+  enable: true
+  listen: :53
+  ipv6: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  default-nameserver: 
+    - 223.5.5.5
+    - 8.8.8.8
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  fallback:
+    - https://1.0.0.1/dns-query
+    - tls://dns.google
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+
+proxies:
+- name: vless-reality-vision-$NAME               
+  type: vless
+  server: $IP                           
+  port: $vless_port                                
+  uuid: $UUID   
+  network: tcp
+  udp: true
+  tls: true
+  flow: xtls-rprx-vision
+  servername: $reym                 
+  reality-opts: 
+    public-key: $public_key                      
+  client-fingerprint: chrome                  
+
+- name: vmess-ws-$NAME                         
+  type: vmess
+  server: $IP                       
+  port: $vmess_port                                     
+  uuid: $UUID       
+  alterId: 0
+  cipher: auto
+  udp: true
+  tls: false
+  network: ws
+  servername: $vm_name                    
+  ws-opts:
+    path: "/$UUID-vm"                             
+    headers:
+      Host: $vm_name                     
+
+- name: hysteria2-$NAME                            
+  type: hysteria2                                      
+  server: $IP                               
+  port: $hy2_port                                
+  password: $UUID                          
+  alpn:
+    - h3
+  sni: www.bing.com                               
+  skip-cert-verify: true
+  fast-open: true
+
+- name: vmess-tls-argo-$NAME                         
+  type: vmess
+  server: icook.hk                        
+  port: 8443                                     
+  uuid: $UUID       
+  alterId: 0
+  cipher: auto
+  udp: true
+  tls: true
+  network: ws
+  servername: $argodomain                    
+  ws-opts:
+    path: "/$UUID-vm"                             
+    headers:
+      Host: $argodomain
+
+- name: vmess-argo-$NAME                         
+  type: vmess
+  server: $vmadd_argo                        
+  port: 8880                                     
+  uuid: $UUID       
+  alterId: 0
+  cipher: auto
+  udp: true
+  tls: false
+  network: ws
+  servername: $argodomain                   
+  ws-opts:
+    path: "/$UUID-vm"                             
+    headers:
+      Host: $argodomain 
+
+proxy-groups:
+- name: 负载均衡
+  type: load-balance
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  strategy: round-robin
+  proxies:
+    - vless-reality-vision-$hostname                              
+    - vmess-ws-$hostname
+    - hysteria2-$hostname
+    - vmess-tls-argo-$hostname
+    - vmess-argo-$hostname
+
+- name: 自动选择
+  type: url-test
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  proxies:
+    - vless-reality-vision-$NAME                              
+    - vmess-ws-$NAME
+    - hysteria2-$NAME
+    - vmess-tls-argo-$NAME
+    - vmess-argo-$NAME
+    
+- name: 🌍选择代理节点
+  type: select
+  proxies:
+    - 负载均衡                                         
+    - 自动选择
+    - DIRECT
+    - vless-reality-vision-$NAME                              
+    - vmess-ws-$NAME
+    - hysteria2-$NAME
+    - vmess-tls-argo-$NAME
+    - vmess-argo-$NAME
+rules:
+  - GEOIP,LAN,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,🌍选择代理节点
+  
+EOF
 sleep 2
 rm -rf boot.log config.json sb.log core tunnel.yml tunnel.json fake_useragent_0.2.0.json
+}
+
+showlist(){
+if [[ -e $WORKDIR/list.txt ]]; then
+green "查看节点及proxyip/非标端口反代ip信息"
+cat $WORKDIR/list.txt
+else
+red "未安装sing-box" && exit
+fi
+}
+
+showsbclash(){
+if [[ -e $WORKDIR/sing_box.txt ]]; then
+green "sing_box配置文件如下："
+cat $WORKDIR/sing_box.txt 
+sleep 2
+echo
+green "clash_meta配置文件如下："
+cat $WORKDIR/clash_meta.txt
+else
+red "未安装sing-box" && exit
+fi
 }
 
 #主菜单
@@ -596,7 +1090,9 @@ menu() {
    echo   "=================================="
    green  "3. 查看节点及proxyip/非标端口反代ip"
    echo   "=================================="
-   yellow "4. 清理所有进程"
+   green  "4. 查看sing-box与clash-meta配置文件"
+   echo   "=================================="
+   yellow "5. 清理所有进程"
    echo   "=================================="
    red    "0. 退出脚本"
    echo   "=================================="
@@ -631,13 +1127,14 @@ else
 red "未安装sing-box，请选择1进行安装" 
 fi
    echo   "=================================="
-   reading "请输入选择(0-4): " choice
+   reading "请输入选择(0-5): " choice
    echo ""
     case "${choice}" in
         1) install_singbox ;;
         2) uninstall_singbox ;; 
-        3) cat $WORKDIR/list.txt ;; 
-        4) kill_all_tasks ;;
+        3) showlist ;;
+	4) showsbclash ;;
+        5) kill_all_tasks ;;
 	0) exit 0 ;;
         *) red "无效的选项，请输入 0 到 4" ;;
     esac
