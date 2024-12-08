@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # 定义颜色
@@ -22,6 +21,19 @@ export NEZHA_KEY=${NEZHA_KEY:-''}
 [[ "$HOSTNAME" == "s1.ct8.pl" ]] && WORKDIR="domains/${USERNAME}.ct8.pl/logs" || WORKDIR="domains/${USERNAME}.serv00.net/logs"
 [ -d "$WORKDIR" ] || (mkdir -p "$WORKDIR" && chmod 777 "$WORKDIR")
 #ps aux | grep $(whoami) | grep -v "sshd\|bash\|grep" | awk '{print $2}' | xargs -r kill -9 > /dev/null 2>&1
+
+read_ip() {
+cat ip.txt
+reading "选择使用的IP (建议默认回车自动选择可用IP): " IP
+if [[ -z "$IP" ]]; then
+IP=$(grep -m 1 "可用" ip.txt | awk -F ':' '{print $1}')
+if [ -z "$IP" ]; then
+IP=$(head -n 1 ip.txt | awk -F ':' '{print $1}')
+red "当前IP可能都被墙了，但argo节点与proxyip依旧可用"
+fi
+fi
+green "你使用的IP: $IP"
+}
 
 read_uuid() {
         reading "请输入统一的uuid密码 (建议回车默认随机): " UUID
@@ -94,7 +106,10 @@ read_nz_variables() {
 }
 
 install_singbox() {
-echo -e "${yellow}本脚本同时三协议共存${purple}(vless-reality|vmess+ws/argo|hysteria2)${re}"
+if [[ -e $WORKDIR/list.txt ]]; then
+yellow "已安装sing-box，请先选择2卸载，再执行安装"
+fi
+echo -e "${yellow}本脚本同时三协议共存${purple}(vless-reality、vmess+ws/argo、hysteria2)${re}"
 echo -e "${yellow}开始运行前，请确保在面板${purple}已开放3个端口，两个tcp端口和一个udp端口${re}"
 echo -e "${yellow}面板${purple}Additional services中的Run your own applications${yellow}已开启为${purplw}Enabled${yellow}状态${re}"
 reading "\n确定继续安装吗？【y/n】: " choice
@@ -102,6 +117,8 @@ reading "\n确定继续安装吗？【y/n】: " choice
     [Yy])
         cd $WORKDIR
         #read_nz_variables
+	echo
+	read_ip
 	echo
         read_reym
 	echo
@@ -510,10 +527,9 @@ get_argodomain() {
   fi
 }
 
-IP=$(curl -s --max-time 1.5 ipv4.ip.sb)
 get_links(){
 argodomain=$(get_argodomain)
-echo -e "\e[1;32mArgoDomain:\e[1;35m${argodomain}\e[0m\n"
+echo -e "\e[1;32mArgo域名:\e[1;35m${argodomain}\e[0m\n"
 ISP=$(curl -s --max-time 2 https://speed.cloudflare.com/meta | awk -F\" '{print $26}' | sed -e 's/ /_/g' || echo "0")
 get_name() { if [ "$HOSTNAME" = "s1.ct8.pl" ]; then SERVER="CT8"; else SERVER=$(echo "$HOSTNAME" | cut -d '.' -f 1); fi; echo "$SERVER"; }
 NAME="$ISP-$(get_name)"
@@ -567,9 +583,8 @@ rm -rf boot.log config.json sb.log core tunnel.yml tunnel.json fake_useragent_0.
 menu() {
    clear
    echo ""
-   purple "=== 修改自Serv00|ct8老王sing-box安装脚本，支持一键三协议：vless-reality、Vmess-ws(Argo)、hysteria2 ==="
+   purple "修改自Serv00|ct8老王sing-box安装脚本，支持一键三协议：vless-reality、Vmess-ws(Argo)、hysteria2"
    purple "转载请著名处自老王，请勿滥用"
-   echo -e "${green}甬哥侃侃侃主要增加reality协议默认支持 CF vless/trojan 节点的proxyip/非标端口优选反代ip功能${re}"
    green "甬哥Github项目  ：github.com/yonggekkk"
    green "甬哥Blogger博客 ：ygkkk.blogspot.com"
    green "甬哥YouTube频道 ：www.youtube.com/@ygkkk"
@@ -583,6 +598,37 @@ menu() {
    yellow "4. 清理所有进程"
    echo   "=================================="
    red    "0. 退出脚本"
+   echo   "=================================="
+nb=$(echo "$HOSTNAME" | cut -d '.' -f 1 | tr -d 's')
+ym=("cache$nb.serv00.com" "$HOSTNAME" "web$nb.serv00.com")
+rm -rf $WORKDIR/ip.txt
+for ym in "${ym[@]}"; do
+# 引用frankiejun API
+response=$(curl -s "https://ss.botai.us.kg/api/getip?host=$ym")
+if [[ -z "$response" ]]; then
+for ip in "${ym[@]}"; do
+dig @8.8.8.8 +time=2 +short $ip >> $WORKDIR/ip.txt
+sleep 1  
+done
+break
+else
+echo "$response" | while IFS='|' read -r ip status; do
+if [[ $status == "Accessible" ]]; then
+echo "$ip: 可用"  >> $WORKDIR/ip.txt
+else
+echo "$ip: 被墙"  >> $WORKDIR/ip.txt
+fi	
+done
+fi
+done
+green "当前可选择的IP如下："
+cat $WORKDIR/ip.txt
+echo
+if [[ -e $WORKDIR/list.txt ]]; then
+green "已安装sing-box" 
+else
+red "未安装sing-box，请选择1进行安装" 
+fi
    echo   "=================================="
    reading "请输入选择(0-4): " choice
    echo ""
