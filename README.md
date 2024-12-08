@@ -89,6 +89,8 @@
 修改自Serv00|ct8老王sing-box安装脚本，支持一键三协议：vless-reality、vmess-ws(argo)、hysteria2。
 
 主要增加reality协议默认支持 CF vless/trojan 节点的proxyip以及非标端口的优选反代IP功能，脚本默认输出结果
+
+Serv00专用一键脚本：
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/serv00_proxyip.sh)
 ```
