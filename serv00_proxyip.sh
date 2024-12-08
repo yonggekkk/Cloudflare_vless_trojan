@@ -992,7 +992,7 @@ proxies:
 
 - name: vmess-argo-$NAME                         
   type: vmess
-  server: $vmadd_argo                        
+  server: icook.hk                        
   port: 8880                                     
   uuid: $UUID       
   alterId: 0
