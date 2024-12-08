@@ -24,15 +24,14 @@ export NEZHA_KEY=${NEZHA_KEY:-''}
 
 read_ip() {
 cat ip.txt
-reading "选择使用的IP (建议默认回车自动选择可用IP): " IP
+reading "请输入上面三个IP中的任意一个 (建议默认回车自动选择可用IP): " IP
 if [[ -z "$IP" ]]; then
 IP=$(grep -m 1 "可用" ip.txt | awk -F ':' '{print $1}')
 if [ -z "$IP" ]; then
 IP=$(head -n 1 ip.txt | awk -F ':' '{print $1}')
-red "当前IP可能都被墙了，但argo节点与proxyip依旧可用"
 fi
 fi
-green "你使用的IP: $IP"
+green "你选择的IP为: $IP"
 }
 
 read_uuid() {
@@ -48,7 +47,7 @@ read_reym() {
         if [[ -z "$reym" ]]; then
 	         reym=www.speedtest.net
         fi
-	green "输入的reality域名为: $reym"
+	green "你的reality域名为: $reym"
 }
 
 read_vless_port() {
@@ -1063,11 +1062,15 @@ fi
 
 showsbclash(){
 if [[ -e $WORKDIR/sing_box.txt ]]; then
-green "sing_box配置文件如下："
-cat $WORKDIR/sing_box.txt 
+green "Sing_box配置文件如下："
+yellow "Argo节点的地址可自行修改优选IP"
 sleep 2
+cat $WORKDIR/sing_box.txt 
 echo
-green "clash_meta配置文件如下："
+echo
+green "Clash_meta配置文件如下："
+yellow "Argo节点的地址可自行修改优选IP"
+sleep 2
 cat $WORKDIR/clash_meta.txt
 else
 red "未安装sing-box" && exit
@@ -1078,7 +1081,8 @@ fi
 menu() {
    clear
    echo ""
-   purple "修改自Serv00|ct8老王sing-box安装脚本，支持一键三协议：vless-reality、Vmess-ws(Argo)、hysteria2"
+   purple "修改自Serv00|ct8老王sing-box安装脚本"
+   purple "一键三协议共存：vless-reality、Vmess-ws(Argo)、hysteria2"
    purple "转载请著名处自老王，请勿滥用"
    green "甬哥Github项目  ：github.com/yonggekkk"
    green "甬哥Blogger博客 ：ygkkk.blogspot.com"
@@ -1136,7 +1140,7 @@ fi
 	4) showsbclash ;;
         5) kill_all_tasks ;;
 	0) exit 0 ;;
-        *) red "无效的选项，请输入 0 到 4" ;;
+        *) red "无效的选项，请输入 0 到 5" ;;
     esac
 }
 menu
