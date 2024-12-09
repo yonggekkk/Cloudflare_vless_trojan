@@ -578,7 +578,7 @@ hysteria2://$UUID@$IP:$hy2_port?sni=www.bing.com&alpn=h3&insecure=1#$NAME-hy2
 EOF
 cat list.txt
 
-cat > sing_box.txt <<EOF
+cat > sing_box.json <<EOF
 {
   "log": {
     "disabled": false,
@@ -713,7 +713,7 @@ cat > sing_box.txt <<EOF
             "tag": "vmess-$NAME",
             "tls": {
                 "enabled": false,
-                "server_name": "",
+                "server_name": "www.bing.com",
                 "insecure": false,
                 "utls": {
                     "enabled": true,
@@ -724,7 +724,7 @@ cat > sing_box.txt <<EOF
             "transport": {
                 "headers": {
                     "Host": [
-                        ""
+                        "www.bing.com"
                     ]
                 },
                 "path": "/$UUID-vm",
@@ -903,7 +903,7 @@ cat > sing_box.txt <<EOF
 }
 EOF
 
-cat > clash_meta.txt <<EOF
+cat > clash_meta.yaml <<EOF
 port: 7890
 allow-lan: true
 mode: rule
@@ -956,11 +956,11 @@ proxies:
   udp: true
   tls: false
   network: ws
-  servername: $vm_name                    
+  servername: www.bing.com                    
   ws-opts:
     path: "/$UUID-vm"                             
     headers:
-      Host: $vm_name                     
+      Host: www.bing.com                     
 
 - name: hysteria2-$NAME                            
   type: hysteria2                                      
@@ -1012,11 +1012,11 @@ proxy-groups:
   interval: 300
   strategy: round-robin
   proxies:
-    - vless-reality-vision-$hostname                              
-    - vmess-ws-$hostname
-    - hysteria2-$hostname
-    - vmess-tls-argo-$hostname
-    - vmess-argo-$hostname
+    - vless-reality-vision-$NAME                              
+    - vmess-ws-$NAME
+    - hysteria2-$NAME
+    - vmess-tls-argo-$NAME
+    - vmess-argo-$NAME
 
 - name: 自动选择
   type: url-test
@@ -1061,17 +1061,17 @@ fi
 }
 
 showsbclash(){
-if [[ -e $WORKDIR/sing_box.txt ]]; then
+if [[ -e $WORKDIR/sing_box.json ]]; then
 green "Sing_box配置文件如下："
 yellow "Argo节点的地址可自行修改优选IP"
 sleep 2
-cat $WORKDIR/sing_box.txt 
+cat $WORKDIR/sing_box.json 
 echo
 echo
 green "Clash_meta配置文件如下："
 yellow "Argo节点的地址可自行修改优选IP"
 sleep 2
-cat $WORKDIR/clash_meta.txt
+cat $WORKDIR/clash_meta.yaml
 else
 red "未安装sing-box" && exit
 fi
