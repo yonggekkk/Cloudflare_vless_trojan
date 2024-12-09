@@ -541,9 +541,8 @@ cat > list.txt <<EOF
 一、Vless-reality分享链接如下：
 vless://$UUID@$IP:$vless_port?encryption=none&flow=xtls-rprx-vision&security=reality&sni=$reym&fp=chrome&pbk=$public_key&type=tcp&headerType=none#$NAME-reality
 
--------------------------------------------------------------------------------------------------
-如果之前输入的reality域名为CF域名，将激活以下功能：
-可在 https://github.com/yonggekkk/Cloudflare_vless_trojan 项目中创建CF vless/trojan 节点
+注意：如果之前输入的reality域名为CF域名，将激活以下功能：
+可应用在 https://github.com/yonggekkk/Cloudflare_vless_trojan 项目中创建CF vless/trojan 节点
 1、Proxyip(带端口)信息如下：
 方式一全局应用：设置变量名：proxyip    设置变量值：$IP:$vless_port  
 方式二单节点应用：path路径改为：/pyip=$IP:$vless_port
@@ -551,12 +550,14 @@ CF节点的TLS可开可关
 用于CF节点落地到CF网站的地区为$IP所在地区
 
 2、非标端口反代IP信息如下：
-客户端优选IP地址为：$IP，端口：$vless_port，CF节点的TLS必须开启
+客户端优选IP地址为：$IP，端口：$vless_port
+CF节点的TLS必须开启
 用于CF节点落地到非CF网站的地区为$IP所在地区
 
 注：如果serv00的IP被墙，proxyip依旧有效，但用于客户端的优选IP将不可用！
 注：必定有大佬会扫Serv00的反代IP作为其共享IP库或者出售，请慎重将reality域名设置为CF域名
 -------------------------------------------------------------------------------------------------
+
 
 二、Vmess-ws分享链接三形态如下：
 1、Vmess-ws分享链接如下：
@@ -567,11 +568,16 @@ vmess://$(echo "{ \"v\": \"2\", \"ps\": \"$NAME-vmess-ws-tls-argo\", \"add\": \"
 
 3、Vmess-ws_Argo分享链接如下 (客户端地址可自行修改优选IP，7个80系端口随便更换)：
 vmess://$(echo "{ \"v\": \"2\", \"ps\": \"$NAME-vmess-ws-argo\", \"add\": \"icook.hk\", \"port\": \"8880\", \"id\": \"$UUID\", \"aid\": \"0\", \"scy\": \"none\", \"net\": \"ws\", \"type\": \"none\", \"host\": \"$argodomain\", \"path\": \"/$UUID-vm?ed=2048\", \"tls\": \"\"}" | base64 -w0)
+-------------------------------------------------------------------------------------------------
+
 
 三、HY2分享链接如下：
 hysteria2://$UUID@$IP:$hy2_port?sni=www.bing.com&alpn=h3&insecure=1#$NAME-hy2
+-------------------------------------------------------------------------------------------------
+
 
 四、查看sing-box与clash-meta配置文件，请进入主菜单选择4
+-------------------------------------------------------------------------------------------------
 
 =================================================================================================
 
@@ -1072,6 +1078,7 @@ green "Clash_meta配置文件如下："
 yellow "Argo节点的地址可自行修改优选IP"
 sleep 2
 cat $WORKDIR/clash_meta.yaml
+echo
 else
 red "未安装sing-box" && exit
 fi
@@ -1080,26 +1087,27 @@ fi
 #主菜单
 menu() {
    clear
-   echo ""
+   echo "======================================================"
    purple "修改自Serv00|ct8老王sing-box安装脚本"
    purple "一键三协议共存：vless-reality、Vmess-ws(Argo)、hysteria2"
    purple "转载请著名处自老王，请勿滥用"
    green "甬哥Github项目  ：github.com/yonggekkk"
    green "甬哥Blogger博客 ：ygkkk.blogspot.com"
    green "甬哥YouTube频道 ：www.youtube.com/@ygkkk"
+   echo "======================================================"
    echo
    green  "1. 安装sing-box"
-   echo   "=================================="
+   echo   "----------------------------------"
    red    "2. 卸载sing-box"
-   echo   "=================================="
+   echo   "----------------------------------"
    green  "3. 查看节点及proxyip/非标端口反代ip"
-   echo   "=================================="
+   echo   "----------------------------------"
    green  "4. 查看sing-box与clash-meta配置文件"
-   echo   "=================================="
+   echo   "----------------------------------"
    yellow "5. 清理所有进程"
-   echo   "=================================="
+   echo   "----------------------------------"
    red    "0. 退出脚本"
-   echo   "=================================="
+   echo   "----------------------------------"
 nb=$(echo "$HOSTNAME" | cut -d '.' -f 1 | tr -d 's')
 ym=("cache$nb.serv00.com" "$HOSTNAME" "web$nb.serv00.com")
 rm -rf $WORKDIR/ip.txt
@@ -1130,7 +1138,7 @@ green "已安装sing-box"
 else
 red "未安装sing-box，请选择1进行安装" 
 fi
-   echo   "=================================="
+   echo   "----------------------------------"
    reading "请输入选择(0-5): " choice
    echo ""
     case "${choice}" in
