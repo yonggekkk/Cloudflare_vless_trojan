@@ -1141,7 +1141,7 @@ fi
 done
 fi
 done
-green "正在使用的服务：$(hostname | awk -F '.' '{print $1}')"
+green "当前Serv00服务器名称：$(hostname | awk -F '.' '{print $1}')"
 green "当前可选择的IP如下："
 cat $WORKDIR/ip.txt
 echo
