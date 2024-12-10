@@ -538,7 +538,7 @@ hy2_link="hysteria2://$UUID@$IP:$hy2_port?sni=www.bing.com&alpn=h3&insecure=1#$N
 echo "$hy2_link" >> jh.txt
 url=$(cat jh.txt 2>/dev/null)
 baseurl=$(echo -e "$url" | base64 -w 0)
-yellow "注意：v2rayN或其他软件的跳过证书验证需设置为true，否则hy2或tuic节点可能不通\n"
+echo
 sleep 2
 cat > list.txt <<EOF
 
