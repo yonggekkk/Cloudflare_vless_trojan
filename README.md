@@ -82,7 +82,7 @@
 
 2、全局节点变更proxyip：影响所有未设置path路径proxyip的节点
 
-3、当节点的path路径出现```/pyip=```关键字时，此节点的proxyip只认准path路径设置的proxyip
+3、当节点的path路径出现```/pyip=```关键字时，此节点的proxyip只认准path路径设置的proxyip，全局proxyip不起作用
 
 ---------------------------------
 ## 四：无需socks5！小白利用reality协议一键自制proxyip、80系/443系的任意端口反代IP
