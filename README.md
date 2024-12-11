@@ -97,6 +97,10 @@ Serv00专用一键脚本：
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/serv00_proxyip.sh)
 ```
+脚本界面预览图：
+
+![f053ce401a12b85bc0420b870c3c7dc](https://github.com/user-attachments/assets/fa00cdf3-77b4-49dc-a095-69d1a5251767)
+
 
 ### 2、VPS专用：
 
