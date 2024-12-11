@@ -1079,14 +1079,14 @@ fi
 
 showsbclash(){
 if [[ -e $WORKDIR/sing_box.json ]]; then
-green "Sing_box配置文件如下："
-yellow "Argo节点的地址可自行修改优选IP，可上传到订阅类客户端上使用"
+green "Sing_box配置文件如下，可上传到订阅类客户端上使用："
+yellow "Argo节点的地址可自行修改优选IP"
 sleep 2
 cat $WORKDIR/sing_box.json 
 echo
 echo
-green "Clash_meta配置文件如下："
-yellow "Argo节点的地址可自行修改优选IP，可上传到订阅类客户端上使用"
+green "Clash_meta配置文件如下，可上传到订阅类客户端上使用："
+yellow "Argo节点的地址可自行修改优选IP"
 sleep 2
 cat $WORKDIR/clash_meta.yaml
 echo
