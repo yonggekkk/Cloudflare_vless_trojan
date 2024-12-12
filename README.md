@@ -2,7 +2,6 @@
 # Cloudflare-workers/pages代理脚本
 ### 本项目仅支持本地化部署
 ### 本项目配置都为本地化编辑，不使用订阅器、订阅转换等第三方外链引用，无需担心节点订阅被外链作者查看
-### 本项目目前仅乱码混淆版可用，修改参数需要使用变量
 --------------------------------
 ## 脚本特色：
 #### 懒人小白专用！默认节点都为CF官方IP，无需频繁更新订阅获取客户端优选IP
@@ -10,6 +9,7 @@
 #### Workers方式：支持vless+ws+tls、trojan+ws+tls、vless+ws、trojan+ws代理节点
 #### Pages方式：支持vless+ws+tls、trojan+ws+tls代理节点
 #### 支持单节点链接、聚合通用节点订阅、sing-box节点订阅、clash节点订阅
+#### 虽然仅乱码混淆版可用，但只有修改uuid/密码时才必须使用变量
 -------------------------------------------------------------
 
 ### 交流平台：[甬哥博客地址](https://ygkkk.blogspot.com)、[甬哥YouTube频道](https://www.youtube.com/@ygkkk)、[甬哥TG电报群组](https://t.me/+jZHc6-A-1QQ5ZGVl)、[甬哥TG电报频道](https://t.me/+DkC9ZZUgEFQzMTZl)
