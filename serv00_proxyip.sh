@@ -78,7 +78,7 @@ read_vmess_port() {
     while true; do
         reading "请输入vmess+ws端口 (面板开放的tcp端口): " vmess_port
         if [[ "$vmess_port" =~ ^[0-9]+$ ]] && [ "$vmess_port" -ge 1 ] && [ "$vmess_port" -le 65535 ]; then
-            green "你的tuic端口为: $tuic_port"
+            green "你的vmess端口为: $vmess_port"
             break
         else
             yellow "输入错误，请重新输入面板开放的tcp端口"
