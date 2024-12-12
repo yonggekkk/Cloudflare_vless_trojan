@@ -1,4 +1,4 @@
-# 新一条龙🐲教程即将更新！！！
+# Serv00小白回车一条龙🐲教程即将更新！！！
 # Cloudflare-workers/pages代理脚本
 ### 本项目仅支持本地化部署
 ### 本项目配置都为本地化编辑，不使用订阅器、订阅转换等第三方外链引用，无需担心节点订阅被外链作者查看
@@ -17,7 +17,7 @@
 
 ### 推荐新手用户请先看以下两个入门视频教程：
 
-2024.12.12，13:30分才可观看[CF vless/trojan免费节点混淆时代来临：workers/pages代码混淆后详细设置的更新说明；1101报错总结；福利计划：甬哥自建多个ProxyIP让大家使用](https://youtu.be/QSFaP5EVI04)
+[CF vless/trojan免费节点混淆时代来临：workers/pages代码混淆后详细设置的更新说明；1101报错总结；福利计划：甬哥自建多个ProxyIP让大家使用](https://youtu.be/QSFaP5EVI04)
 
 [CF vless/trojan永久免费节点(视频中代码内容请替换为混淆代码)：无需自定义域名，快速上手搭建；全平台免费客户端设置说明；独家优选IP与Proxyip的意义说明；一键生成美国、香港、欧洲三区优选官方IP](https://youtu.be/WwAeLyEz6jY)
 
