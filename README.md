@@ -93,7 +93,7 @@
 
 修改自Serv00|ct8老王sing-box安装脚本，支持一键三协议：vless-reality、vmess-ws(argo)、hysteria2。
 
-主要增加reality协议默认支持 CF vless/trojan 节点的proxyip以及非标端口的优选反代IP功能，脚本默认输出结果
+主要增加reality协议默认支持 CF vless/trojan 节点的proxyip以及非标端口的优选反代IP功能。视频教程即将发布
 
 Serv00专用一键脚本：
 ```
@@ -182,7 +182,7 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 2、CF优选反代IP (电脑版，带测速)
 
-3、CF优选官方IP (美、亚、欧三地区无交互电脑版！强烈推荐！！！)
+3、CF优选官方IP (美、亚、欧三地区无交互电脑版！强烈推荐！点击[视频教程](https://youtu.be/6kKIzObEZ2c))
 
 4、CF优选官方IP (电脑版，带测速)
 
@@ -209,9 +209,11 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 注意：Shadowrocket(小火箭)、v2box、v2rayn、v2rayng客户端对trojan+ws有强制开启TLS问题，造成trojan+ws不通。且clash订阅没有trojan+ws节点。特此说明
 
+关于客户端使用问题，请看[CF vless/trojan永久免费节点教程（六）：节点不能用，问题出在哪？多平台免费客户端设置指南及避坑说明](https://youtu.be/8E0l0nQWLxs)
+
 ---------------------------------
 
-### 视频教程：
+### CF视频教程集合：
 
 [CF workers永久免费vless节点搭建教程（一）：全网首发演示跳IP现象，解密两大节点使用技巧，优选IP、优选域名的优缺点说明](https://youtu.be/9V9CQxmfwoA)
 
