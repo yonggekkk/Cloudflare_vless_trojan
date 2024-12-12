@@ -525,13 +525,16 @@ CF节点落地到非CF网站的地区为：$IP所在地区
 
 
 二、Vmess-ws分享链接三形态如下：
+
 1、Vmess-ws主节点分享链接如下：
 $vmws_link
 
-2、Vmess-ws-tls_Argo分享链接如下 (客户端地址可自行修改优选IP，6个443系端口随便更换，该节点被墙也能用！)：
+2、Vmess-ws-tls_Argo分享链接如下： 
+(该节点为CDN优选IP节点，客户端地址可自行修改优选IP/域名，6个443系端口随便更换，被墙依旧能用！)
 $vmatls_link
 
-3、Vmess-ws_Argo分享链接如下 (客户端地址可自行修改优选IP，7个80系端口随便更换，该节点被墙也能用！)：
+3、Vmess-ws_Argo分享链接如下：
+(该节点为CDN优选IP节点，客户端地址可自行修改优选IP/域名，7个80系端口随便更换，被墙依旧能用！)
 $vma_link
 -------------------------------------------------------------------------------------------------
 
@@ -1039,13 +1042,13 @@ fi
 showsbclash(){
 if [[ -e $WORKDIR/sing_box.json ]]; then
 green "Sing_box配置文件如下，可上传到订阅类客户端上使用："
-yellow "Argo节点的地址可自行修改优选IP"
+yellow "其中Argo节点为CDN优选IP节点，server地址可自行修改优选IP/域名，被墙依旧能用！"
 sleep 2
 cat $WORKDIR/sing_box.json 
 echo
 echo
 green "Clash_meta配置文件如下，可上传到订阅类客户端上使用："
-yellow "Argo节点的地址可自行修改优选IP"
+yellow "其中Argo节点为CDN优选IP节点，server地址可自行修改优选IP/域名，被墙依旧能用！"
 sleep 2
 cat $WORKDIR/clash_meta.yaml
 echo
