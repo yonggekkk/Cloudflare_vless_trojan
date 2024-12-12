@@ -1060,7 +1060,7 @@ menu() {
    echo "======================================================"
    purple "修改自Serv00|ct8老王sing-box安装脚本"
    purple "一键三协议共存：vless-reality、Vmess-ws(Argo)、hysteria2"
-   purple "转载请著名处自老王，请勿滥用"
+   purple "转载请著名出自老王，请勿滥用"
    green "甬哥Github项目  ：github.com/yonggekkk"
    green "甬哥Blogger博客 ：ygkkk.blogspot.com"
    green "甬哥YouTube频道 ：www.youtube.com/@ygkkk"
