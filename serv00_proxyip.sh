@@ -103,7 +103,7 @@ sleep 2
         echo
         read_hy2_port
 	echo
-        sleep 1
+        sleep 2
         argo_configure
         echo
         download_and_run_singbox
@@ -483,7 +483,8 @@ get_argodomain() {
 get_links(){
 argodomain=$(get_argodomain)
 echo -e "\e[1;32mArgo域名:\e[1;35m${argodomain}\e[0m\n"
-green "使用浏览器访问${argodomain}时，如果显示【找不到 ${argodomain} 的网页，HTTP ERROR 404】时，恭喜！说明Argo隧道已生效且可用"
+green "可使用浏览器访问Argo域名：${argodomain} "
+green "如果显示【找不到 ${argodomain} 的网页，HTTP ERROR 404】：恭喜！说明Argo隧道已生效且可用"
 ISP=$(curl -s --max-time 2 https://speed.cloudflare.com/meta | awk -F\" '{print $26}' | sed -e 's/ /_/g' || echo "0")
 get_name() { if [ "$HOSTNAME" = "s1.ct8.pl" ]; then SERVER="CT8"; else SERVER=$(echo "$HOSTNAME" | cut -d '.' -f 1); fi; echo "$SERVER"; }
 NAME="$ISP-$(get_name)"
