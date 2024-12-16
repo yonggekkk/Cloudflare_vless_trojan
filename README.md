@@ -101,7 +101,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_tro
 ```
 脚本界面预览图：
 
-![02bd769be413d39855f00a987a97dc3](https://github.com/user-attachments/assets/4862a0f9-c301-407a-9807-7110017216c7)
+![0bfd865cba72ccda1b3f34c7ee89fe9](https://github.com/user-attachments/assets/f0238a99-1ecc-45ae-bf34-b1b6153286f3)
 
 ### 2、VPS专用：
 
