@@ -1111,9 +1111,6 @@ fi
 done
 snb=$(hostname | awk -F '.' '{print $1}')
 green "当前Serv00服务器名称：$snb"
-if [ "$snb" == "s15" ]; then
-red "注意：目前 $snb 服务器在安装过程中可能会报错失败" 
-fi
 green "当前可选择的IP如下："
 cat $WORKDIR/ip.txt
 echo
