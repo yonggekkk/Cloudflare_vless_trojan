@@ -1,4 +1,3 @@
-# Serv00小白回车一条龙🐲教程即将更新！！！
 # Cloudflare-workers/pages代理脚本
 ### 本项目仅支持本地化部署
 ### 本项目配置都为本地化编辑，不使用订阅器、订阅转换等第三方外链引用，无需担心节点订阅被外链作者查看
@@ -93,7 +92,9 @@
 
 修改自Serv00|ct8老王sing-box安装脚本，支持一键三协议：vless-reality、vmess-ws(argo)、hysteria2。
 
-主要增加reality协议默认支持 CF vless/trojan 节点的proxyip以及非标端口的优选反代IP功能。视频教程即将发布
+主要增加reality协议默认支持 CF vless/trojan 节点的proxyip以及非标端口的优选反代IP功能
+
+详细设置教程，请点击[Serv00最全面的代理脚本](https://youtu.be/2VF9D6z2z7w)
 
 Serv00专用一键脚本：
 ```
