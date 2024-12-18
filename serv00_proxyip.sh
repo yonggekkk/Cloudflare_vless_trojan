@@ -34,15 +34,20 @@ green "你选择的IP为: $IP"
 read_uuid() {
         reading "请输入统一的uuid密码 (建议回车默认随机): " UUID
         if [[ -z "$UUID" ]]; then
-	         UUID=$(uuidgen -r)
+	   UUID=$(uuidgen -r)
         fi
 	green "你的uuid为: $UUID"
 }
 
 read_reym() {
-        reading "请输入reality域名 (回车默认CF域名，支持proxyip+非标端口反代ip功能): " reym
+        yellow "回车使用CF域名，支持proxyip+非标端口反代ip功能"
+	yellow "输入 s 表示使用Serv00自带域名，不支持proxyip功能"
+        yellow "也可以自定义域名，注意要符合reality域名规则"
+        reading "请输入reality域名: " reym
         if [[ -z "$reym" ]]; then
-	         reym=www.speedtest.net
+           reym=www.speedtest.net
+	elif [[ "$reym" == "s" || "$reym" == "S" ]]; then
+           reym=$USERNAME.serv00.net
         fi
 	green "你的reality域名为: $reym"
 }
@@ -139,7 +144,7 @@ argo_configure() {
     yellow "Argo临时隧道 (无需域名，推荐)"
     yellow "Argo固定隧道 (需要域名，需要CF设置提取Token)"
     echo -e "${red}注意：${purple}Argo固定隧道使用Token时，需要在cloudflare后台设置隧道端口，该端口必须与vmess-ws的tcp端口一致)${re}"
-    reading "输入 g 表示使用Argo固定隧道 ；回车跳过 表示使用Argo临时隧道 【g/回车】: " argo_choice
+    reading "输入 g 表示使用Argo固定隧道，回车跳过 表示使用Argo临时隧道 【请选择 g 或者回车】: " argo_choice
     if [[ "$argo_choice" != "g" && "$argo_choice" != "G" && -n "$argo_choice" ]]; then
         red "无效的选择，请输入 g 或回车"
         continue
