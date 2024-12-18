@@ -1078,7 +1078,7 @@ menu() {
    green "甬哥Blogger博客 ：ygkkk.blogspot.com"
    green "甬哥YouTube频道 ：www.youtube.com/@ygkkk"
    green "一键三协议共存：vless-reality、Vmess-ws(Argo)、hysteria2"
-   green "当前脚本版本：V24.12.16"
+   green "当前脚本版本：V24.12.18"
    echo "========================================================="
    green  "1. 安装sing-box"
    echo   "---------------------------------------------------------"
