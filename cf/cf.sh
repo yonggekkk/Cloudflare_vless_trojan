@@ -49,7 +49,12 @@ else
 echo "当前网络仅支持IPV4"
 fi
 rm -rf 6.csv 4.csv
-echo "快捷方式运行：bash cf.sh"
+echo "甬哥Github项目  ：github.com/yonggekkk"
+echo "甬哥Blogger博客 ：ygkkk.blogspot.com"
+echo "甬哥YouTube频道 ：www.youtube.com/@ygkkk"
+echo
+echo "切记！快捷运行：bash cf.sh"
+echo
 echo "请选择优选类型"
 echo "1、仅IPV4优选"
 echo "2、仅IPV6优选"
