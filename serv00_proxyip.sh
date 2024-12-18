@@ -40,10 +40,10 @@ read_uuid() {
 }
 
 read_reym() {
-        yellow "回车使用CF域名，支持proxyip+非标端口反代ip功能"
-	yellow "输入 s 表示使用Serv00自带域名，不支持proxyip功能"
-        yellow "也可以自定义域名，注意要符合reality域名规则"
-        reading "请输入reality域名: " reym
+        yellow "方式一：回车使用CF域名，支持proxyip+非标端口反代ip功能 (推荐)"
+	yellow "方式二：输入 s 表示使用Serv00自带域名，不支持proxyip功能 (推荐)"
+        yellow "方式三：也可以自定义域名，注意要符合reality域名规则"
+        reading "请输入reality域名 【请选择 回车 或者 s 或者 输入域名】: " reym
         if [[ -z "$reym" ]]; then
            reym=www.speedtest.net
 	elif [[ "$reym" == "s" || "$reym" == "S" ]]; then
@@ -141,10 +141,10 @@ reading "\n清理所有进程将退出ssh连接，确定继续清理吗？【y/n
 # Generating argo Config
 argo_configure() {
   while true; do
-    yellow "Argo临时隧道 (无需域名，推荐)"
-    yellow "Argo固定隧道 (需要域名，需要CF设置提取Token)"
+    yellow "方式一：Argo临时隧道 (无需域名，推荐)"
+    yellow "方式二：Argo固定隧道 (需要域名，需要CF设置提取Token)"
     echo -e "${red}注意：${purple}Argo固定隧道使用Token时，需要在cloudflare后台设置隧道端口，该端口必须与vmess-ws的tcp端口一致)${re}"
-    reading "输入 g 表示使用Argo固定隧道，回车跳过 表示使用Argo临时隧道 【请选择 g 或者回车】: " argo_choice
+    reading "输入 g 表示使用Argo固定隧道，回车跳过表示使用Argo临时隧道 【请选择 g 或者 回车】: " argo_choice
     if [[ "$argo_choice" != "g" && "$argo_choice" != "G" && -n "$argo_choice" ]]; then
         red "无效的选择，请输入 g 或回车"
         continue
@@ -529,12 +529,12 @@ CF节点落地到CF网站的地区为：$IP所在地区
 CF节点的TLS必须开启
 CF节点落地到非CF网站的地区为：$IP所在地区
 
-注：如果serv00的IP被墙，proxyip依旧有效，但用于客户端地址与端口的非标端口反代IP将不可用！
+注：如果serv00的IP被墙，proxyip依旧有效，但用于客户端地址与端口的非标端口反代IP将不可用
 注：可能有大佬会扫Serv00的反代IP作为其共享IP库或者出售，请慎重将reality域名设置为CF域名
 -------------------------------------------------------------------------------------------------
 
 
-二、Vmess-ws分享链接三形态如下：
+二、Vmess-ws分享链接三形态如下 (如Argo域名生成失败，2 与 3 的Argo节点将不可用)：
 
 1、Vmess-ws主节点分享链接如下：
 (该节点默认不支持CDN，如果设置为CDN回源(需域名)：客户端地址可自行修改优选IP/域名，7个80系端口随便换，被墙依旧能用！)
