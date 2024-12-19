@@ -3,8 +3,8 @@
 # 转载请著名出自老王，请勿滥用
 # 只保活节点,将此文件放到vps，填写以下服务器配置后bash kp.sh运行即可
 SCRIPT_PATH="/root/kp.sh"                    # 脚本路径
- # serv00或ct8服务器及端口配置。修改s0.serv00.com的服务区(默认s0)，使用argo临时域名时，仅填 账号:密码:tcp端口:udp1端口:udp2端口 即可
-declare -A servers=(  # 账号:密码:UUID:tcp端口:udp1端口:udp2端口:argo固定域名:Argo固定隧道密钥(json或token) 
+ # serv00或ct8服务器及端口配置。修改s0.serv00.com的服务区(默认s0)，使用argo临时域名时，仅填 账号:密码:UUID:tcp1端口:tcp2端口:udp端口 即可
+declare -A servers=(  # 账号:密码:UUID:tcp1端口:tcp2端口:udp端口:argo固定域名:Argo固定隧道密钥(json或token) 
     ["s0.serv00.com"]='ygkkk:A@123456:2f690ba2-b460-43ca-b9c3-1ac843bd2c70:5525:55255:55255'
     # 添加更多服务器......
 )
