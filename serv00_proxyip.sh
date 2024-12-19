@@ -486,6 +486,7 @@ get_argodomain() {
 }
 
 get_links(){
+
 argodomain=$(get_argodomain)
 echo -e "\e[1;32mArgo域名:\e[1;35m${argodomain}\e[0m\n"
 if [ -z ${argodomain} ]; then
@@ -547,6 +548,8 @@ $vmatls_link
 3、Vmess-ws_Argo分享链接如下：
 (该节点为CDN优选IP节点，客户端地址可自行修改优选IP/域名，7个80系端口随便换，被墙依旧能用！)
 $vma_link
+
+argo域名：${argodomain}
 -------------------------------------------------------------------------------------------------
 
 
