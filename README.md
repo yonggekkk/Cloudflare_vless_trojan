@@ -100,12 +100,17 @@ Serv00专用一键脚本：
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/serv00_proxyip.sh)
 ```
-
-进程保活脚本已支持，把kp.sh文件放到第三方VPS服务器，修改里面的参数即可定时自动运行保活节点
-
 脚本界面预览图：
 
 ![0bfd865cba72ccda1b3f34c7ee89fe9](https://github.com/user-attachments/assets/f0238a99-1ecc-45ae-bf34-b1b6153286f3)
+
+
+进程保活脚本已支持，把kp.sh文件放到第三方VPS服务器，修改里面的参数即可定时自动运行保活节点
+
+Serv00保活脚本，默认nano编辑形式，参数添加完毕运行```bash kp.sh```即可
+```
+curl -sSL https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/kp.sh -o kp.sh && chmod +x kp.sh && nano kp.sh
+```
 
 ### 2、VPS专用：
 
