@@ -1121,7 +1121,8 @@ green "当前可选择的IP如下："
 cat $WORKDIR/ip.txt
 echo
 if [[ -e $WORKDIR/list.txt ]]; then
-green "已安装sing-box" 
+green "已安装sing-box"
+ps aux | grep '[c]onfig' > /dev/null && green "进程运行正常" || red "进程丢失，请卸载后重装脚本"
 else
 red "未安装sing-box，请选择 1 进行安装" 
 fi
