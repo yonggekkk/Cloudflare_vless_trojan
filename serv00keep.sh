@@ -14,14 +14,15 @@ reading() { read -p "$(red "$1")" "$2"; }
 export LC_ALL=C
 USERNAME=$(whoami)
 HOSTNAME=$(hostname)
-export UUID=${UUID:-''}
-export ARGO_DOMAIN=${ARGO_DOMAIN:-''}   
-export ARGO_AUTH=${ARGO_AUTH:-''}
-export vmess_port=${vmess_port:-''}
-export vless_port=${vless_port:-''}
-export hy2_port=${hy2_port:-''}
-export IP=${IP:-''} 
-export reym=${reym:-'www.speedtest.net'}
+
+export UUID=${UUID:-''}            #uuid：在''之间输入你的uuid
+export ARGO_DOMAIN=${ARGO_DOMAIN:-''}   #argo固定域名：在''之间输入你的argo固定域名，不填就是临时域名
+export ARGO_AUTH=${ARGO_AUTH:-''}     #argo固定域名token：在''之间输入你的argo固定域名token，不填就是临时域名
+export vless_port=${vless_port:-''}    #vless端口：在''之间输入你的vless端口TCP
+export vmess_port=${vmess_port:-''}   #vmess端口：在''之间输入你的vmess端口TCP
+export hy2_port=${hy2_port:-''}       #hy2端口：在''之间输入你的hy2端口UDP
+export IP=${IP:-''}                  #IP：在''之间输入你的Serv00的ip或者域名(不清楚就填SSH登录地址吧)
+export reym=${reym:-'www.speedtest.net'}  #reality域名：在''之间输入符合reality规则的域名(当前默认CF域名)
 
 [[ "$HOSTNAME" == "s1.ct8.pl" ]] && WORKDIR="domains/${USERNAME}.ct8.pl/logs" || WORKDIR="domains/${USERNAME}.serv00.net/logs"
 [ -d "$WORKDIR" ] || (mkdir -p "$WORKDIR" && chmod 777 "$WORKDIR")
