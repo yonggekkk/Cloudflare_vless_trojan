@@ -14,16 +14,15 @@ reading() { read -p "$(red "$1")" "$2"; }
 export LC_ALL=C
 USERNAME=$(whoami)
 HOSTNAME=$(hostname)
-# 如使用第三方VPS保活，请移步kp.sh进行编辑
-# uuid、vless端口、vmess端口、hy2端口为必填
-export UUID=${UUID:-''}            #uuid：在''之间输入你的uuid
-export ARGO_DOMAIN=${ARGO_DOMAIN:-''}   #argo固定域名：在''之间输入你的argo固定域名 (临时域名不要填)
-export ARGO_AUTH=${ARGO_AUTH:-''}     #argo固定域名token：在''之间输入你的argo固定域名token (临时域名不要填)
-export vless_port=${vless_port:-''}    #vless端口：在''之间输入你的vless端口TCP
-export vmess_port=${vmess_port:-''}   #vmess端口：在''之间输入你的vmess端口TCP
-export hy2_port=${hy2_port:-''}       #hy2端口：在''之间输入你的hy2端口UDP
-export IP=${IP:-''}                  #IP：在''之间输入你的Serv00的ip或者域名 (不清楚就不要填，自动识别)
-export reym=${reym:-'www.speedtest.net'}  #reality域名：在''之间输入符合reality规则的域名(当前默认CF域名)
+
+export UUID=${UUID:-'743f8207-40d0-4440-9a44-97be0fea69c1'}  
+export ARGO_DOMAIN=${ARGO_DOMAIN:-''}   
+export ARGO_AUTH=${ARGO_AUTH:-''}     
+export vless_port=${vless_port:-'123'}    
+export vmess_port=${vmess_port:-'456'}  
+export hy2_port=${hy2_port:-'789'}       
+export IP=${IP:-''}                  
+export reym=${reym:-'www.speedtest.net'}
 
 [[ "$HOSTNAME" == "s1.ct8.pl" ]] && WORKDIR="domains/${USERNAME}.ct8.pl/logs" || WORKDIR="domains/${USERNAME}.serv00.net/logs"
 [ -d "$WORKDIR" ] || (mkdir -p "$WORKDIR" && chmod 777 "$WORKDIR")
