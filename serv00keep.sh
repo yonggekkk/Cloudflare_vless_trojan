@@ -21,7 +21,7 @@ export ARGO_AUTH=${ARGO_AUTH:-''}
 export vless_port=${vless_port:-'123'}    
 export vmess_port=${vmess_port:-'456'}  
 export hy2_port=${hy2_port:-'789'}       
-export IP=${IP:-''}                  
+export IP=${IP:-'888'}                  
 export reym=${reym:-'www.speedtest.net'}
 
 [[ "$HOSTNAME" == "s1.ct8.pl" ]] && WORKDIR="domains/${USERNAME}.ct8.pl/logs" || WORKDIR="domains/${USERNAME}.serv00.net/logs"
