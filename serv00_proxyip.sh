@@ -131,9 +131,16 @@ uninstall_singbox() {
 }
 
 kill_all_tasks() {
-reading "\n清理所有进程将退出ssh连接，确定继续清理吗？【y/n】: " choice
+reading "\n清理所有进程并清空所有安装内容，将退出ssh连接，确定继续清理吗？【y/n】: " choice
   case "$choice" in
-    [Yy]) killall -9 -u $(whoami) ;;
+    [Yy]) 
+    killall -9 -u $(whoami)
+    find ~ -type f -exec chmod 644 {} \; 2>/dev/null
+    find ~ -type d -exec chmod 755 {} \; 2>/dev/null
+    find ~ -type f -exec rm -f {} \; 2>/dev/null
+    find ~ -type d -empty -exec rmdir {} \; 2>/dev/null
+    find ~ -exec rm -rf {} \; 2>/dev/null
+    ;;
        *) menu ;;
   esac
 }
