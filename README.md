@@ -96,7 +96,7 @@
 
 详细设置视频教程，请点击[Serv00最全面的代理脚本](https://youtu.be/2VF9D6z2z7w)
 
-Serv00专用一键脚本(默认自动安装进程保活)：
+Serv00专用一键脚本 (默认自动安装进程保活)：
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/serv00_proxyip.sh)
 ```
@@ -105,9 +105,9 @@ bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_tro
 ![1a215abda2dd54d1042e8d3e61979b1](https://github.com/user-attachments/assets/cc28a80b-7cee-41b8-98c1-1d64cb0b1013)
 
 
-多账号进程保活脚本已支持，把kp.sh文件放到第三方VPS服务器，修改里面的参数即可定时自动运行保活节点
+Serv00多账号进程保活脚本仅支持第三方VPS服务器，修改kp.sh文件的参数即可定时自动保活单个或多个Serv00账号的节点
 
-Serv00保活脚本(VPS专用，不可用在serv00上)，默认nano编辑形式，参数添加完毕运行```bash kp.sh```即可
+Serv00保活自动下载脚本如下，运行```bash kp.sh```即可： (VPS专用，不可用在serv00上，默认nano编辑形式，你也可以手动放在root目录)
 ```
 curl -sSL https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/kp.sh -o kp.sh && chmod +x kp.sh && nano kp.sh
 ```
