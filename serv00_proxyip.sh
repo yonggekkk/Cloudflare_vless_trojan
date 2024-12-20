@@ -513,6 +513,13 @@ sed -i '' -e '22s|456|'"$vmess_port"'|' serv00keep.sh
 sed -i '' -e '23s|789|'"$hy2_port"'|' serv00keep.sh
 sed -i '' -e '24s|888|'"$IP"'|' serv00keep.sh
 sed -i '' -e '25s|www.speedtest.net|'"$reym"'|' serv00keep.sh
+if [[ "${argodomain}" == *"trycloudflare.com"* ]] || [ -z "${argodomain}" ]; then
+sed -i '' -e '19s|111||' serv00keep.sh
+sed -i '' -e '20s|999||' serv00keep.sh
+else
+sed -i '' -e '19s|111|'"$ARGO_DOMAIN"'|' serv00keep.sh
+sed -i '' -e '20s|999|'"$ARGO_AUTH"'|' serv00keep.sh
+fi
 if ! crontab -l 2>/dev/null | grep -q 'serv00keep'; then
 (crontab -l 2>/dev/null; echo "*/2 * * * * if ! ps aux | grep '[c]onfig' > /dev/null; then /bin/bash ${WORKDIR}/serv00keep.sh; fi") | crontab -
 fi
