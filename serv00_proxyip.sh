@@ -122,6 +122,9 @@ uninstall_singbox() {
        [Yy])
           ps aux | grep $(whoami) | grep -v "sshd\|bash\|grep" | awk '{print $2}' | xargs -r kill -9 2>/dev/null
           rm -rf $WORKDIR
+	  crontab -l | grep -v "serv00keep" >rmcron
+          crontab rmcron >/dev/null 2>&1
+          rm rmcron
           clear
           green "已完全卸载"
           ;;
@@ -141,7 +144,7 @@ reading "\n清理所有进程并清空所有安装内容，将退出ssh连接，
     find ~ -type d -empty -exec rmdir {} \; 2>/dev/null
     find ~ -exec rm -rf {} \; 2>/dev/null
     ;;
-       *) menu ;;
+    *) menu ;;
   esac
 }
 
@@ -246,6 +249,8 @@ wait
 output=$(./"$(basename ${FILE_MAP[web]})" generate reality-keypair)
 private_key=$(echo "${output}" | awk '/PrivateKey:/ {print $2}')
 public_key=$(echo "${output}" | awk '/PublicKey:/ {print $2}')
+echo "${private_key}" > private_key.txt
+echo "${public_key}" > public_key.txt
 
 openssl ecparam -genkey -name prime256v1 -out "private.key"
 openssl req -new -x509 -days 3650 -key "private.key" -out "cert.pem" -subj "/CN=$USERNAME.serv00.net"
@@ -493,13 +498,25 @@ get_argodomain() {
 }
 
 get_links(){
-
 argodomain=$(get_argodomain)
 echo -e "\e[1;32mArgo域名:\e[1;35m${argodomain}\e[0m\n"
 if [ -z ${argodomain} ]; then
 red "Argo域名生成失败，当前Argo节点不可用"
 yellow "可尝试卸载重置安装，或者只用CDN回源设置现实CDN优选IP"
 fi
+echo
+green "安装进程保活"
+curl -sSL https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/serv00keep.sh -o serv00keep.sh && chmod +x serv00keep.sh
+sed -i '' -e '18s|743f8207-40d0-4440-9a44-97be0fea69c1|'"$UUID"'|' serv00keep.sh
+sed -i '' -e '21s|123|'"$vless_port"'|' serv00keep.sh
+sed -i '' -e '22s|456|'"$vmess_port"'|' serv00keep.sh
+sed -i '' -e '23s|789|'"$hy2_port"'|' serv00keep.sh
+sed -i '' -e '24s|888|'"$IP"'|' serv00keep.sh
+sed -i '' -e '25s|www.speedtest.net|'"$reym"'|' serv00keep.sh
+if ! crontab -l 2>/dev/null | grep -q 'serv00keep'; then
+(crontab -l 2>/dev/null; echo "*/2 * * * * if ! ps aux | grep '[c]onfig' > /dev/null; then /bin/bash ${WORKDIR}/serv00keep.sh; fi") | crontab -
+fi
+green "进程保活安装完毕"
 ISP=$(curl -s --max-time 2 https://speed.cloudflare.com/meta | awk -F\" '{print $26}' | sed -e 's/ /_/g' || echo "0")
 get_name() { if [ "$HOSTNAME" = "s1.ct8.pl" ]; then SERVER="CT8"; else SERVER=$(echo "$HOSTNAME" | cut -d '.' -f 1); fi; echo "$SERVER"; }
 NAME="$ISP-$(get_name)"
