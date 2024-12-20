@@ -107,10 +107,12 @@ bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_tro
 
 Serv00多账号进程保活脚本仅支持第三方VPS服务器，修改kp.sh文件的参数即可定时自动保活单个或多个Serv00账号的节点
 
-Serv00保活自动下载脚本如下，运行```bash kp.sh```即可： (VPS专用，不可用在serv00上，默认nano编辑形式，你也可以手动放在root目录)
+Serv00保活自动下载脚本如下，VPS专用，不可用在serv00上，默认nano编辑形式，你也可以手动放在root目录
 ```
 curl -sSL https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/kp.sh -o kp.sh && chmod +x kp.sh && nano kp.sh
 ```
+最后运行```bash kp.sh```即可 
+
 
 ### 2、VPS专用：
 
@@ -119,6 +121,7 @@ curl -sSL https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/ma
 搭建proxyip与反代ip的脚本推荐：[x-ui-yg脚本](https://github.com/yonggekkk/x-ui-yg)、[sing-box-yg脚本](https://github.com/yonggekkk/sing-box-yg)
 
 相关操作请看[视频教程高阶1](https://youtu.be/QOnMVULADko)、[视频教程高阶2](https://youtu.be/CVZStM0t8BA)
+
 
 ### 3、可现实以下四种情况(推荐在TLS节点环境下)：
 
@@ -130,7 +133,7 @@ curl -sSL https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/ma
 
 可选择现实4：通过在VPS安装WARP全局双栈V4+V6功能，即访问非CF网站的客户端优选IP的落地IP（104.28……/2a09:……）现实固定，或访问CF网站的proxyip的落地IP（104.28……/2a09:……）现实WARP解锁功能效果
 
----------------------------------
+-------------------------------------------
 
 ## 五：查看配置信息与分享链接
 
