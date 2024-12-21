@@ -95,14 +95,22 @@ fi
 yellow "请确保在Serv00网页设置中已开放3个端口：2个tcp端口、1个udp端口"
 sleep 2
         cd $WORKDIR
+	echo
 	read_ip
+ 	echo
         read_reym
+	echo
 	read_uuid
+ 	echo
         read_vless_port
+	echo
         read_vmess_port
+	echo
         read_hy2_port
+	echo
         sleep 2
         argo_configure
+	echo
         download_and_run_singbox
         get_links
 }
