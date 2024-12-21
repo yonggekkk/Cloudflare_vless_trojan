@@ -269,7 +269,7 @@ if [ -e "$(basename ${FILE_MAP[bot]})" ]; then
       args="tunnel --edge-ip-version auto --no-autoupdate --protocol http2 --logfile boot.log --loglevel info --url http://localhost:$vmess_port"
     fi
     nohup ./"$(basename ${FILE_MAP[bot]})" $args >/dev/null 2>&1 &
-    sleep 2
+    sleep 10
     pgrep -x "$(basename ${FILE_MAP[bot]})" > /dev/null && green "$(basename ${FILE_MAP[bot]}) is running" || { red "$(basename ${FILE_MAP[bot]}) is not running, restarting..."; pkill -x "$(basename ${FILE_MAP[bot]})" && nohup ./"$(basename ${FILE_MAP[bot]})" "${args}" >/dev/null 2>&1 & sleep 2; purple "$(basename ${FILE_MAP[bot]}) restarted"; }
 fi
 sleep 3
@@ -300,7 +300,6 @@ argodomain=$(get_argodomain)
 echo -e "\e[1;32mArgo域名:\e[1;35m${argodomain}\e[0m\n"
 if [ -z ${argodomain} ]; then
 red "Argo域名生成失败，当前Argo节点不可用"
-yellow "可尝试卸载重置安装，或者只用CDN回源设置现实CDN优选IP"
 fi
 ISP=$(curl -s --max-time 2 https://speed.cloudflare.com/meta | awk -F\" '{print $26}' | sed -e 's/ /_/g' || echo "0")
 get_name() { if [ "$HOSTNAME" = "s1.ct8.pl" ]; then SERVER="CT8"; else SERVER=$(echo "$HOSTNAME" | cut -d '.' -f 1); fi; echo "$SERVER"; }
