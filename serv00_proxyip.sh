@@ -412,7 +412,7 @@ get_links(){
 argodomain=$(get_argodomain)
 echo -e "\e[1;32mArgo域名:\e[1;35m${argodomain}\e[0m\n"
 if [ -z ${argodomain} ]; then
-red "Argo域名生成失败，两个Argo节点不可用，其他节点依旧可用"
+red "Argo临时域名暂时未生成，两个Argo节点不可用，其他节点依旧可用"
 fi
 echo
 green "安装进程保活"
