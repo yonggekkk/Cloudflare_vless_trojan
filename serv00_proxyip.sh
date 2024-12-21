@@ -412,8 +412,7 @@ get_links(){
 argodomain=$(get_argodomain)
 echo -e "\e[1;32mArgo域名:\e[1;35m${argodomain}\e[0m\n"
 if [ -z ${argodomain} ]; then
-red "Argo域名生成失败，当前Argo节点不可用"
-yellow "可尝试卸载重置安装，或者只用CDN回源设置现实CDN优选IP"
+red "Argo域名生成失败，两个Argo节点不可用，其他节点依旧可用"
 fi
 echo
 green "安装进程保活"
