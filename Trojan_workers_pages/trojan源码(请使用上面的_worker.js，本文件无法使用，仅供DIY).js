@@ -577,7 +577,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-trojan代理脚本 V24.10.18</h1>
+            <h1>Cloudflare-workers/pages-trojan代理脚本 V24.12.22</h1>
 			<hr>
             <p>${noteshow}</p>
             <hr>
@@ -709,7 +709,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-trojan代理脚本 V24.10.18</h1>
+            <h1>Cloudflare-workers/pages-trojan代理脚本 V24.12.22</h1>
 			<hr>
             <p>${noteshow}</p>
             <hr>
