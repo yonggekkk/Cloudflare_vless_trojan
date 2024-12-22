@@ -53,7 +53,7 @@ echo "甬哥Github项目  ：github.com/yonggekkk"
 echo "甬哥Blogger博客 ：ygkkk.blogspot.com"
 echo "甬哥YouTube频道 ：www.youtube.com/@ygkkk"
 echo
-echo "切记！快捷运行：bash cf.sh"
+echo "如果github被墙，请先通过代理运行一次，后续只用快捷运行：bash cf.sh"
 echo
 echo "请选择优选类型"
 echo "1、仅IPV4优选"
