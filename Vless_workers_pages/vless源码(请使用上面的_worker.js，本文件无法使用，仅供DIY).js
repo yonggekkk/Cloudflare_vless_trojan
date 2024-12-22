@@ -1409,7 +1409,7 @@ return `{
 		"cache_file": {
 		  "enabled": true,
 		  "path": "cache.db",
-		  "store_fakeip": true
+		  "store_fakeip": false
 		}
 	  },
 	  "dns": {
@@ -1465,7 +1465,7 @@ return `{
 		  }
 		],
 		"fakeip": {
-		  "enabled": true,
+		  "enabled": false,
 		  "inet4_range": "198.18.0.0/15",
 		  "inet6_range": "fc00::/18"
 		},
@@ -2071,7 +2071,7 @@ return `{
 			"cache_file": {
 			  "enabled": true,
 			  "path": "cache.db",
-			  "store_fakeip": true
+			  "store_fakeip": false
 			}
 		  },
 		  "dns": {
@@ -2127,7 +2127,7 @@ return `{
 			  }
 			],
 			"fakeip": {
-			  "enabled": true,
+			  "enabled": false,
 			  "inet4_range": "198.18.0.0/15",
 			  "inet6_range": "fc00::/18"
 			},
