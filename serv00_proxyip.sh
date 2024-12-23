@@ -391,7 +391,12 @@ rm -f "$(basename ${FILE_MAP[web]})"
 if ps aux | grep '[c]onfig' > /dev/null; then
 green "主进程已启动"
 else
-red "主进程未启动，请卸载后重装脚本" && exit
+red "主进程未启动，根据以下情况一一排查"
+yellow "1、网页端权限是否开启"
+yellow "2、端口是否设置错误(2个TCP、1个UDP)"
+yellow "3、尝试更换网页端3个端口并重装"
+yellow "4、选择5重置"
+exit
 fi
 }
 
