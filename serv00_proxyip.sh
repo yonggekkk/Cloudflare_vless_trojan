@@ -388,6 +388,11 @@ if [ -e "$(basename ${FILE_MAP[bot]})" ]; then
 fi
 sleep 3
 rm -f "$(basename ${FILE_MAP[web]})"
+if ps aux | grep '[c]onfig' > /dev/null; then
+green "主进程已启动"
+else
+red "主进程未启动，请卸载后重装脚本" && exit
+fi
 }
 
 get_argodomain() {
