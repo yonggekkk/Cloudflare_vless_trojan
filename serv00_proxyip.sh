@@ -443,9 +443,9 @@ sed -i '' -e '19s|111|'"$ARGO_DOMAIN"'|' serv00keep.sh
 sed -i '' -e '20s|999|'"$ARGO_AUTH"'|' serv00keep.sh
 fi
 if ! crontab -l 2>/dev/null | grep -q 'serv00keep'; then
-(crontab -l 2>/dev/null; echo "*/2 * * * * if ! ps aux | grep '[c]onfig' > /dev/null; then /bin/bash ${WORKDIR}/serv00keep.sh; fi") | crontab -
+(crontab -l 2>/dev/null; echo "*/10 * * * * if ! ps aux | grep '[c]onfig' > /dev/null; then /bin/bash ${WORKDIR}/serv00keep.sh; fi") | crontab -
 fi
-green "进程保活安装完毕，默认每2秒执行一次，运行 crontab -e 可自行修改cron定时时间" && sleep 2
+green "进程保活安装完毕，默认每10秒执行一次，运行 crontab -e 可自行修改cron定时时间" && sleep 2
 ISP=$(curl -s --max-time 5 https://speed.cloudflare.com/meta | awk -F\" '{print $26}' | sed -e 's/ /_/g' || echo "0")
 get_name() { if [ "$HOSTNAME" = "s1.ct8.pl" ]; then SERVER="CT8"; else SERVER=$(echo "$HOSTNAME" | cut -d '.' -f 1); fi; echo "$SERVER"; }
 NAME="$ISP-$(get_name)"
@@ -1080,6 +1080,12 @@ echo
 if [[ -e $WORKDIR/list.txt ]]; then
 green "已安装sing-box"
 ps aux | grep '[c]onfig' > /dev/null && green "当前进程运行正常" || red "当前进程丢失，请卸载后重装脚本"
+if ! crontab -l 2>/dev/null | grep -q 'serv00keep'; then
+(crontab -l 2>/dev/null; echo "*/2 * * * * if ! ps aux | grep '[c]onfig' > /dev/null; then /bin/bash ${WORKDIR}/serv00keep.sh; fi") | crontab -
+yellow "Cron进程保活丢失？已修复成功"
+else
+green "Cron进程保活中"
+fi
 else
 red "未安装sing-box，请选择 1 进行安装" 
 fi
