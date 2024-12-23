@@ -6,25 +6,25 @@ import { connect } from "cloudflare:sockets";
 // [Windows] Press "Win + R", input cmd and run:  Powershell -NoExit -Command "[guid]::NewGuid()"
 let userID = "86c50e3a-5b87-49dd-bd20-03c7f2735e40";
 
-const proxyIPs = ["ts.hpc.tw"]; //ts.hpc.tw edgetunnel.anycast.eu.org bestproxy.onecf.eu.org cdn-all.xn--b6gac.eu.org cdn.xn--b6gac.eu.org proxy.xxxxxxxx.tk
+const proxyIPs = ["\u0074\u0073\u002e\u0068\u0070\u0063\u002e\u0074\u0077"]; 
 const cn_hostnames = [''];
-let CDNIP = 'www.visa.com.sg'
+let CDNIP = '\u0077\u0077\u0077\u002e\u0076\u0069\u0073\u0061\u002e\u0063\u006f\u006d\u002e\u0073\u0067'
 // http_ip
-let IP1 = 'www.visa.com'
-let IP2 = 'cis.visa.com'
-let IP3 = 'africa.visa.com'
-let IP4 = 'www.visa.com.sg'
-let IP5 = 'www.visaeurope.at'
-let IP6 = 'www.visa.com.mt'
-let IP7 = 'qa.visamiddleeast.com'
+let IP1 = '\u0077\u0077\u0077\u002e\u0076\u0069\u0073\u0061\u002e\u0063\u006f\u006d'
+let IP2 = '\u0063\u0069\u0073\u002e\u0076\u0069\u0073\u0061\u002e\u0063\u006f\u006d'
+let IP3 = '\u0061\u0066\u0072\u0069\u0063\u0061\u002e\u0076\u0069\u0073\u0061\u002e\u0063\u006f\u006d'
+let IP4 = '\u0077\u0077\u0077\u002e\u0076\u0069\u0073\u0061\u002e\u0063\u006f\u006d\u002e\u0073\u0067'
+let IP5 = '\u0077\u0077\u0077\u002e\u0076\u0069\u0073\u0061\u0065\u0075\u0072\u006f\u0070\u0065\u002e\u0061\u0074'
+let IP6 = '\u0077\u0077\u0077\u002e\u0076\u0069\u0073\u0061\u002e\u0063\u006f\u006d\u002e\u006d\u0074'
+let IP7 = '\u0071\u0061\u002e\u0076\u0069\u0073\u0061\u006d\u0069\u0064\u0064\u006c\u0065\u0065\u0061\u0073\u0074\u002e\u0063\u006f\u006d'
 
 // https_ip
-let IP8 = 'usa.visa.com'
-let IP9 = 'myanmar.visa.com'
-let IP10 = 'www.visa.com.tw'
-let IP11 = 'www.visaeurope.ch'
-let IP12 = 'www.visa.com.br'
-let IP13 = 'www.visasoutheasteurope.com'
+let IP8 = '\u0075\u0073\u0061\u002e\u0076\u0069\u0073\u0061\u002e\u0063\u006f\u006d'
+let IP9 = '\u006d\u0079\u0061\u006e\u006d\u0061\u0072\u002e\u0076\u0069\u0073\u0061\u002e\u0063\u006f\u006d'
+let IP10 = '\u0077\u0077\u0077\u002e\u0076\u0069\u0073\u0061\u002e\u0063\u006f\u006d\u002e\u0074\u0077'
+let IP11 = '\u0077\u0077\u0077\u002e\u0076\u0069\u0073\u0061\u0065\u0075\u0072\u006f\u0070\u0065\u002e\u0063\u0068'
+let IP12 = '\u0077\u0077\u0077\u002e\u0076\u0069\u0073\u0061\u002e\u0063\u006f\u006d\u002e\u0062\u0072'
+let IP13 = '\u0077\u0077\u0077\u002e\u0076\u0069\u0073\u0061\u0073\u006f\u0075\u0074\u0068\u0065\u0061\u0073\u0074\u0065\u0075\u0072\u006f\u0070\u0065\u002e\u0063\u006f\u006d'
 
 // http_port
 let PT1 = '80'
@@ -847,6 +847,13 @@ function getVLESSConfig(userID, hostName) {
   const pty = `https://${hostName}/${userID}/pty`
   const pcl = `https://${hostName}/${userID}/pcl`
   const psb = `https://${hostName}/${userID}/psb`
+
+  const wkvlessshare = btoa(`vless\u003A//${userID}\u0040${IP1}:${PT1}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V1_${IP1}_${PT1}\nvless\u003A//${userID}\u0040${IP2}:${PT2}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V2_${IP2}_${PT2}\nvless\u003A//${userID}\u0040${IP3}:${PT3}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V3_${IP3}_${PT3}\nvless\u003A//${userID}\u0040${IP4}:${PT4}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V4_${IP4}_${PT4}\nvless\u003A//${userID}\u0040${IP5}:${PT5}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V5_${IP5}_${PT5}\nvless\u003A//${userID}\u0040${IP6}:${PT6}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V6_${IP6}_${PT6}\nvless\u003A//${userID}\u0040${IP7}:${PT7}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V7_${IP7}_${PT7}\nvless\u003A//${userID}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V8_${IP8}_${PT8}\nvless\u003A//${userID}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V9_${IP9}_${PT9}\nvless\u003A//${userID}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V10_${IP10}_${PT10}\nvless\u003A//${userID}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V11_${IP11}_${PT11}\nvless\u003A//${userID}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V12_${IP12}_${PT12}\nvless\u003A//${userID}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V13_${IP13}_${PT13}`);
+
+
+  const pgvlessshare = btoa(`vless\u003A//${userID}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V8_${IP8}_${PT8}\nvless\u003A//${userID}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V9_${IP9}_${PT9}\nvless\u003A//${userID}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V10_${IP10}_${PT10}\nvless\u003A//${userID}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V11_${IP11}_${PT11}\nvless\u003A//${userID}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V12_${IP12}_${PT12}\nvless\u003A//${userID}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V13_${IP13}_${PT13}`);	
+
+	
   const noteshow = note.replace(/\n/g, '<br>');
   const displayHtml = `
 <head>
@@ -885,7 +892,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-vless代理脚本 V24.12.22</h1>
+            <h1>Cloudflare-workers/pages-vless代理脚本 V24.12.13</h1>
 	    <hr>
             <p>${noteshow}</p>
             <hr>
@@ -960,6 +967,23 @@ ${displayHtml}
 			<hr>
 			<p>注意：<br>1、默认每个订阅链接包含TLS+非TLS共13个端口节点<br>2、当前workers域名作为订阅链接，需通过代理进行订阅更新<br>3、如使用的客户端不支持分片功能，则TLS节点不可用</p>
 			<hr>
+
+
+			<table class="table">
+					<thead>
+						<tr>
+							<th>聚合通用分享链接 (可直接导入客户端)：</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><button class="btn btn-primary" onclick="copyToClipboard('${wkvlessshare}')">点击复制链接</button></td>
+						</tr>
+					</tbody>
+				</table>
+
+
+   
 			<table class="table">
 					<thead>
 						<tr>
@@ -1017,7 +1041,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-vless代理脚本 V24.12.22</h1>
+            <h1>Cloudflare-workers/pages-vless代理脚本 V24.12.13</h1>
 			<hr>
             <p>${noteshow}</p>
             <hr>
@@ -1061,6 +1085,23 @@ ${displayHtml}
 			<hr>
 			<p>注意：以下订阅链接仅6个TLS端口节点</p>
 			<hr>
+
+
+			<table class="table">
+					<thead>
+						<tr>
+							<th>聚合通用分享链接 (可直接导入客户端)：</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><button class="btn btn-primary" onclick="copyToClipboard('${pgvlessshare}')">点击复制链接</button></td>
+						</tr>
+					</tbody>
+				</table>
+
+
+
 			<table class="table">
 					<thead>
 						<tr>
@@ -1425,10 +1466,6 @@ return `{
 			"detour": "direct"
 		  },
 		  {
-			"address": "rcode://refused",
-			"tag": "block"
-		  },
-		  {
 			"tag": "dns_fakeip",
 			"address": "fakeip"
 		  }
@@ -1475,8 +1512,11 @@ return `{
 	  "inbounds": [
 		{
 		  "type": "tun",
-		  "inet4_address": "172.19.0.1/30",
-		  "inet6_address": "fd00::1/126",
+                  "tag": "tun-in",
+		  "address": [
+                    "172.19.0.1/30",
+		    "fd00::1/126"
+      ],
 		  "auto_route": true,
 		  "strict_route": true,
 		  "sniff": true,
@@ -1786,14 +1826,6 @@ return `{
 		  "type": "direct"
 		},
 		{
-		  "tag": "block",
-		  "type": "block"
-		},
-		{
-		  "tag": "dns-out",
-		  "type": "dns"
-		},
-		{
 		  "tag": "auto",
 		  "type": "urltest",
 		  "outbounds": [
@@ -1847,10 +1879,19 @@ return `{
 		"auto_detect_interface": true,
 		"final": "select",
 		"rules": [
-		  {
-			"outbound": "dns-out",
-			"protocol": "dns"
-		  },
+                         {
+                        "inbound": "tun-in",
+                        "action": "sniff"
+                         },
+                          {
+                        "protocol": "dns",
+                           "action": "hijack-dns"
+                         },
+                        {
+                        "port": 443,
+                        "network": "udp",
+                        "action": "reject"
+                         },
 		  {
 			"clash_mode": "Direct",
 			"outbound": "direct"
@@ -2087,10 +2128,6 @@ return `{
 				"detour": "direct"
 			  },
 			  {
-				"address": "rcode://refused",
-				"tag": "block"
-			  },
-			  {
 				"tag": "dns_fakeip",
 				"address": "fakeip"
 			  }
@@ -2137,8 +2174,11 @@ return `{
 		  "inbounds": [
 			{
 			  "type": "tun",
-			  "inet4_address": "172.19.0.1/30",
-			  "inet6_address": "fd00::1/126",
+                        "tag": "tun-in",
+		  "address": [
+                    "172.19.0.1/30",
+		    "fd00::1/126"
+      ],
 			  "auto_route": true,
 			  "strict_route": true,
 			  "sniff": true,
@@ -2322,14 +2362,6 @@ return `{
 			  "type": "direct"
 			},
 			{
-			  "tag": "block",
-			  "type": "block"
-			},
-			{
-			  "tag": "dns-out",
-			  "type": "dns"
-			},
-			{
 			  "tag": "auto",
 			  "type": "urltest",
 			  "outbounds": [
@@ -2376,10 +2408,19 @@ return `{
 			"auto_detect_interface": true,
 			"final": "select",
 			"rules": [
-			  {
-				"outbound": "dns-out",
-				"protocol": "dns"
-			  },
+                          {
+                         "inbound": "tun-in",
+                          "action": "sniff"
+                          },
+                          {
+                          "protocol": "dns",
+                          "action": "hijack-dns"
+                           },
+                          {
+                           "port": 443,
+                          "network": "udp",
+                          "action": "reject"
+                          },
 			  {
 				"clash_mode": "Direct",
 				"outbound": "direct"
