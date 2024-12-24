@@ -1058,7 +1058,7 @@ ym=("$HOSTNAME" "cache$nb.serv00.com" "web$nb.serv00.com")
 rm -rf $WORKDIR/ip.txt
 for ym in "${ym[@]}"; do
 # 引用frankiejun API
-response=$(curl -s "https://ss.botai.us.kg/api/getip?host=$ym")
+response=$(curl -sL --connect-timeout 5 --max-time 7 "https://ss.botai.us.kg/api/getip?host=$ym")
 if [[ -z "$response" || "$response" == *unknown* ]]; then
 for ip in "${ym[@]}"; do
 dig @8.8.8.8 +time=2 +short $ip >> $WORKDIR/ip.txt
