@@ -405,6 +405,7 @@ fi
 }
 
 get_argodomain() {
+  argodomain=""
   if [[ -n $ARGO_AUTH ]]; then
     echo "$ARGO_DOMAIN"
   else
@@ -424,6 +425,7 @@ get_argodomain() {
 }
 
 get_links(){
+argodomain=""
 argodomain=$(get_argodomain)
 echo -e "\e[1;32mArgo域名:\e[1;35m${argodomain}\e[0m\n"
 if [ -z ${argodomain} ]; then
@@ -449,7 +451,7 @@ if ! crontab -l 2>/dev/null | grep -q 'serv00keep'; then
 (crontab -l 2>/dev/null; echo "*/2 * * * * if ! ps aux | grep '[c]onfig' > /dev/null; then /bin/bash ${WORKDIR}/serv00keep.sh; fi") | crontab -
 fi
 green "进程保活安装完毕，默认每2分钟执行一次，运行 crontab -e 可自行修改cron定时时间" && sleep 2
-ISP=$(curl -s --max-time 5 https://speed.cloudflare.com/meta | awk -F\" '{print $26}' | sed -e 's/ /_/g' || echo "0")
+ISP=$(curl -sL --max-time 5 https://speed.cloudflare.com/meta | awk -F\" '{print $26}' | sed -e 's/ /_/g' || echo "0")
 get_name() { if [ "$HOSTNAME" = "s1.ct8.pl" ]; then SERVER="CT8"; else SERVER=$(echo "$HOSTNAME" | cut -d '.' -f 1); fi; echo "$SERVER"; }
 NAME="$ISP-$(get_name)"
 rm -rf jh.txt
