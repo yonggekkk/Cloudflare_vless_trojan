@@ -389,7 +389,7 @@ fi
 sleep 5
 rm -f "$(basename ${FILE_MAP[web]})"
 if ps aux | grep '[c]onfig' > /dev/null; then
-green "主进程已启动"
+green "主进程已启动成功"
 else
 red "主进程未启动，根据以下情况一一排查"
 yellow "1、网页端权限是否开启"
@@ -424,7 +424,7 @@ get_links(){
 argodomain=$(get_argodomain)
 echo -e "\e[1;32mArgo域名:\e[1;35m${argodomain}\e[0m\n"
 if [ -z ${argodomain} ]; then
-yellow "Argo临时域名暂时未生成，两个Argo节点不可用，其他节点依旧可用"
+yellow "Argo临时域名暂时未生成，两个Argo节点不可用，其他未被墙的节点依旧可用"
 fi
 echo
 green "安装进程保活"
