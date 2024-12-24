@@ -386,7 +386,7 @@ if [ -e "$(basename ${FILE_MAP[bot]})" ]; then
     sleep 10
     pgrep -x "$(basename ${FILE_MAP[bot]})" > /dev/null && green "$(basename ${FILE_MAP[bot]}) is running" || { red "$(basename ${FILE_MAP[bot]}) is not running, restarting..."; pkill -x "$(basename ${FILE_MAP[bot]})" && nohup ./"$(basename ${FILE_MAP[bot]})" "${args}" >/dev/null 2>&1 & sleep 2; purple "$(basename ${FILE_MAP[bot]}) restarted"; }
 fi
-sleep 3
+sleep 5
 rm -f "$(basename ${FILE_MAP[web]})"
 if ps aux | grep '[c]onfig' > /dev/null; then
 green "主进程已启动"
