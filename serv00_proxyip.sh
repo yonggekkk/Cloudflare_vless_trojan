@@ -1084,7 +1084,7 @@ if ! crontab -l 2>/dev/null | grep -q 'serv00keep'; then
 (crontab -l 2>/dev/null; echo "*/10 * * * * if ! ps aux | grep '[c]onfig' > /dev/null; then /bin/bash ${WORKDIR}/serv00keep.sh; fi") | crontab -
 yellow "Cron进程保活丢失？已修复成功"
 else
-green "Cron进程保活中"
+green "Cron进程保活运行中"
 fi
 else
 red "未安装sing-box，请选择 1 进行安装" 
