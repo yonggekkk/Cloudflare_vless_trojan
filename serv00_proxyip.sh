@@ -15,7 +15,7 @@ reading() { read -p "$(red "$1")" "$2"; }
 USERNAME=$(whoami)
 HOSTNAME=$(hostname)
 
-[[ "$HOSTNAME" == "s1.ct8.pl" ]] && WORKDIR="domains/${USERNAME}.ct8.pl/logs" || WORKDIR="domains/${USERNAME}.serv00.net/logs"
+[[ "$HOSTNAME" == "s1.ct8.pl" ]] && export WORKDIR="domains/${USERNAME}.ct8.pl/logs" || export WORKDIR="domains/${USERNAME}.serv00.net/logs"
 [ -d "$WORKDIR" ] || (mkdir -p "$WORKDIR" && chmod 777 "$WORKDIR")
 #ps aux | grep $(whoami) | grep -v "sshd\|bash\|grep" | awk '{print $2}' | xargs -r kill -9 > /dev/null 2>&1
 
@@ -373,7 +373,7 @@ EOF
 
 if [ -e "$(basename ${FILE_MAP[web]})" ]; then
     nohup ./"$(basename ${FILE_MAP[web]})" run -c config.json >/dev/null 2>&1 &
-    sleep 10
+    sleep 5
     pgrep -x "$(basename ${FILE_MAP[web]})" > /dev/null && green "$(basename ${FILE_MAP[web]}) is running" || { red "$(basename ${FILE_MAP[web]}) is not running, restarting..."; pkill -x "$(basename ${FILE_MAP[web]})" && nohup ./"$(basename ${FILE_MAP[web]})" run -c config.json >/dev/null 2>&1 & sleep 2; purple "$(basename ${FILE_MAP[web]}) restarted"; }
 fi
 
@@ -383,49 +383,38 @@ if [ -e "$(basename ${FILE_MAP[bot]})" ]; then
     elif [[ $ARGO_AUTH =~ TunnelSecret ]]; then
       args="tunnel --edge-ip-version auto --config tunnel.yml run"
     else
+      rm -rf boot.log
       args="tunnel --edge-ip-version auto --no-autoupdate --protocol http2 --logfile boot.log --loglevel info --url http://localhost:$vmess_port"
     fi
     nohup ./"$(basename ${FILE_MAP[bot]})" $args >/dev/null 2>&1 &
     sleep 10
-    pgrep -x "$(basename ${FILE_MAP[bot]})" > /dev/null && green "$(basename ${FILE_MAP[bot]}) is running" || { red "$(basename ${FILE_MAP[bot]}) is not running, restarting..."; pkill -x "$(basename ${FILE_MAP[bot]})" && nohup ./"$(basename ${FILE_MAP[bot]})" "${args}" >/dev/null 2>&1 & sleep 2; purple "$(basename ${FILE_MAP[bot]}) restarted"; }
+    pgrep -x "$(basename ${FILE_MAP[bot]})" > /dev/null && green "$(basename ${FILE_MAP[bot]}) is running" || { red "$(basename ${FILE_MAP[bot]}) is not running, restarting..."; pkill -x "$(basename ${FILE_MAP[bot]})" && nohup ./"$(basename ${FILE_MAP[bot]})" "${args}" >/dev/null 2>&1 & sleep 5; purple "$(basename ${FILE_MAP[bot]}) restarted"; }
 fi
-sleep 5
-rm -f "$(basename ${FILE_MAP[web]})"
-#if ps aux | grep '[c]onfig' > /dev/null; then
-#green "主进程已启动成功"
-#else
-#red "主进程未启动，根据以下情况一一排查"
-#yellow "1、网页端权限是否开启"
-#yellow "2、端口是否设置错误(2个TCP、1个UDP)"
-#yellow "3、尝试更换网页端3个端口并重装"
-#yellow "4、选择5重置"
-#yellow "5、当前Serv00服务器炸了？等会再试"
-#exit
-#fi
+sleep 2
+rm -f "$(basename ${FILE_MAP[web]})" "$(basename ${FILE_MAP[bot]})"
+if pgrep -x "$(basename ${FILE_MAP[web]})" > /dev/null; then
+green "主进程已启动成功"
+else
+red "主进程未启动，根据以下情况一一排查"
+yellow "1、网页端权限是否开启"
+yellow "2、端口是否设置错误(2个TCP、1个UDP)"
+yellow "3、尝试更换网页端3个端口并重装"
+yellow "4、选择5重置"
+yellow "5、当前Serv00服务器炸了？等会再试"
+exit
+fi
 }
 
 get_argodomain() {
-  argodomain=""
   if [[ -n $ARGO_AUTH ]]; then
     echo "$ARGO_DOMAIN"
   else
-    local retry=0
-    local max_retries=6
-    local argodomain=""
-    while [[ $retry -lt $max_retries ]]; do
-      ((retry++))
-      argodomain=$(grep -oE 'https://[[:alnum:]+\.-]+\.trycloudflare\.com' boot.log | sed 's@https://@@') 
-      if [[ -n $argodomain ]]; then
-        break
-      fi
-      sleep 1
-    done
+    argodomain=$(grep -oE 'https://[[:alnum:]+\.-]+\.trycloudflare\.com' boot.log 2>/dev/null | sed 's@https://@@')
     echo "$argodomain"
   fi
 }
 
 get_links(){
-argodomain=""
 argodomain=$(get_argodomain)
 echo -e "\e[1;32mArgo域名:\e[1;35m${argodomain}\e[0m\n"
 if [ -z ${argodomain} ]; then
@@ -1084,7 +1073,7 @@ cat $WORKDIR/ip.txt
 echo
 if [[ -e $WORKDIR/list.txt ]]; then
 green "已安装sing-box"
-ps aux | grep '[c]onfig' > /dev/null && green "当前进程运行正常" || red "当前进程丢失，请卸载后重装脚本"
+ps aux | grep '[c]onfig' > /dev/null && green "主进程启动正常" || red "主进程未启动，请卸载后重装脚本"
 if ! crontab -l 2>/dev/null | grep -q 'serv00keep'; then
 (crontab -l 2>/dev/null; echo "*/2 * * * * if ! ps aux | grep '[c]onfig' > /dev/null; then /bin/bash ${WORKDIR}/serv00keep.sh; fi") | crontab -
 yellow "Cron保活丢失？已修复成功"
