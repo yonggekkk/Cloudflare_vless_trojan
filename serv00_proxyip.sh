@@ -410,11 +410,11 @@ sed -i '' -e '20s|999|'"$ARGO_AUTH"'|' serv00keep.sh
 fi
 if ! crontab -l 2>/dev/null | grep -q 'serv00keep'; then
 if [ -f boot.log ] || grep -q "trycloudflare.com" boot.log 2>/dev/null; then
-check_process="ps aux | grep '[c]onfig' > /dev/null && ps aux | grep [l]ocalhost > /dev/null"
+check_process="! ps aux | grep '[c]onfig' > /dev/null || ! ps aux | grep [l]ocalhost > /dev/null"
 else
-check_process="ps aux | grep '[c]onfig' > /dev/null && ps aux | grep [t]oken > /dev/null"
+check_process="! ps aux | grep '[c]onfig' > /dev/null || ! ps aux | grep [t]oken > /dev/null"
 fi
-(crontab -l 2>/dev/null; echo "*/2 * * * * if ! $check_process; then /bin/bash ${WORKDIR}/serv00keep.sh; fi") | crontab -
+(crontab -l 2>/dev/null; echo "*/2 * * * * if $check_process; then /bin/bash ${WORKDIR}/serv00keep.sh; fi") | crontab -
 fi
 green "进程保活安装完毕，默认每2分钟执行一次，运行 crontab -e 可自行修改cron定时时间" && sleep 2
 ISP=$(curl -sL --max-time 5 https://speed.cloudflare.com/meta | awk -F\" '{print $26}' | sed -e 's/ /_/g' || echo "0")
@@ -1053,11 +1053,11 @@ green "已安装sing-box"
 ps aux | grep '[c]onfig' > /dev/null && green "主进程启动正常" || red "主进程未启动，请卸载后重装脚本"
 if ! crontab -l 2>/dev/null | grep -q 'serv00keep'; then
 if [ -f "$WORKDIR/boot.log" ] || grep -q "trycloudflare.com" "$WORKDIR/boot.log" 2>/dev/null; then
-check_process="ps aux | grep '[c]onfig' > /dev/null && ps aux | grep [l]ocalhost > /dev/null"
+check_process="! ps aux | grep '[c]onfig' > /dev/null || ! ps aux | grep [l]ocalhost > /dev/null"
 else
-check_process="ps aux | grep '[c]onfig' > /dev/null && ps aux | grep [t]oken > /dev/null"
+check_process="! ps aux | grep '[c]onfig' > /dev/null || ! ps aux | grep [t]oken > /dev/null"
 fi
-(crontab -l 2>/dev/null; echo "*/2 * * * * if ! $check_process; then /bin/bash ${WORKDIR}/serv00keep.sh; fi") | crontab -
+(crontab -l 2>/dev/null; echo "*/2 * * * * if $check_process; then /bin/bash ${WORKDIR}/serv00keep.sh; fi") | crontab -
 yellow "Cron保活丢失？已修复成功"
 else
 green "Cron保活运行正常"
