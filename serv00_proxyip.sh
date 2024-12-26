@@ -409,7 +409,7 @@ sed -i '' -e '19s|111|'"$ARGO_DOMAIN"'|' serv00keep.sh
 sed -i '' -e '20s|999|'"$ARGO_AUTH"'|' serv00keep.sh
 fi
 if ! crontab -l 2>/dev/null | grep -q 'serv00keep'; then
-if [ -f "$WORKDIR/boot.log" ] || grep -q "trycloudflare.com" "$WORKDIR/boot.log" 2>/dev/null; then
+if [ -f boot.log ] || grep -q "trycloudflare.com" boot.log 2>/dev/null; then
 check_process="ps aux | grep '[c]onfig' > /dev/null && ps aux | grep [l]ocalhost > /dev/null"
 else
 check_process="ps aux | grep '[c]onfig' > /dev/null && ps aux | grep [t]oken > /dev/null"
