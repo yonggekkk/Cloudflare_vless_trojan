@@ -11,10 +11,8 @@ green() { echo -e "\e[1;32m$1\033[0m"; }
 yellow() { echo -e "\e[1;33m$1\033[0m"; }
 purple() { echo -e "\e[1;35m$1\033[0m"; }
 reading() { read -p "$(red "$1")" "$2"; }
-
 USERNAME=$(whoami)
 HOSTNAME=$(hostname)
-
 [[ "$HOSTNAME" == "s1.ct8.pl" ]] && export WORKDIR="domains/${USERNAME}.ct8.pl/logs" || export WORKDIR="domains/${USERNAME}.serv00.net/logs"
 [ -d "$WORKDIR" ] || (mkdir -p "$WORKDIR" && chmod 777 "$WORKDIR")
 #ps aux | grep $(whoami) | grep -v "sshd\|bash\|grep" | awk '{print $2}' | xargs -r kill -9 > /dev/null 2>&1
@@ -42,7 +40,7 @@ read_uuid() {
 read_reym() {
         yellow "方式一：回车使用CF域名，支持proxyip+非标端口反代ip功能 (推荐)"
 	yellow "方式二：输入 s 表示使用Serv00自带域名，不支持proxyip功能 (推荐)"
-        yellow "方式三：也可以自定义域名，注意要符合reality域名规则"
+        yellow "方式三：支持其他域名，注意要符合reality域名规则"
         reading "请输入reality域名 【请选择 回车 或者 s 或者 输入域名】: " reym
         if [[ -z "$reym" ]]; then
            reym=www.speedtest.net
@@ -418,7 +416,7 @@ check_process="! ps aux | grep '[c]onfig' > /dev/null || ! ps aux | grep [t]oken
 fi
 (crontab -l 2>/dev/null; echo "*/2 * * * * if $check_process; then /bin/bash ${WORKDIR}/serv00keep.sh; fi") | crontab -
 fi
-green "进程保活安装完毕，默认每2分钟执行一次，运行 crontab -e 可自行修改cron定时时间" && sleep 2
+green "主进程+Argo进程保活安装完毕，默认每2分钟执行一次，运行 crontab -e 可自行修改cron定时时间" && sleep 2
 ISP=$(curl -sL --max-time 5 https://speed.cloudflare.com/meta | awk -F\" '{print $26}' | sed -e 's/ /_/g' || echo "0")
 get_name() { if [ "$HOSTNAME" = "s1.ct8.pl" ]; then SERVER="CT8"; else SERVER=$(echo "$HOSTNAME" | cut -d '.' -f 1); fi; echo "$SERVER"; }
 NAME="$ISP-$(get_name)"
@@ -1053,9 +1051,9 @@ echo
 if [[ -e $WORKDIR/list.txt ]]; then
 green "已安装sing-box"
 ps aux | grep '[c]onfig' > /dev/null && green "主进程启动正常" || red "主进程未启动，请卸载后重装脚本"
-if [ -f "$WORKDIR/boot.log" ] && grep -q "trycloudflare.com" "$WORKDIR/boot.log" 2>/dev/null; then
+if [ -f "$WORKDIR/boot.log" ] && grep -q "trycloudflare.com" "$WORKDIR/boot.log" 2>/dev/null && ps aux | grep [l]ocalhost > /dev/null; then
 green "当前Argo临时域名：$(grep -oE 'https://[[:alnum:]+\.-]+\.trycloudflare\.com' $WORKDIR/boot.log 2>/dev/null | sed 's@https://@@')"
-else
+elif [ ps aux | grep [t]oken > /dev/null ]; then
 green "当前Argo固定域名：$(cat $WORKDIR/gdym.log 2>/dev/null)"
 fi
 if ! crontab -l 2>/dev/null | grep -q 'serv00keep'; then
