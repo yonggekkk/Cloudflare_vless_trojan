@@ -379,7 +379,7 @@ fi
 
 get_argodomain() {
   if [[ -n $ARGO_AUTH ]]; then
-    echo "$ARGO_DOMAIN"
+    echo "$ARGO_DOMAIN" > gdym.log
   else
     argodomain=$(grep -oE 'https://[[:alnum:]+\.-]+\.trycloudflare\.com' boot.log 2>/dev/null | sed 's@https://@@')
     echo "$argodomain"
@@ -1051,6 +1051,11 @@ echo
 if [[ -e $WORKDIR/list.txt ]]; then
 green "已安装sing-box"
 ps aux | grep '[c]onfig' > /dev/null && green "主进程启动正常" || red "主进程未启动，请卸载后重装脚本"
+if [ -f "$WORKDIR/boot.log" ] && grep -q "trycloudflare.com" "$WORKDIR/boot.log" 2>/dev/null; then
+green "当前Argo临时域名：$(grep -oE 'https://[[:alnum:]+\.-]+\.trycloudflare\.com' $WORKDIR/boot.log 2>/dev/null | sed 's@https://@@')"
+else
+green "当前Argo固定域名：$(cat $WORKDIR/gdym.log 2>/dev/null)"
+fi
 if ! crontab -l 2>/dev/null | grep -q 'serv00keep'; then
 if [ -f "$WORKDIR/boot.log" ] || grep -q "trycloudflare.com" "$WORKDIR/boot.log" 2>/dev/null; then
 check_process="! ps aux | grep '[c]onfig' > /dev/null || ! ps aux | grep [l]ocalhost > /dev/null"
