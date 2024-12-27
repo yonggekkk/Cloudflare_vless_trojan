@@ -3,9 +3,9 @@
 # 转载请著名出自老王，请勿滥用
 # 只保活节点,将此文件放到vps，填写以下服务器配置后bash kp.sh运行即可
 SCRIPT_PATH="/root/kp.sh"                    # 脚本路径
- # serv00或ct8服务器及端口配置。修改s0.serv00.com的服务区(默认s0)，使用argo临时域名时，仅填 账号:密码:UUID:tcp1端口:tcp2端口:udp端口 即可
+ # serv00或ct8服务器及端口配置。修改s0.serv00.com的服务区(默认s0)，使用argo临时域名时，仅填 账号:密码:UUID:tcp1端口:tcp2端口:udp端口:reality域名 即可
 declare -A servers=(  # 账号:密码:UUID:tcp1端口:tcp2端口:udp端口:argo固定域名:Argo固定隧道密钥(json或token) 
-    ["s0.serv00.com"]='ygkkk:A@123456:2f690ba2-b460-43ca-b9c3-1ac843bd2c70:5525:55255:55255'
+    ["s0.serv00.com"]='ygkkk:A@123456:2f690ba2-b460-43ca-b9c3-1ac843bd2c70:5525:55255:55255:www.speedtest.net'
     # 添加更多服务器......
 )
 
@@ -85,17 +85,18 @@ run_remote_command() {
     local tcp1_port=$5
     local tcp2_port=$6
     local udp_port=$7
-    local argo_domain=${8}
-    local argo_auth=${9}
+    local reality=${8}
+    local argo_domain=${9}
+    local argo_auth=${10}
 
-    remote_command="UUID=$suuid vless_port=$tcp1_port vmess_port=$tcp2_port hy2_port=$udp_port ARGO_DOMAIN=$argo_domain ARGO_AUTH='$argo_auth' bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/serv00keep.sh)"
+    remote_command="reym=${reality} UUID=$suuid vless_port=$tcp1_port vmess_port=$tcp2_port hy2_port=$udp_port ARGO_DOMAIN=$argo_domain ARGO_AUTH='$argo_auth' bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/serv00keep.sh)"
  
     sshpass -p "$ssh_pass" ssh -o StrictHostKeyChecking=no "$ssh_user@$host" "$remote_command"
 }
 
 # 循环遍历服务器列表检测
 for host in "${!servers[@]}"; do
-    IFS=':' read -r ssh_user ssh_pass suuid tcp1_port tcp2_port udp_port argo_domain argo_auth <<< "${servers[$host]}"
+    IFS=':' read -r ssh_user ssh_pass suuid tcp1_port tcp2_port udp_port reality argo_domain argo_auth <<< "${servers[$host]}"
 
     tcp_attempt=0
     argo_attempt=0
@@ -133,7 +134,7 @@ for host in "${!servers[@]}"; do
         yellow "$time 多次检测失败，尝试通过SSH连接并远程执行命令  服务器: $host  账户: $ssh_user"
         if sshpass -p "$ssh_pass" ssh -o StrictHostKeyChecking=no "$ssh_user@$host" -q exit; then
             green "$time  SSH远程连接成功 服务器: $host  账户 : $ssh_user"
-            output=$(run_remote_command "$host" "$ssh_user" "$ssh_pass" "$suuid" "$tcp1_port" "$tcp2_port" "$udp_port" "$argo_domain" "$argo_auth")
+            output=$(run_remote_command "$host" "$ssh_user" "$ssh_pass" "$suuid" "$tcp1_port" "$tcp2_port" "$udp_port" "$reality" "$argo_domain" "$argo_auth")
             yellow "远程命令执行结果：\n"
             echo "$output"
         else
