@@ -1050,7 +1050,7 @@ green "已安装sing-box"
 ps aux | grep '[c]onfig' > /dev/null && green "主进程启动正常" || red "主进程未启动，请卸载后重装脚本"
 if [ -f "$WORKDIR/boot.log" ] && grep -q "trycloudflare.com" "$WORKDIR/boot.log" 2>/dev/null && ps aux | grep [l]ocalhost > /dev/null; then
 green "当前Argo临时域名：$(grep -oE 'https://[[:alnum:]+\.-]+\.trycloudflare\.com' $WORKDIR/boot.log 2>/dev/null | sed 's@https://@@')"
-elif [ ps aux | grep [t]oken > /dev/null ]; then
+elif ps aux | grep [t]oken > /dev/null; then
 green "当前Argo固定域名：$(cat $WORKDIR/gdym.log 2>/dev/null)"
 fi
 if ! crontab -l 2>/dev/null | grep -q 'serv00keep'; then
