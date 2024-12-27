@@ -1005,7 +1005,7 @@ menu() {
    green "甬哥YouTube频道 ：www.youtube.com/@ygkkk"
    green "一键三协议共存：vless-reality、Vmess-ws(Argo)、hysteria2"
    green "脚本使用视频教程：https://youtu.be/2VF9D6z2z7w"
-   green "当前脚本版本：V24.12.26 已支持主进程与argo进程各自保活"
+   green "当前脚本版本：V24.12.27  快捷方式：bash serv00.sh"
    echo "========================================================="
    green  "1. 安装sing-box"
    echo   "---------------------------------------------------------"
