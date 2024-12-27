@@ -98,9 +98,9 @@
 
 详细设置视频教程，请点击[Serv00最全面的代理脚本](https://youtu.be/2VF9D6z2z7w)
 
-Serv00专用一键脚本 (默认自动安装进程保活)：
+Serv00专用一键脚本 (默认自动安装进程保活)，快捷方式：bash serv00.sh
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/serv00_proxyip.sh)
+curl -sSL https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/serv00.sh -o serv00.sh && bash serv00.sh
 ```
 脚本界面预览图：
 
