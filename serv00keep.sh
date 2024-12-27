@@ -15,14 +15,14 @@ export LC_ALL=C
 USERNAME=$(whoami)
 HOSTNAME=$(hostname)
 
-export UUID=${UUID:-'743f8207-40d0-4440-9a44-97be0fea69c1'}  
-export ARGO_DOMAIN=${ARGO_DOMAIN:-'111'}   
-export ARGO_AUTH=${ARGO_AUTH:-'999'}     
-export vless_port=${vless_port:-'123'}    
-export vmess_port=${vmess_port:-'456'}  
-export hy2_port=${hy2_port:-'789'}       
-export IP=${IP:-'888'}                  
-export reym=${reym:-'www.speedtest.net'}
+export UUID=${UUID:-''}  
+export ARGO_DOMAIN=${ARGO_DOMAIN:-''}   
+export ARGO_AUTH=${ARGO_AUTH:-''}     
+export vless_port=${vless_port:-''}    
+export vmess_port=${vmess_port:-''}  
+export hy2_port=${hy2_port:-''}       
+export IP=${IP:-''}                  
+export reym=${reym:-''}
 
 [[ "$HOSTNAME" == "s1.ct8.pl" ]] && WORKDIR="domains/${USERNAME}.ct8.pl/logs" || WORKDIR="domains/${USERNAME}.serv00.net/logs"
 [ -d "$WORKDIR" ] || (mkdir -p "$WORKDIR" && chmod 777 "$WORKDIR")
