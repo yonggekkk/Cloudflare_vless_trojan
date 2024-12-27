@@ -395,18 +395,15 @@ fi
 echo
 green "安装进程保活"
 curl -sSL https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/serv00keep.sh -o serv00keep.sh && chmod +x serv00keep.sh
-sed -i '' -e '18s|743f8207-40d0-4440-9a44-97be0fea69c1|'"$UUID"'|' serv00keep.sh
-sed -i '' -e '21s|123|'"$vless_port"'|' serv00keep.sh
-sed -i '' -e '22s|456|'"$vmess_port"'|' serv00keep.sh
-sed -i '' -e '23s|789|'"$hy2_port"'|' serv00keep.sh
-sed -i '' -e '24s|888|'"$IP"'|' serv00keep.sh
-sed -i '' -e '25s|www.speedtest.net|'"$reym"'|' serv00keep.sh
-if [[ "${argodomain}" == *"trycloudflare.com"* ]] || [ -z "${argodomain}" ]; then
-sed -i '' -e '19s|111||' serv00keep.sh
-sed -i '' -e '20s|999||' serv00keep.sh
-else
-sed -i '' -e '19s|111|'"$ARGO_DOMAIN"'|' serv00keep.sh
-sed -i '' -e '20s|999|'"$ARGO_AUTH"'|' serv00keep.sh
+sed -i '' -e '18s|''|'"$UUID"'|' serv00keep.sh
+sed -i '' -e '21s|''|'"$vless_port"'|' serv00keep.sh
+sed -i '' -e '22s|''|'"$vmess_port"'|' serv00keep.sh
+sed -i '' -e '23s|''|'"$hy2_port"'|' serv00keep.sh
+sed -i '' -e '24s|''|'"$IP"'|' serv00keep.sh
+sed -i '' -e '25s|''|'"$reym"'|' serv00keep.sh
+if [ ! -f boot.log ]; then
+sed -i '' -e '19s|''|'"${$ARGO_DOMAIN}"'|' serv00keep.sh
+sed -i '' -e '20s|''|'"${ARGO_AUTH}"'|' serv00keep.sh
 fi
 if ! crontab -l 2>/dev/null | grep -q 'serv00keep'; then
 if [ -f boot.log ] || grep -q "trycloudflare.com" boot.log 2>/dev/null; then
