@@ -285,12 +285,13 @@ yellow "1、网页端权限是否开启"
 yellow "2、端口是否设置错误(2个TCP、1个UDP)"
 yellow "3、尝试更换网页端3个端口并重装"
 yellow "4、当前Serv00服务器炸了？等会再试"
-exit
+red "5、以上都试了，哥直接躺平，交给进程保活，过会再来看"
 fi
 }
 
 get_argodomain() {
   if [[ -n $ARGO_AUTH ]]; then
+    echo "$ARGO_DOMAIN" > gdym.log
     echo "$ARGO_DOMAIN"
   else
     argodomain=$(grep -oE 'https://[[:alnum:]+\.-]+\.trycloudflare\.com' boot.log 2>/dev/null | sed 's@https://@@')
