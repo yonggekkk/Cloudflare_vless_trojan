@@ -402,7 +402,7 @@ sed -i '' -e "23s|''|'$hy2_port'|" serv00keep.sh
 sed -i '' -e "24s|''|'$IP'|" serv00keep.sh
 sed -i '' -e "25s|''|'$reym'|" serv00keep.sh
 if [ ! -f boot.log ]; then
-sed -i '' -e "19s|''|'${$ARGO_DOMAIN}'|" serv00keep.sh
+sed -i '' -e "19s|''|'${ARGO_DOMAIN}'|" serv00keep.sh
 sed -i '' -e "20s|''|'${ARGO_AUTH}'|" serv00keep.sh
 fi
 if ! crontab -l 2>/dev/null | grep -q 'serv00keep'; then
