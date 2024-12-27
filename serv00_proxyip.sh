@@ -384,7 +384,7 @@ get_argodomain() {
   else
     argodomain=$(grep -oE 'https://[[:alnum:]+\.-]+\.trycloudflare\.com' boot.log 2>/dev/null | sed 's@https://@@')
     if [ -z ${argodomain} ]; then
-    argodomain="Argo临时域名暂时获取失败"
+    argodomain="Argo临时域名暂时获取失败，Argo节点暂不可用"
     fi
     echo "$argodomain"
   fi
