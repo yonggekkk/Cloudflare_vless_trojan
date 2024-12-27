@@ -395,15 +395,15 @@ fi
 echo
 green "安装进程保活"
 curl -sSL https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/serv00keep.sh -o serv00keep.sh && chmod +x serv00keep.sh
-sed -i '' -e '18s|''|'"$UUID"'|' serv00keep.sh
-sed -i '' -e '21s|''|'"$vless_port"'|' serv00keep.sh
-sed -i '' -e '22s|''|'"$vmess_port"'|' serv00keep.sh
-sed -i '' -e '23s|''|'"$hy2_port"'|' serv00keep.sh
-sed -i '' -e '24s|''|'"$IP"'|' serv00keep.sh
-sed -i '' -e '25s|''|'"$reym"'|' serv00keep.sh
+sed -i '' -e "18s|''|'$UUID'|" serv00keep.sh
+sed -i '' -e "21s|''|'$vless_port'|" serv00keep.sh
+sed -i '' -e "22s|''|'$vmess_port'|" serv00keep.sh
+sed -i '' -e "23s|''|'$hy2_port'|" serv00keep.sh
+sed -i '' -e "24s|''|'$IP'|" serv00keep.sh
+sed -i '' -e "25s|''|'$reym'|" serv00keep.sh
 if [ ! -f boot.log ]; then
-sed -i '' -e '19s|''|'"${$ARGO_DOMAIN}"'|' serv00keep.sh
-sed -i '' -e '20s|''|'"${ARGO_AUTH}"'|' serv00keep.sh
+sed -i '' -e "19s|''|'${$ARGO_DOMAIN}'|" serv00keep.sh
+sed -i '' -e "20s|''|'${ARGO_AUTH}'|" serv00keep.sh
 fi
 if ! crontab -l 2>/dev/null | grep -q 'serv00keep'; then
 if [ -f boot.log ] || grep -q "trycloudflare.com" boot.log 2>/dev/null; then
