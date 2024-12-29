@@ -435,7 +435,17 @@ get_argodomain() {
     echo "$ARGO_DOMAIN" > gdym.log
     echo "$ARGO_DOMAIN"
   else
+    local retry=0
+    local max_retries=6
+    local argodomain=""
+    while [[ $retry -lt $max_retries ]]; do
+    ((retry++)) 
     argodomain=$(grep -oE 'https://[[:alnum:]+\.-]+\.trycloudflare\.com' boot.log 2>/dev/null | sed 's@https://@@')
+      if [[ -n $argodomain ]]; then
+        break
+      fi
+      sleep 2
+    done  
     if [ -z ${argodomain} ]; then
     argodomain="Argo临时域名暂时获取失败，Argo节点暂不可用"
     fi
