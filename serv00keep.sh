@@ -215,6 +215,23 @@ openssl req -new -x509 -days 3650 -key "private.key" -out "cert.pem" -subj "/CN=
     }
  ],
     "outbounds": [
+         {
+        "type": "wireguard",
+        "tag": "wg",
+        "server": "162.159.192.110",
+        "server_port": 1701,
+        "local_address": [
+        "172.16.0.2/32",
+        "2606:4700:110:8468:c6c3:c1a2:2db1:a7a/128"
+        ],
+        "private_key": "hveWdmx6gLzabPneunzSvj0zDfYVYXq++b0kRuKdGq8=",
+        "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+        "reserved": [
+            165,
+            196,
+            69
+        ]
+    },
     {
       "type": "direct",
       "tag": "direct"
@@ -223,7 +240,18 @@ openssl req -new -x509 -days 3650 -key "private.key" -out "cert.pem" -subj "/CN=
       "type": "block",
       "tag": "block"
     }
- ]
+ ],
+   "route": {
+    "rules": [
+    {
+     "domain": [
+   "jnn-pa.googleapis.com",
+   "usher.ttvnw.net"   
+      ],
+     "outbound": "wg"
+    }
+    ]
+    }   
 }
 EOF
 
