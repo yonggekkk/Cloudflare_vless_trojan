@@ -43,7 +43,7 @@ read_reym() {
         yellow "方式三：支持其他域名，注意要符合reality域名规则"
         reading "请输入reality域名 【请选择 回车 或者 s 或者 输入域名】: " reym
         if [[ -z "$reym" ]]; then
-           reym=blog.cloudflare.com
+           reym=time.is
 	elif [[ "$reym" == "s" || "$reym" == "S" ]]; then
            reym=$USERNAME.serv00.net
         fi
