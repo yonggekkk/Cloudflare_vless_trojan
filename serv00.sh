@@ -374,7 +374,23 @@ EOF
 if [ -e "$(basename ${FILE_MAP[web]})" ]; then
     nohup ./"$(basename ${FILE_MAP[web]})" run -c config.json >/dev/null 2>&1 &
     sleep 5
-    pgrep -x "$(basename ${FILE_MAP[web]})" > /dev/null && green "$(basename ${FILE_MAP[web]}) is running" || { red "$(basename ${FILE_MAP[web]}) is not running, restarting..."; pkill -x "$(basename ${FILE_MAP[web]})" && nohup ./"$(basename ${FILE_MAP[web]})" run -c config.json >/dev/null 2>&1 & sleep 2; purple "$(basename ${FILE_MAP[web]}) restarted"; }
+if pgrep -x "$(basename ${FILE_MAP[web]})" > /dev/null; then
+    green "$(basename ${FILE_MAP[web]}) 主进程已启动"
+else
+for ((i=1; i<=5; i++)); do
+    red "$(basename ${FILE_MAP[web]}) 主进程未启动, 重启中... (尝试次数: $i)"
+    pkill -x "$(basename ${FILE_MAP[web]})"
+    nohup ./"$(basename ${FILE_MAP[web]})" run -c config.json >/dev/null 2>&1 &
+    sleep 5
+    if pgrep -x "$(basename ${FILE_MAP[web]})" > /dev/null; then
+        purple "$(basename ${FILE_MAP[web]}) 主进程已成功重启"
+        break
+    fi
+    if [[ $i -eq 5 ]]; then
+        red "$(basename ${FILE_MAP[web]}) 主进程重启失败"
+    fi
+done
+fi
 fi
 
 if [ -e "$(basename ${FILE_MAP[bot]})" ]; then
@@ -384,11 +400,19 @@ if [ -e "$(basename ${FILE_MAP[bot]})" ]; then
     elif [[ $ARGO_AUTH =~ TunnelSecret ]]; then
       args="tunnel --edge-ip-version auto --config tunnel.yml run"
     else
-      args="tunnel --edge-ip-version auto --no-autoupdate --protocol http2 --logfile boot.log --loglevel info --url http://localhost:$vmess_port"
+     args="tunnel --edge-ip-version auto --no-autoupdate --protocol http2 --logfile boot.log --loglevel info --url http://localhost:$vmess_port"
     fi
     nohup ./"$(basename ${FILE_MAP[bot]})" $args >/dev/null 2>&1 &
     sleep 10
-    pgrep -x "$(basename ${FILE_MAP[bot]})" > /dev/null && green "$(basename ${FILE_MAP[bot]}) is running" || { red "$(basename ${FILE_MAP[bot]}) is not running, restarting..."; pkill -x "$(basename ${FILE_MAP[bot]})" && nohup ./"$(basename ${FILE_MAP[bot]})" "${args}" >/dev/null 2>&1 & sleep 5; purple "$(basename ${FILE_MAP[bot]}) restarted"; }
+if pgrep -x "$(basename ${FILE_MAP[bot]})" > /dev/null; then
+    green "$(basename ${FILE_MAP[bot]}) Arog进程已启动"
+else
+    red "$(basename ${FILE_MAP[bot]}) Argo进程未启动, 重启中..."
+    pkill -x "$(basename ${FILE_MAP[bot]})"
+    nohup ./"$(basename ${FILE_MAP[bot]})" "${args}" >/dev/null 2>&1 &
+    sleep 5
+    purple "$(basename ${FILE_MAP[bot]}) Argo进程已重启"
+fi
 fi
 sleep 2
 rm -f "$(basename ${FILE_MAP[web]})" "$(basename ${FILE_MAP[bot]})"
@@ -422,7 +446,6 @@ get_argodomain() {
 get_links(){
 argodomain=$(get_argodomain)
 echo -e "\e[1;32mArgo域名:\e[1;35m${argodomain}\e[0m\n"
-echo
 green "安装进程保活"
 curl -sSL https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/serv00keep.sh -o serv00keep.sh && chmod +x serv00keep.sh
 sed -i '' -e "18s|''|'$UUID'|" serv00keep.sh
