@@ -261,9 +261,6 @@ nb=$(hostname | cut -d '.' -f 1 | tr -d 's')
 if [ "$nb" == "14" ]; then
 ytb='"jnn-pa.googleapis.com",'
 fi
-if [ "$nb" == "15" ]; then
-twh='"usher.ttvnw.net",'
-fi
 
   cat > config.json << EOF
 {
@@ -271,20 +268,6 @@ fi
     "disabled": true,
     "level": "info",
     "timestamp": true
-  },
-  "dns": {
-    "servers": [
-      {
-        "tag": "google",
-        "address": "tls://8.8.8.8",
-        "strategy": "ipv4_only",
-        "detour": "direct"
-      }
-    ],
-    "final": "google",
-    "strategy": "",
-    "disable_cache": false,
-    "disable_expire": false
   },
     "inbounds": [
     {
@@ -353,21 +336,21 @@ fi
     }
  ],
     "outbounds": [
-         {
+     {
         "type": "wireguard",
         "tag": "wg",
-        "server": "162.159.192.110",
-        "server_port": 1701,
+        "server": "162.159.192.200",
+        "server_port": 4500,
         "local_address": [
-        "172.16.0.2/32",
-        "2606:4700:110:8468:c6c3:c1a2:2db1:a7a/128"
+                "172.16.0.2/32",
+                "2606:4700:110:8f77:1ca9:f086:846c:5f9e/128"
         ],
-        "private_key": "hveWdmx6gLzabPneunzSvj0zDfYVYXq++b0kRuKdGq8=",
+        "private_key": "wIxszdR2nMdA7a2Ul3XQcniSfSZqdqjPb6w6opvf5AU=",
         "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
         "reserved": [
-            165,
-            196,
-            69
+            126,
+            246,
+            173
         ]
     },
     {
@@ -377,19 +360,14 @@ fi
     {
       "type": "block",
       "tag": "block"
-    },
-    {
-      "type": "dns",
-      "tag": "dns-out"
     }
   ],
    "route": {
     "rules": [
     {
      "domain": [
-   $ytb
-   $twh
-   "oh_my_god"
+     $ytb
+     "oh.my.god"
       ],
      "outbound": "wg"
     }
