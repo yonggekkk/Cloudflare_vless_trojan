@@ -141,12 +141,34 @@ public_key=$(<public_key.txt)
 openssl ecparam -genkey -name prime256v1 -out "private.key"
 openssl req -new -x509 -days 3650 -key "private.key" -out "cert.pem" -subj "/CN=$USERNAME.serv00.net"
 
+nb=$(hostname | cut -d '.' -f 1 | tr -d 's')
+if [ "$nb" == "14" ]; then
+ytb='"jnn-pa.googleapis.com",'
+fi
+if [ "$nb" == "15" ]; then
+twh='"usher.ttvnw.net",'
+fi
+
   cat > config.json << EOF
 {
   "log": {
     "disabled": true,
     "level": "info",
     "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "google",
+        "address": "tls://8.8.8.8",
+        "strategy": "ipv4_only",
+        "detour": "direct"
+      }
+    ],
+    "final": "google",
+    "strategy": "",
+    "disable_cache": false,
+    "disable_expire": false
   },
     "inbounds": [
     {
@@ -239,19 +261,25 @@ openssl req -new -x509 -days 3650 -key "private.key" -out "cert.pem" -subj "/CN=
     {
       "type": "block",
       "tag": "block"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
     }
- ],
+  ],
    "route": {
     "rules": [
     {
      "domain": [
-   "jnn-pa.googleapis.com",
-   "usher.ttvnw.net"   
+   $ytb
+   $twh
+   "oh_my_god"
       ],
      "outbound": "wg"
     }
-    ]
-    }   
+    ],
+    "final": "direct"
+    }  
 }
 EOF
 
