@@ -1116,7 +1116,7 @@ cat $WORKDIR/ip.txt
 echo
 if [[ -e $WORKDIR/list.txt ]]; then
 green "已安装sing-box"
-ps aux | grep '[c]onfig' > /dev/null && green "主进程启动正常" || yellow "主进程启动中……2分钟后可再次进入脚本查看"
+ps aux | grep '[c]onfig' > /dev/null && green "主进程运行正常" || yellow "主进程启动中……2分钟后可再次进入脚本查看"
 if [ -f "$WORKDIR/boot.log" ] && grep -q "trycloudflare.com" "$WORKDIR/boot.log" 2>/dev/null && ps aux | grep [l]ocalhost > /dev/null; then
 green "当前Argo临时域名：$(grep -oE 'https://[[:alnum:]+\.-]+\.trycloudflare\.com' $WORKDIR/boot.log 2>/dev/null | sed 's@https://@@')"
 elif ps aux | grep [t]oken > /dev/null; then
@@ -1129,7 +1129,7 @@ else
 check_process="! ps aux | grep '[c]onfig' > /dev/null || ! ps aux | grep [t]oken > /dev/null"
 fi
 (crontab -l 2>/dev/null; echo "*/2 * * * * if $check_process; then /bin/bash ${WORKDIR}/serv00keep.sh; fi") | crontab -
-yellow "Cron保活丢失？已修复成功"
+yellow "Cron保活可能被重置清空！现已修复成功"
 else
 green "Cron保活运行正常"
 fi
