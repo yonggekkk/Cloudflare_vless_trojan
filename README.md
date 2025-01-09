@@ -107,14 +107,6 @@ bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/sing-box-yg/main/ser
 ![1a215abda2dd54d1042e8d3e61979b1](https://github.com/user-attachments/assets/cc28a80b-7cee-41b8-98c1-1d64cb0b1013)
 
 
-Serv00多账号进程保活脚本仅支持第三方VPS服务器，修改kp.sh文件的参数即可定时自动保活单个或多个Serv00账号的节点
-
-Serv00保活自动下载脚本如下，VPS专用，不可用在serv00上，默认nano编辑形式，你也可以手动放在root目录
-```
-curl -sSL https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/kp.sh -o kp.sh && chmod +x kp.sh && nano kp.sh
-```
-最后运行```bash kp.sh```即可 
-
 
 ### 2、VPS专用：
 
