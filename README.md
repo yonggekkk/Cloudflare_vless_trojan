@@ -100,7 +100,7 @@
 
 Serv00专用一键脚本 (默认自动安装进程保活)，快捷方式：```bash serv00.sh```
 ```
-curl -sSL https://raw.githubusercontent.com/yonggekkk/Cloudflare_vless_trojan/main/serv00.sh -o serv00.sh && bash serv00.sh
+bash <(curl -Ls https://raw.githubusercontent.com/yonggekkk/sing-box-yg/main/serv00.sh)
 ```
 脚本界面预览图：
 
