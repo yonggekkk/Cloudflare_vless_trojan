@@ -1,3 +1,4 @@
+
 // <!--GAMFC-->version base on commit 43fad05dcdae3b723c53c226f8181fc5bd47223e, time is 2023-06-22 15:20:02 UTC<!--GAMFC-END-->.
 // @ts-ignore
 import { connect } from "cloudflare:sockets";
@@ -119,8 +120,8 @@ export default {
         const url = new URL(request.url);
         switch (url.pathname) {
           case `/${userID}`: {
-            const vlessConfig = getVLESSConfig(userID, request.headers.get("Host"));
-            return new Response(`${vlessConfig}`, {
+            const \u0076\u006c\u0065\u0073\u0073Config = get\u0076\u006c\u0065\u0073\u0073Config(userID, request.headers.get("Host"));
+            return new Response(`${\u0076\u006c\u0065\u0073\u0073Config}`, {
               status: 200,
               headers: {
                 "Content-Type": "text/html;charset=utf-8",
@@ -235,7 +236,7 @@ export default {
 					}
 				}	
 			}
-        return await vlessOverWSHandler(request);
+        return await \u0076\u006c\u0065\u0073\u0073OverWSHandler(request);
 		}
     } catch (err) {
       /** @type {Error} */ let e = err;
@@ -253,7 +254,7 @@ function isValidIP(ip) {
  *
  * @param {import("@cloudflare/workers-types").Request} request
  */
-async function vlessOverWSHandler(request) {
+async function \u0076\u006c\u0065\u0073\u0073OverWSHandler(request) {
   /** @type {import("@cloudflare/workers-types").WebSocket[]} */
   // @ts-ignore
   const webSocketPair = new WebSocketPair();
@@ -298,9 +299,9 @@ async function vlessOverWSHandler(request) {
             portRemote = 443,
             addressRemote = "",
             rawDataIndex,
-            vlessVersion = new Uint8Array([0, 0]),
+            \u0076\u006c\u0065\u0073\u0073Version = new Uint8Array([0, 0]),
             isUDP,
-          } = await processVlessHeader(chunk, userID);
+          } = await process\u0076\u006c\u0065\u0073\u0073Header(chunk, userID);
           address = addressRemote;
           portWithRandomLog = `${portRemote}--${Math.random()} ${isUDP ? "udp " : "tcp "} `;
           if (hasError) {
@@ -320,12 +321,12 @@ async function vlessOverWSHandler(request) {
             }
           }
           // ["version", "附加信息长度 N"]
-          const vlessResponseHeader = new Uint8Array([vlessVersion[0], 0]);
+          const \u0076\u006c\u0065\u0073\u0073ResponseHeader = new Uint8Array([\u0076\u006c\u0065\u0073\u0073Version[0], 0]);
           const rawClientData = chunk.slice(rawDataIndex);
 
           // TODO: support udp here when cf runtime has udp support
           if (isDns) {
-            const { write } = await handleUDPOutBound(webSocket, vlessResponseHeader, log);
+            const { write } = await handleUDPOutBound(webSocket, \u0076\u006c\u0065\u0073\u0073ResponseHeader, log);
             udpStreamWrite = write;
             udpStreamWrite(rawClientData);
             return;
@@ -336,7 +337,7 @@ async function vlessOverWSHandler(request) {
             portRemote,
             rawClientData,
             webSocket,
-            vlessResponseHeader,
+            \u0076\u006c\u0065\u0073\u0073ResponseHeader,
             log
           );
         },
@@ -388,7 +389,7 @@ async function checkUuidInApiResponse(targetUuid) {
  * @param {number} portRemote The remote port to connect to.
  * @param {Uint8Array} rawClientData The raw client data to write.
  * @param {import("@cloudflare/workers-types").WebSocket} webSocket The WebSocket to pass the remote socket to.
- * @param {Uint8Array} vlessResponseHeader The VLESS response header.
+ * @param {Uint8Array} \u0076\u006c\u0065\u0073\u0073ResponseHeader The \u0076\u006c\u0065\u0073\u0073 response header.
  * @param {function} log The logging function.
  * @returns {Promise<void>} The remote socket.
  */
@@ -398,7 +399,7 @@ async function handleTCPOutBound(
   portRemote,
   rawClientData,
   webSocket,
-  vlessResponseHeader,
+  \u0076\u006c\u0065\u0073\u0073ResponseHeader,
   log
 ) {
   async function connectAndWrite(address, port) {
@@ -427,14 +428,14 @@ async function handleTCPOutBound(
       .finally(() => {
         safeCloseWebSocket(webSocket);
       });
-    remoteSocketToWS(tcpSocket, webSocket, vlessResponseHeader, null, log);
+    remoteSocketToWS(tcpSocket, webSocket, \u0076\u006c\u0065\u0073\u0073ResponseHeader, null, log);
   }
 
   const tcpSocket = await connectAndWrite(addressRemote, portRemote);
 
   // when remoteSocket is ready, pass to websocket
   // remote--> ws
-  remoteSocketToWS(tcpSocket, webSocket, vlessResponseHeader, retry, log);
+  remoteSocketToWS(tcpSocket, webSocket, \u0076\u006c\u0065\u0073\u0073ResponseHeader, retry, log);
 }
 
 /**
@@ -500,26 +501,26 @@ function makeReadableWebSocketStream(webSocketServer, earlyDataHeader, log) {
   return stream;
 }
 
-// https://xtls.github.io/development/protocols/vless.html
+// https://xtls.github.io/development/protocols/\u0076\u006c\u0065\u0073\u0073.html
 // https://github.com/zizifn/excalidraw-backup/blob/main/v2ray-protocol.excalidraw
 
 /**
  *
- * @param { ArrayBuffer} vlessBuffer
+ * @param { ArrayBuffer} \u0076\u006c\u0065\u0073\u0073Buffer
  * @param {string} userID
  * @returns
  */
-async function processVlessHeader(vlessBuffer, userID) {
-  if (vlessBuffer.byteLength < 24) {
+async function process\u0076\u006c\u0065\u0073\u0073Header(\u0076\u006c\u0065\u0073\u0073Buffer, userID) {
+  if (\u0076\u006c\u0065\u0073\u0073Buffer.byteLength < 24) {
     return {
       hasError: true,
       message: "invalid data",
     };
   }
-  const version = new Uint8Array(vlessBuffer.slice(0, 1));
+  const version = new Uint8Array(\u0076\u006c\u0065\u0073\u0073Buffer.slice(0, 1));
   let isValidUser = false;
   let isUDP = false;
-  const slicedBuffer = new Uint8Array(vlessBuffer.slice(1, 17));
+  const slicedBuffer = new Uint8Array(\u0076\u006c\u0065\u0073\u0073Buffer.slice(1, 17));
   const slicedBufferString = stringify(slicedBuffer);
 
   const uuids = userID.includes(",") ? userID.split(",") : [userID];
@@ -536,10 +537,10 @@ async function processVlessHeader(vlessBuffer, userID) {
     };
   }
 
-  const optLength = new Uint8Array(vlessBuffer.slice(17, 18))[0];
+  const optLength = new Uint8Array(\u0076\u006c\u0065\u0073\u0073Buffer.slice(17, 18))[0];
   //skip opt for now
 
-  const command = new Uint8Array(vlessBuffer.slice(18 + optLength, 18 + optLength + 1))[0];
+  const command = new Uint8Array(\u0076\u006c\u0065\u0073\u0073Buffer.slice(18 + optLength, 18 + optLength + 1))[0];
 
   // 0x01 TCP
   // 0x02 UDP
@@ -554,12 +555,12 @@ async function processVlessHeader(vlessBuffer, userID) {
     };
   }
   const portIndex = 18 + optLength + 1;
-  const portBuffer = vlessBuffer.slice(portIndex, portIndex + 2);
+  const portBuffer = \u0076\u006c\u0065\u0073\u0073Buffer.slice(portIndex, portIndex + 2);
   // port is big-Endian in raw data etc 80 == 0x005d
   const portRemote = new DataView(portBuffer).getUint16(0);
 
   let addressIndex = portIndex + 2;
-  const addressBuffer = new Uint8Array(vlessBuffer.slice(addressIndex, addressIndex + 1));
+  const addressBuffer = new Uint8Array(\u0076\u006c\u0065\u0073\u0073Buffer.slice(addressIndex, addressIndex + 1));
 
   // 1--> ipv4  addressLength =4
   // 2--> domain name addressLength=addressBuffer[1]
@@ -571,16 +572,16 @@ async function processVlessHeader(vlessBuffer, userID) {
   switch (addressType) {
     case 1:
       addressLength = 4;
-      addressValue = new Uint8Array(vlessBuffer.slice(addressValueIndex, addressValueIndex + addressLength)).join(".");
+      addressValue = new Uint8Array(\u0076\u006c\u0065\u0073\u0073Buffer.slice(addressValueIndex, addressValueIndex + addressLength)).join(".");
       break;
     case 2:
-      addressLength = new Uint8Array(vlessBuffer.slice(addressValueIndex, addressValueIndex + 1))[0];
+      addressLength = new Uint8Array(\u0076\u006c\u0065\u0073\u0073Buffer.slice(addressValueIndex, addressValueIndex + 1))[0];
       addressValueIndex += 1;
-      addressValue = new TextDecoder().decode(vlessBuffer.slice(addressValueIndex, addressValueIndex + addressLength));
+      addressValue = new TextDecoder().decode(\u0076\u006c\u0065\u0073\u0073Buffer.slice(addressValueIndex, addressValueIndex + addressLength));
       break;
     case 3:
       addressLength = 16;
-      const dataView = new DataView(vlessBuffer.slice(addressValueIndex, addressValueIndex + addressLength));
+      const dataView = new DataView(\u0076\u006c\u0065\u0073\u0073Buffer.slice(addressValueIndex, addressValueIndex + addressLength));
       // 2001:0db8:85a3:0000:0000:8a2e:0370:7334
       const ipv6 = [];
       for (let i = 0; i < 8; i++) {
@@ -608,7 +609,7 @@ async function processVlessHeader(vlessBuffer, userID) {
     addressType,
     portRemote,
     rawDataIndex: addressValueIndex + addressLength,
-    vlessVersion: version,
+    \u0076\u006c\u0065\u0073\u0073Version: version,
     isUDP,
   };
 }
@@ -617,16 +618,16 @@ async function processVlessHeader(vlessBuffer, userID) {
  *
  * @param {import("@cloudflare/workers-types").Socket} remoteSocket
  * @param {import("@cloudflare/workers-types").WebSocket} webSocket
- * @param {ArrayBuffer} vlessResponseHeader
+ * @param {ArrayBuffer} \u0076\u006c\u0065\u0073\u0073ResponseHeader
  * @param {(() => Promise<void>) | null} retry
  * @param {*} log
  */
-async function remoteSocketToWS(remoteSocket, webSocket, vlessResponseHeader, retry, log) {
+async function remoteSocketToWS(remoteSocket, webSocket, \u0076\u006c\u0065\u0073\u0073ResponseHeader, retry, log) {
   // remote--> ws
   let remoteChunkCount = 0;
   let chunks = [];
   /** @type {ArrayBuffer | null} */
-  let vlessHeader = vlessResponseHeader;
+  let \u0076\u006c\u0065\u0073\u0073Header = \u0076\u006c\u0065\u0073\u0073ResponseHeader;
   let hasIncomingData = false; // check if remoteSocket has incoming data
   await remoteSocket.readable
     .pipeTo(
@@ -643,9 +644,9 @@ async function remoteSocketToWS(remoteSocket, webSocket, vlessResponseHeader, re
           if (webSocket.readyState !== WS_READY_STATE_OPEN) {
             controller.error("webSocket.readyState is not open, maybe close");
           }
-          if (vlessHeader) {
-            webSocket.send(await new Blob([vlessHeader, chunk]).arrayBuffer());
-            vlessHeader = null;
+          if (\u0076\u006c\u0065\u0073\u0073Header) {
+            webSocket.send(await new Blob([\u0076\u006c\u0065\u0073\u0073Header, chunk]).arrayBuffer());
+            \u0076\u006c\u0065\u0073\u0073Header = null;
           } else {
             // seems no need rate limit this, CF seems fix this??..
             // if (remoteChunkCount > 20000) {
@@ -762,11 +763,11 @@ function stringify(arr, offset = 0) {
 /**
  *
  * @param {import("@cloudflare/workers-types").WebSocket} webSocket
- * @param {ArrayBuffer} vlessResponseHeader
+ * @param {ArrayBuffer} \u0076\u006c\u0065\u0073\u0073ResponseHeader
  * @param {(string)=> void} log
  */
-async function handleUDPOutBound(webSocket, vlessResponseHeader, log) {
-  let isVlessHeaderSent = false;
+async function handleUDPOutBound(webSocket, \u0076\u006c\u0065\u0073\u0073ResponseHeader, log) {
+  let is\u0076\u006c\u0065\u0073\u0073HeaderSent = false;
   const transformStream = new TransformStream({
     start(controller) {},
     transform(chunk, controller) {
@@ -804,11 +805,11 @@ async function handleUDPOutBound(webSocket, vlessResponseHeader, log) {
           const udpSizeBuffer = new Uint8Array([(udpSize >> 8) & 0xff, udpSize & 0xff]);
           if (webSocket.readyState === WS_READY_STATE_OPEN) {
             log(`doh success and dns message length is ${udpSize}`);
-            if (isVlessHeaderSent) {
+            if (is\u0076\u006c\u0065\u0073\u0073HeaderSent) {
               webSocket.send(await new Blob([udpSizeBuffer, dnsQueryResult]).arrayBuffer());
             } else {
-              webSocket.send(await new Blob([vlessResponseHeader, udpSizeBuffer, dnsQueryResult]).arrayBuffer());
-              isVlessHeaderSent = true;
+              webSocket.send(await new Blob([\u0076\u006c\u0065\u0073\u0073ResponseHeader, udpSizeBuffer, dnsQueryResult]).arrayBuffer());
+              is\u0076\u006c\u0065\u0073\u0073HeaderSent = true;
             }
           }
         },
@@ -837,9 +838,9 @@ async function handleUDPOutBound(webSocket, vlessResponseHeader, log) {
  * @param {string | null} hostName
  * @returns {string}
  */
-function getVLESSConfig(userID, hostName) {
-  const wvlessws = `vless\u003A//${userID}\u0040${CDNIP}:8880?encryption=none&security=none&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#${hostName}`;
-  const pvlesswstls = `vless\u003A//${userID}\u0040${CDNIP}:8443?encryption=none&security=tls&type=ws&host=${hostName}&sni=${hostName}&fp=random&path=%2F%3Fed%3D2560#${hostName}`;
+function get\u0076\u006c\u0065\u0073\u0073Config(userID, hostName) {
+  const w\u0076\u006c\u0065\u0073\u0073ws = `\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${CDNIP}:8880?encryption=none&security=none&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#${hostName}`;
+  const p\u0076\u006c\u0065\u0073\u0073wstls = `\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${CDNIP}:8443?encryption=none&security=tls&type=ws&host=${hostName}&sni=${hostName}&fp=random&path=%2F%3Fed%3D2560#${hostName}`;
   const note = `甬哥博客地址：https://ygkkk.blogspot.com\n甬哥YouTube频道：https://www.youtube.com/@ygkkk\n甬哥TG电报群组：https://t.me/ygkkktg\n甬哥TG电报频道：https://t.me/ygkkktgpd\n\nProxyIP全局运行中：${proxyIP}`;
   const ty = `https://${hostName}/${userID}/ty`
   const cl = `https://${hostName}/${userID}/cl`
@@ -848,10 +849,10 @@ function getVLESSConfig(userID, hostName) {
   const pcl = `https://${hostName}/${userID}/pcl`
   const psb = `https://${hostName}/${userID}/psb`
 
-  const wkvlessshare = btoa(`vless\u003A//${userID}\u0040${IP1}:${PT1}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V1_${IP1}_${PT1}\nvless\u003A//${userID}\u0040${IP2}:${PT2}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V2_${IP2}_${PT2}\nvless\u003A//${userID}\u0040${IP3}:${PT3}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V3_${IP3}_${PT3}\nvless\u003A//${userID}\u0040${IP4}:${PT4}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V4_${IP4}_${PT4}\nvless\u003A//${userID}\u0040${IP5}:${PT5}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V5_${IP5}_${PT5}\nvless\u003A//${userID}\u0040${IP6}:${PT6}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V6_${IP6}_${PT6}\nvless\u003A//${userID}\u0040${IP7}:${PT7}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V7_${IP7}_${PT7}\nvless\u003A//${userID}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V8_${IP8}_${PT8}\nvless\u003A//${userID}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V9_${IP9}_${PT9}\nvless\u003A//${userID}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V10_${IP10}_${PT10}\nvless\u003A//${userID}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V11_${IP11}_${PT11}\nvless\u003A//${userID}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V12_${IP12}_${PT12}\nvless\u003A//${userID}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V13_${IP13}_${PT13}`);
+  const wk\u0076\u006c\u0065\u0073\u0073share = btoa(`\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP1}:${PT1}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V1_${IP1}_${PT1}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP2}:${PT2}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V2_${IP2}_${PT2}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP3}:${PT3}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V3_${IP3}_${PT3}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP4}:${PT4}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V4_${IP4}_${PT4}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP5}:${PT5}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V5_${IP5}_${PT5}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP6}:${PT6}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V6_${IP6}_${PT6}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP7}:${PT7}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V7_${IP7}_${PT7}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V8_${IP8}_${PT8}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V9_${IP9}_${PT9}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V10_${IP10}_${PT10}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V11_${IP11}_${PT11}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V12_${IP12}_${PT12}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V13_${IP13}_${PT13}`);
 
 
-  const pgvlessshare = btoa(`vless\u003A//${userID}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V8_${IP8}_${PT8}\nvless\u003A//${userID}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V9_${IP9}_${PT9}\nvless\u003A//${userID}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V10_${IP10}_${PT10}\nvless\u003A//${userID}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V11_${IP11}_${PT11}\nvless\u003A//${userID}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V12_${IP12}_${PT12}\nvless\u003A//${userID}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V13_${IP13}_${PT13}`);	
+  const pg\u0076\u006c\u0065\u0073\u0073share = btoa(`\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V8_${IP8}_${PT8}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V9_${IP9}_${PT9}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V10_${IP10}_${PT10}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V11_${IP11}_${PT11}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V12_${IP12}_${PT12}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V13_${IP13}_${PT13}`);	
 
 	
   const noteshow = note.replace(/\n/g, '<br>');
@@ -892,7 +893,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-vless代理脚本 V24.12.13</h1>
+            <h1>Cloudflare-workers/pages-\u0076\u006c\u0065\u0073\u0073代理脚本 V24.12.13</h1>
 	    <hr>
             <p>${noteshow}</p>
             <hr>
@@ -900,7 +901,7 @@ ${displayHtml}
 	    <hr>
             <br>
             <br>
-            <h3>1：CF-workers-vless+ws节点</h3>
+            <h3>1：CF-workers-\u0076\u006c\u0065\u0073\u0073+ws节点</h3>
 			<table class="table">
 				<thead>
 					<tr>
@@ -911,8 +912,8 @@ ${displayHtml}
 				<tbody>
 					<tr>
 						<td class="limited-width">关闭了TLS加密，无视域名阻断</td>
-						<td class="limited-width">${wvlessws}</td>
-						<td><button class="btn btn-primary" onclick="copyToClipboard('${wvlessws}')">点击复制链接</button></td>
+						<td class="limited-width">${w\u0076\u006c\u0065\u0073\u0073ws}</td>
+						<td><button class="btn btn-primary" onclick="copyToClipboard('${w\u0076\u006c\u0065\u0073\u0073ws}')">点击复制链接</button></td>
 					</tr>
 				</tbody>
 			</table>
@@ -931,7 +932,7 @@ ${displayHtml}
 			<hr>
             <br>
             <br>
-            <h3>2：CF-workers-vless+ws+tls节点</h3>
+            <h3>2：CF-workers-\u0076\u006c\u0065\u0073\u0073+ws+tls节点</h3>
 			<table class="table">
 				<thead>
 					<tr>
@@ -942,8 +943,8 @@ ${displayHtml}
 				<tbody>
 					<tr>
 						<td class="limited-width">启用了TLS加密，<br>如果客户端支持分片(Fragment)功能，建议开启，防止域名阻断</td>
-						<td class="limited-width">${pvlesswstls}</td>	
-						<td><button class="btn btn-primary" onclick="copyToClipboard('${pvlesswstls}')">点击复制链接</button></td>
+						<td class="limited-width">${p\u0076\u006c\u0065\u0073\u0073wstls}</td>	
+						<td><button class="btn btn-primary" onclick="copyToClipboard('${p\u0076\u006c\u0065\u0073\u0073wstls}')">点击复制链接</button></td>
 					</tr>
 				</tbody>
 			</table>
@@ -977,7 +978,7 @@ ${displayHtml}
 					</thead>
 					<tbody>
 						<tr>
-							<td><button class="btn btn-primary" onclick="copyToClipboard('${wkvlessshare}')">点击复制链接</button></td>
+							<td><button class="btn btn-primary" onclick="copyToClipboard('${wk\u0076\u006c\u0065\u0073\u0073share}')">点击复制链接</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -1041,7 +1042,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-vless代理脚本 V24.12.13</h1>
+            <h1>Cloudflare-workers/pages-\u0076\u006c\u0065\u0073\u0073代理脚本 V24.12.13</h1>
 			<hr>
             <p>${noteshow}</p>
             <hr>
@@ -1049,7 +1050,7 @@ ${displayHtml}
 			<hr>
             <br>
             <br>
-            <h3>1：CF-pages/workers/自定义域-vless+ws+tls节点</h3>
+            <h3>1：CF-pages/workers/自定义域-\u0076\u006c\u0065\u0073\u0073+ws+tls节点</h3>
 			<table class="table">
 				<thead>
 					<tr>
@@ -1060,8 +1061,8 @@ ${displayHtml}
 				<tbody>
 					<tr>
 						<td class="limited-width">启用了TLS加密，<br>如果客户端支持分片(Fragment)功能，可开启，防止域名阻断</td>
-						<td class="limited-width">${pvlesswstls}</td>
-						<td><button class="btn btn-primary" onclick="copyToClipboard('${pvlesswstls}')">点击复制链接</button></td>
+						<td class="limited-width">${p\u0076\u006c\u0065\u0073\u0073wstls}</td>
+						<td><button class="btn btn-primary" onclick="copyToClipboard('${p\u0076\u006c\u0065\u0073\u0073wstls}')">点击复制链接</button></td>
 					</tr>
 				</tbody>
 			</table>
@@ -1095,7 +1096,7 @@ ${displayHtml}
 					</thead>
 					<tbody>
 						<tr>
-							<td><button class="btn btn-primary" onclick="copyToClipboard('${pgvlessshare}')">点击复制链接</button></td>
+							<td><button class="btn btn-primary" onclick="copyToClipboard('${pg\u0076\u006c\u0065\u0073\u0073share}')">点击复制链接</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -1154,8 +1155,8 @@ ${displayHtml}
 }
 
 function gettyConfig(userID, hostName) {
-	const vlessshare = btoa(`vless\u003A//${userID}\u0040${IP1}:${PT1}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V1_${IP1}_${PT1}\nvless\u003A//${userID}\u0040${IP2}:${PT2}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V2_${IP2}_${PT2}\nvless\u003A//${userID}\u0040${IP3}:${PT3}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V3_${IP3}_${PT3}\nvless\u003A//${userID}\u0040${IP4}:${PT4}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V4_${IP4}_${PT4}\nvless\u003A//${userID}\u0040${IP5}:${PT5}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V5_${IP5}_${PT5}\nvless\u003A//${userID}\u0040${IP6}:${PT6}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V6_${IP6}_${PT6}\nvless\u003A//${userID}\u0040${IP7}:${PT7}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V7_${IP7}_${PT7}\nvless\u003A//${userID}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V8_${IP8}_${PT8}\nvless\u003A//${userID}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V9_${IP9}_${PT9}\nvless\u003A//${userID}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V10_${IP10}_${PT10}\nvless\u003A//${userID}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V11_${IP11}_${PT11}\nvless\u003A//${userID}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V12_${IP12}_${PT12}\nvless\u003A//${userID}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V13_${IP13}_${PT13}`);
-		return `${vlessshare}`
+	const \u0076\u006c\u0065\u0073\u0073share = btoa(`\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP1}:${PT1}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V1_${IP1}_${PT1}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP2}:${PT2}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V2_${IP2}_${PT2}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP3}:${PT3}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V3_${IP3}_${PT3}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP4}:${PT4}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V4_${IP4}_${PT4}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP5}:${PT5}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V5_${IP5}_${PT5}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP6}:${PT6}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V6_${IP6}_${PT6}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP7}:${PT7}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V7_${IP7}_${PT7}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V8_${IP8}_${PT8}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V9_${IP9}_${PT9}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V10_${IP10}_${PT10}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V11_${IP11}_${PT11}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V12_${IP12}_${PT12}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V13_${IP13}_${PT13}`);
+		return `${\u0076\u006c\u0065\u0073\u0073share}`
 	}
 
 function getclConfig(userID, hostName) {
@@ -1190,7 +1191,7 @@ dns:
 
 proxies:
 - name: CF_V1_${IP1}_${PT1}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP1}
   port: ${PT1}
   uuid: ${userID}
@@ -1203,7 +1204,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_V2_${IP2}_${PT2}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP2}
   port: ${PT2}
   uuid: ${userID}
@@ -1216,7 +1217,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_V3_${IP3}_${PT3}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP3}
   port: ${PT3}
   uuid: ${userID}
@@ -1229,7 +1230,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_V4_${IP4}_${PT4}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP4}
   port: ${PT4}
   uuid: ${userID}
@@ -1242,7 +1243,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_V5_${IP5}_${PT5}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP5}
   port: ${PT5}
   uuid: ${userID}
@@ -1255,7 +1256,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_V6_${IP6}_${PT6}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP6}
   port: ${PT6}
   uuid: ${userID}
@@ -1268,7 +1269,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_V7_${IP7}_${PT7}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP7}
   port: ${PT7}
   uuid: ${userID}
@@ -1282,7 +1283,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_V8_${IP8}_${PT8}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP8}
   port: ${PT8}
   uuid: ${userID}
@@ -1296,7 +1297,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_V9_${IP9}_${PT9}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP9}
   port: ${PT9}
   uuid: ${userID}
@@ -1310,7 +1311,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_V10_${IP10}_${PT10}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP10}
   port: ${PT10}
   uuid: ${userID}
@@ -1324,7 +1325,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_V11_${IP11}_${PT11}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP11}
   port: ${PT11}
   uuid: ${userID}
@@ -1338,7 +1339,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_V12_${IP12}_${PT12}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP12}
   port: ${PT12}
   uuid: ${userID}
@@ -1352,7 +1353,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_V13_${IP13}_${PT13}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP13}
   port: ${PT13}
   uuid: ${userID}
@@ -1560,7 +1561,7 @@ return `{
 			"path": "/?ed=2560",
 			"type": "ws"
 		  },
-		  "type": "vless",
+		  "type": "\u0076\u006c\u0065\u0073\u0073",
 		  "uuid": "${userID}"
 		},
 		{
@@ -1577,7 +1578,7 @@ return `{
 			"path": "/?ed=2560",
 			"type": "ws"
 		  },
-		  "type": "vless",
+		  "type": "\u0076\u006c\u0065\u0073\u0073",
 		  "uuid": "${userID}"
 		},
 		{
@@ -1594,7 +1595,7 @@ return `{
 			"path": "/?ed=2560",
 			"type": "ws"
 		  },
-		  "type": "vless",
+		  "type": "\u0076\u006c\u0065\u0073\u0073",
 		  "uuid": "${userID}"
 		},
 		{
@@ -1611,7 +1612,7 @@ return `{
 			"path": "/?ed=2560",
 			"type": "ws"
 		  },
-		  "type": "vless",
+		  "type": "\u0076\u006c\u0065\u0073\u0073",
 		  "uuid": "${userID}"
 		},
 		{
@@ -1628,7 +1629,7 @@ return `{
 			"path": "/?ed=2560",
 			"type": "ws"
 		  },
-		  "type": "vless",
+		  "type": "\u0076\u006c\u0065\u0073\u0073",
 		  "uuid": "${userID}"
 		},
 		{
@@ -1645,7 +1646,7 @@ return `{
 			"path": "/?ed=2560",
 			"type": "ws"
 		  },
-		  "type": "vless",
+		  "type": "\u0076\u006c\u0065\u0073\u0073",
 		  "uuid": "${userID}"
 		},
 		{
@@ -1662,7 +1663,7 @@ return `{
 			"path": "/?ed=2560",
 			"type": "ws"
 		  },
-		  "type": "vless",
+		  "type": "\u0076\u006c\u0065\u0073\u0073",
 		  "uuid": "${userID}"
 		},
 		{     
@@ -1688,7 +1689,7 @@ return `{
 			"path": "/?ed=2560",
 			"type": "ws"
 		  },
-		  "type": "vless",
+		  "type": "\u0076\u006c\u0065\u0073\u0073",
 		  "uuid": "${userID}"
 		},
 		{
@@ -1714,7 +1715,7 @@ return `{
 			"path": "/?ed=2560",
 			"type": "ws"
 		  },
-		  "type": "vless",
+		  "type": "\u0076\u006c\u0065\u0073\u0073",
 		  "uuid": "${userID}"
 		},
 		{
@@ -1740,7 +1741,7 @@ return `{
 			"path": "/?ed=2560",
 			"type": "ws"
 		  },
-		  "type": "vless",
+		  "type": "\u0076\u006c\u0065\u0073\u0073",
 		  "uuid": "${userID}"
 		},
 		{
@@ -1766,7 +1767,7 @@ return `{
 			"path": "/?ed=2560",
 			"type": "ws"
 		  },
-		  "type": "vless",
+		  "type": "\u0076\u006c\u0065\u0073\u0073",
 		  "uuid": "${userID}"
 		},
 		{
@@ -1792,7 +1793,7 @@ return `{
 			"path": "/?ed=2560",
 			"type": "ws"
 		  },
-		  "type": "vless",
+		  "type": "\u0076\u006c\u0065\u0073\u0073",
 		  "uuid": "${userID}"
 		},
 		{
@@ -1818,7 +1819,7 @@ return `{
 			"path": "/?ed=2560",
 			"type": "ws"
 		  },
-		  "type": "vless",
+		  "type": "\u0076\u006c\u0065\u0073\u0073",
 		  "uuid": "${userID}"
 		},
 		{
@@ -1929,8 +1930,8 @@ return `{
 }
 
 function getptyConfig(userID, hostName) {
-	const vlessshare = btoa(`vless\u003A//${userID}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V8_${IP8}_${PT8}\nvless\u003A//${userID}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V9_${IP9}_${PT9}\nvless\u003A//${userID}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V10_${IP10}_${PT10}\nvless\u003A//${userID}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V11_${IP11}_${PT11}\nvless\u003A//${userID}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V12_${IP12}_${PT12}\nvless\u003A//${userID}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V13_${IP13}_${PT13}`);	
-		return `${vlessshare}`
+	const \u0076\u006c\u0065\u0073\u0073share = btoa(`\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V8_${IP8}_${PT8}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V9_${IP9}_${PT9}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V10_${IP10}_${PT10}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V11_${IP11}_${PT11}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V12_${IP12}_${PT12}\n\u0076\u006c\u0065\u0073\u0073\u003A//${userID}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_V13_${IP13}_${PT13}`);	
+		return `${\u0076\u006c\u0065\u0073\u0073share}`
 	}
 	
 function getpclConfig(userID, hostName) {
@@ -1965,7 +1966,7 @@ dns:
 
 proxies:
 - name: CF_V8_${IP8}_${PT8}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP8}
   port: ${PT8}
   uuid: ${userID}
@@ -1979,7 +1980,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_V9_${IP9}_${PT9}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP9}
   port: ${PT9}
   uuid: ${userID}
@@ -1993,7 +1994,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_V10_${IP10}_${PT10}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP10}
   port: ${PT10}
   uuid: ${userID}
@@ -2007,7 +2008,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_V11_${IP11}_${PT11}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP11}
   port: ${PT11}
   uuid: ${userID}
@@ -2021,7 +2022,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_V12_${IP12}_${PT12}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP12}
   port: ${PT12}
   uuid: ${userID}
@@ -2035,7 +2036,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_V13_${IP13}_${PT13}
-  type: vless
+  type: \u0076\u006c\u0065\u0073\u0073
   server: ${IP13}
   port: ${PT13}
   uuid: ${userID}
@@ -2224,7 +2225,7 @@ return `{
 				"path": "/?ed=2560",
 				"type": "ws"
 			  },
-			  "type": "vless",
+			  "type": "\u0076\u006c\u0065\u0073\u0073",
 			  "uuid": "${userID}"
 			},
 			{
@@ -2250,7 +2251,7 @@ return `{
 				"path": "/?ed=2560",
 				"type": "ws"
 			  },
-			  "type": "vless",
+			  "type": "\u0076\u006c\u0065\u0073\u0073",
 			  "uuid": "${userID}"
 			},
 			{
@@ -2276,7 +2277,7 @@ return `{
 				"path": "/?ed=2560",
 				"type": "ws"
 			  },
-			  "type": "vless",
+			  "type": "\u0076\u006c\u0065\u0073\u0073",
 			  "uuid": "${userID}"
 			},
 			{
@@ -2302,7 +2303,7 @@ return `{
 				"path": "/?ed=2560",
 				"type": "ws"
 			  },
-			  "type": "vless",
+			  "type": "\u0076\u006c\u0065\u0073\u0073",
 			  "uuid": "${userID}"
 			},
 			{
@@ -2328,7 +2329,7 @@ return `{
 				"path": "/?ed=2560",
 				"type": "ws"
 			  },
-			  "type": "vless",
+			  "type": "\u0076\u006c\u0065\u0073\u0073",
 			  "uuid": "${userID}"
 			},
 			{
@@ -2354,7 +2355,7 @@ return `{
 				"path": "/?ed=2560",
 				"type": "ws"
 			  },
-			  "type": "vless",
+			  "type": "\u0076\u006c\u0065\u0073\u0073",
 			  "uuid": "${userID}"
 			},
 			{
