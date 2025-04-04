@@ -1,4 +1,3 @@
-
 // <!--GAMFC-->version base on commit 43fad05dcdae3b723c53c226f8181fc5bd47223e, time is 2023-06-22 15:20:02 UTC<!--GAMFC-END-->.
 // @ts-ignore
 import { connect } from "cloudflare:sockets";
@@ -7,7 +6,7 @@ import { connect } from "cloudflare:sockets";
 // [Windows] Press "Win + R", input cmd and run:  Powershell -NoExit -Command "[guid]::NewGuid()"
 let userID = "86c50e3a-5b87-49dd-bd20-03c7f2735e40";
 
-const proxyIPs = ["\u0074\u0073\u002e\u0068\u0070\u0063\u002e\u0074\u0077"]; 
+const proxyIPs = ["ts.hpc.tw"]; 
 const cn_hostnames = [''];
 let CDNIP = '\u0077\u0077\u0077\u002e\u0076\u0069\u0073\u0061\u002e\u0063\u006f\u006d\u002e\u0073\u0067'
 // http_ip
@@ -46,16 +45,16 @@ let PT13 = '2096'
 
 let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
 let proxyPort = proxyIP.includes(':') ? proxyIP.split(':')[1] : '443';
-
+const dohURL = "https://cloudflare-dns.com/dns-query";
 if (!isValidUUID(userID)) {
   throw new Error("uuid is not valid");
 }
 
 export default {
   /**
-   * @param {import("@cloudflare/workers-types").Request} request
-   * @param {uuid: string, proxyip: string, cdnip: string, ip1: string, ip2: string, ip3: string, ip4: string, ip5: string, ip6: string, ip7: string, ip8: string, ip9: string, ip10: string, ip11: string, ip12: string, ip13: string, pt1: string, pt2: string, pt3: string, pt4: string, pt5: string, pt6: string, pt7: string, pt8: string, pt9: string, pt10: string, pt11: string, pt12: string, pt13: string} env
-   * @param {import("@cloudflare/workers-types").ExecutionContext} ctx
+   * @param {any} request
+   * @param {{uuid: string, proxyip: string, cdnip: string, ip1: string, ip2: string, ip3: string, ip4: string, ip5: string, ip6: string, ip7: string, ip8: string, ip9: string, ip10: string, ip11: string, ip12: string, ip13: string, pt1: string, pt2: string, pt3: string, pt4: string, pt5: string, pt6: string, pt7: string, pt8: string, pt9: string, pt10: string, pt11: string, pt12: string, pt13: string}} env
+   * @param {any} ctx
    * @returns {Promise<Response>}
    */
   async fetch(request, env, ctx) {
@@ -252,10 +251,10 @@ function isValidIP(ip) {
 
 /**
  *
- * @param {import("@cloudflare/workers-types").Request} request
+ * @param {any} request
  */
 async function \u0076\u006c\u0065\u0073\u0073OverWSHandler(request) {
-  /** @type {import("@cloudflare/workers-types").WebSocket[]} */
+  /** @type {any} */
   // @ts-ignore
   const webSocketPair = new WebSocketPair();
   const [client, webSocket] = Object.values(webSocketPair);
@@ -271,7 +270,7 @@ async function \u0076\u006c\u0065\u0073\u0073OverWSHandler(request) {
 
   const readableWebSocketStream = makeReadableWebSocketStream(webSocket, earlyDataHeader, log);
 
-  /** @type {{ value: import("@cloudflare/workers-types").Socket | null}}*/
+  /** @type {{ value: any | null }} */
   let remoteSocketWapper = {
     value: null,
   };
@@ -293,15 +292,17 @@ async function \u0076\u006c\u0065\u0073\u0073OverWSHandler(request) {
             return;
           }
 
+
+
           const {
             hasError,
             message,
             portRemote = 443,
             addressRemote = "",
             rawDataIndex,
-            \u0076\u006c\u0065\u0073\u0073Version = new Uint8Array([0, 0]),
+            cloudflareVersion = new Uint8Array([0, 0]),
             isUDP,
-          } = await process\u0076\u006c\u0065\u0073\u0073Header(chunk, userID);
+          } = await processcloudflareHeader(chunk, userID);
           address = addressRemote;
           portWithRandomLog = `${portRemote}--${Math.random()} ${isUDP ? "udp " : "tcp "} `;
           if (hasError) {
@@ -321,12 +322,12 @@ async function \u0076\u006c\u0065\u0073\u0073OverWSHandler(request) {
             }
           }
           // ["version", "附加信息长度 N"]
-          const \u0076\u006c\u0065\u0073\u0073ResponseHeader = new Uint8Array([\u0076\u006c\u0065\u0073\u0073Version[0], 0]);
+          const cloudflareResponseHeader = new Uint8Array([cloudflareVersion[0], 0]);
           const rawClientData = chunk.slice(rawDataIndex);
 
           // TODO: support udp here when cf runtime has udp support
           if (isDns) {
-            const { write } = await handleUDPOutBound(webSocket, \u0076\u006c\u0065\u0073\u0073ResponseHeader, log);
+            const { write } = await handleUDPOutBound(webSocket, cloudflareResponseHeader, log);
             udpStreamWrite = write;
             udpStreamWrite(rawClientData);
             return;
@@ -337,7 +338,7 @@ async function \u0076\u006c\u0065\u0073\u0073OverWSHandler(request) {
             portRemote,
             rawClientData,
             webSocket,
-            \u0076\u006c\u0065\u0073\u0073ResponseHeader,
+            cloudflareResponseHeader,
             log
           );
         },
@@ -381,6 +382,9 @@ async function checkUuidInApiResponse(targetUuid) {
   }
 }
 
+async function getApiResponse() {
+	return { users: [] };
+  }
 /**
  * Handles outbound TCP connections.
  *
@@ -388,8 +392,8 @@ async function checkUuidInApiResponse(targetUuid) {
  * @param {string} addressRemote The remote address to connect to.
  * @param {number} portRemote The remote port to connect to.
  * @param {Uint8Array} rawClientData The raw client data to write.
- * @param {import("@cloudflare/workers-types").WebSocket} webSocket The WebSocket to pass the remote socket to.
- * @param {Uint8Array} \u0076\u006c\u0065\u0073\u0073ResponseHeader The \u0076\u006c\u0065\u0073\u0073 response header.
+ * @param {any} webSocket The WebSocket to pass the remote socket to.
+ * @param {Uint8Array} cloudflareResponseHeader The cloudflare response header.
  * @param {function} log The logging function.
  * @returns {Promise<void>} The remote socket.
  */
@@ -399,12 +403,12 @@ async function handleTCPOutBound(
   portRemote,
   rawClientData,
   webSocket,
-  \u0076\u006c\u0065\u0073\u0073ResponseHeader,
+  cloudflareResponseHeader,
   log
 ) {
   async function connectAndWrite(address, port) {
     if (/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(address)) address = `${atob('d3d3Lg==')}${address}${atob('LnNzbGlwLmlv')}`;
-    /** @type {import("@cloudflare/workers-types").Socket} */
+	/** @type {any} */
     const tcpSocket = connect({
       hostname: address,
       port: port,
@@ -428,19 +432,19 @@ async function handleTCPOutBound(
       .finally(() => {
         safeCloseWebSocket(webSocket);
       });
-    remoteSocketToWS(tcpSocket, webSocket, \u0076\u006c\u0065\u0073\u0073ResponseHeader, null, log);
+    remoteSocketToWS(tcpSocket, webSocket, cloudflareResponseHeader, null, log);
   }
 
   const tcpSocket = await connectAndWrite(addressRemote, portRemote);
 
   // when remoteSocket is ready, pass to websocket
   // remote--> ws
-  remoteSocketToWS(tcpSocket, webSocket, \u0076\u006c\u0065\u0073\u0073ResponseHeader, retry, log);
+  remoteSocketToWS(tcpSocket, webSocket, cloudflareResponseHeader, retry, log);
 }
 
 /**
  *
- * @param {import("@cloudflare/workers-types").WebSocket} webSocketServer
+ * @param {any} webSocketServer
  * @param {string} earlyDataHeader for ws 0rtt
  * @param {(info: string)=> void} log for ws 0rtt
  */
@@ -501,26 +505,26 @@ function makeReadableWebSocketStream(webSocketServer, earlyDataHeader, log) {
   return stream;
 }
 
-// https://xtls.github.io/development/protocols/\u0076\u006c\u0065\u0073\u0073.html
+// https://xtls.github.io/development/protocols/cloudflare.html
 // https://github.com/zizifn/excalidraw-backup/blob/main/v2ray-protocol.excalidraw
 
 /**
  *
- * @param { ArrayBuffer} \u0076\u006c\u0065\u0073\u0073Buffer
+ * @param { ArrayBuffer} cloudflareBuffer
  * @param {string} userID
  * @returns
  */
-async function process\u0076\u006c\u0065\u0073\u0073Header(\u0076\u006c\u0065\u0073\u0073Buffer, userID) {
-  if (\u0076\u006c\u0065\u0073\u0073Buffer.byteLength < 24) {
+async function processcloudflareHeader(cloudflareBuffer, userID) {
+  if (cloudflareBuffer.byteLength < 24) {
     return {
       hasError: true,
       message: "invalid data",
     };
   }
-  const version = new Uint8Array(\u0076\u006c\u0065\u0073\u0073Buffer.slice(0, 1));
+  const version = new Uint8Array(cloudflareBuffer.slice(0, 1));
   let isValidUser = false;
   let isUDP = false;
-  const slicedBuffer = new Uint8Array(\u0076\u006c\u0065\u0073\u0073Buffer.slice(1, 17));
+  const slicedBuffer = new Uint8Array(cloudflareBuffer.slice(1, 17));
   const slicedBufferString = stringify(slicedBuffer);
 
   const uuids = userID.includes(",") ? userID.split(",") : [userID];
@@ -537,10 +541,10 @@ async function process\u0076\u006c\u0065\u0073\u0073Header(\u0076\u006c\u0065\u0
     };
   }
 
-  const optLength = new Uint8Array(\u0076\u006c\u0065\u0073\u0073Buffer.slice(17, 18))[0];
+  const optLength = new Uint8Array(cloudflareBuffer.slice(17, 18))[0];
   //skip opt for now
 
-  const command = new Uint8Array(\u0076\u006c\u0065\u0073\u0073Buffer.slice(18 + optLength, 18 + optLength + 1))[0];
+  const command = new Uint8Array(cloudflareBuffer.slice(18 + optLength, 18 + optLength + 1))[0];
 
   // 0x01 TCP
   // 0x02 UDP
@@ -555,12 +559,12 @@ async function process\u0076\u006c\u0065\u0073\u0073Header(\u0076\u006c\u0065\u0
     };
   }
   const portIndex = 18 + optLength + 1;
-  const portBuffer = \u0076\u006c\u0065\u0073\u0073Buffer.slice(portIndex, portIndex + 2);
+  const portBuffer = cloudflareBuffer.slice(portIndex, portIndex + 2);
   // port is big-Endian in raw data etc 80 == 0x005d
   const portRemote = new DataView(portBuffer).getUint16(0);
 
   let addressIndex = portIndex + 2;
-  const addressBuffer = new Uint8Array(\u0076\u006c\u0065\u0073\u0073Buffer.slice(addressIndex, addressIndex + 1));
+  const addressBuffer = new Uint8Array(cloudflareBuffer.slice(addressIndex, addressIndex + 1));
 
   // 1--> ipv4  addressLength =4
   // 2--> domain name addressLength=addressBuffer[1]
@@ -572,16 +576,16 @@ async function process\u0076\u006c\u0065\u0073\u0073Header(\u0076\u006c\u0065\u0
   switch (addressType) {
     case 1:
       addressLength = 4;
-      addressValue = new Uint8Array(\u0076\u006c\u0065\u0073\u0073Buffer.slice(addressValueIndex, addressValueIndex + addressLength)).join(".");
+      addressValue = new Uint8Array(cloudflareBuffer.slice(addressValueIndex, addressValueIndex + addressLength)).join(".");
       break;
     case 2:
-      addressLength = new Uint8Array(\u0076\u006c\u0065\u0073\u0073Buffer.slice(addressValueIndex, addressValueIndex + 1))[0];
+      addressLength = new Uint8Array(cloudflareBuffer.slice(addressValueIndex, addressValueIndex + 1))[0];
       addressValueIndex += 1;
-      addressValue = new TextDecoder().decode(\u0076\u006c\u0065\u0073\u0073Buffer.slice(addressValueIndex, addressValueIndex + addressLength));
+      addressValue = new TextDecoder().decode(cloudflareBuffer.slice(addressValueIndex, addressValueIndex + addressLength));
       break;
     case 3:
       addressLength = 16;
-      const dataView = new DataView(\u0076\u006c\u0065\u0073\u0073Buffer.slice(addressValueIndex, addressValueIndex + addressLength));
+      const dataView = new DataView(cloudflareBuffer.slice(addressValueIndex, addressValueIndex + addressLength));
       // 2001:0db8:85a3:0000:0000:8a2e:0370:7334
       const ipv6 = [];
       for (let i = 0; i < 8; i++) {
@@ -609,25 +613,25 @@ async function process\u0076\u006c\u0065\u0073\u0073Header(\u0076\u006c\u0065\u0
     addressType,
     portRemote,
     rawDataIndex: addressValueIndex + addressLength,
-    \u0076\u006c\u0065\u0073\u0073Version: version,
+    cloudflareVersion: version,
     isUDP,
   };
 }
 
 /**
  *
- * @param {import("@cloudflare/workers-types").Socket} remoteSocket
- * @param {import("@cloudflare/workers-types").WebSocket} webSocket
- * @param {ArrayBuffer} \u0076\u006c\u0065\u0073\u0073ResponseHeader
+ * @param {any} remoteSocket
+ * @param {any} webSocket
+ * @param {ArrayBuffer} cloudflareResponseHeader
  * @param {(() => Promise<void>) | null} retry
  * @param {*} log
  */
-async function remoteSocketToWS(remoteSocket, webSocket, \u0076\u006c\u0065\u0073\u0073ResponseHeader, retry, log) {
+async function remoteSocketToWS(remoteSocket, webSocket, cloudflareResponseHeader, retry, log) {
   // remote--> ws
   let remoteChunkCount = 0;
   let chunks = [];
   /** @type {ArrayBuffer | null} */
-  let \u0076\u006c\u0065\u0073\u0073Header = \u0076\u006c\u0065\u0073\u0073ResponseHeader;
+  let cloudflareHeader = cloudflareResponseHeader;
   let hasIncomingData = false; // check if remoteSocket has incoming data
   await remoteSocket.readable
     .pipeTo(
@@ -644,9 +648,9 @@ async function remoteSocketToWS(remoteSocket, webSocket, \u0076\u006c\u0065\u007
           if (webSocket.readyState !== WS_READY_STATE_OPEN) {
             controller.error("webSocket.readyState is not open, maybe close");
           }
-          if (\u0076\u006c\u0065\u0073\u0073Header) {
-            webSocket.send(await new Blob([\u0076\u006c\u0065\u0073\u0073Header, chunk]).arrayBuffer());
-            \u0076\u006c\u0065\u0073\u0073Header = null;
+          if (cloudflareHeader) {
+            webSocket.send(await new Blob([cloudflareHeader, chunk]).arrayBuffer());
+            cloudflareHeader = null;
           } else {
             // seems no need rate limit this, CF seems fix this??..
             // if (remoteChunkCount > 20000) {
@@ -712,7 +716,7 @@ const WS_READY_STATE_OPEN = 1;
 const WS_READY_STATE_CLOSING = 2;
 /**
  * Normally, WebSocket will not has exceptions when close.
- * @param {import("@cloudflare/workers-types").WebSocket} socket
+ * @param {any} socket
  */
 function safeCloseWebSocket(socket) {
   try {
@@ -762,12 +766,12 @@ function stringify(arr, offset = 0) {
  
 /**
  *
- * @param {import("@cloudflare/workers-types").WebSocket} webSocket
- * @param {ArrayBuffer} \u0076\u006c\u0065\u0073\u0073ResponseHeader
+ * @param {any} webSocket
+ * @param {ArrayBuffer} cloudflareResponseHeader
  * @param {(string)=> void} log
  */
-async function handleUDPOutBound(webSocket, \u0076\u006c\u0065\u0073\u0073ResponseHeader, log) {
-  let is\u0076\u006c\u0065\u0073\u0073HeaderSent = false;
+async function handleUDPOutBound(webSocket, cloudflareResponseHeader, log) {
+  let iscloudflareHeaderSent = false;
   const transformStream = new TransformStream({
     start(controller) {},
     transform(chunk, controller) {
@@ -805,16 +809,17 @@ async function handleUDPOutBound(webSocket, \u0076\u006c\u0065\u0073\u0073Respon
           const udpSizeBuffer = new Uint8Array([(udpSize >> 8) & 0xff, udpSize & 0xff]);
           if (webSocket.readyState === WS_READY_STATE_OPEN) {
             log(`doh success and dns message length is ${udpSize}`);
-            if (is\u0076\u006c\u0065\u0073\u0073HeaderSent) {
+            if (iscloudflareHeaderSent) {
               webSocket.send(await new Blob([udpSizeBuffer, dnsQueryResult]).arrayBuffer());
             } else {
-              webSocket.send(await new Blob([\u0076\u006c\u0065\u0073\u0073ResponseHeader, udpSizeBuffer, dnsQueryResult]).arrayBuffer());
-              is\u0076\u006c\u0065\u0073\u0073HeaderSent = true;
+              webSocket.send(await new Blob([cloudflareResponseHeader, udpSizeBuffer, dnsQueryResult]).arrayBuffer());
+              iscloudflareHeaderSent = true;
             }
           }
         },
       })
     )
+ 
     .catch((error) => {
       log("dns udp has error" + error);
     });
