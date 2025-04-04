@@ -2,7 +2,7 @@
 import { connect } from "cloudflare:sockets";
  
 let Pswd = "trojan";
-const proxyIPs = ["\u0074\u0073\u002e\u0068\u0070\u0063\u002e\u0074\u0077"]; 
+const proxyIPs = ["ts.hpc.tw"]; 
 let cn_hostnames = [''];
 let CDNIP = '\u0077\u0077\u0077\u002e\u0076\u0069\u0073\u0061\u002e\u0063\u006f\u006d\u002e\u0073\u0067'
 // http_ip
@@ -44,9 +44,9 @@ let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
 let proxyPort = proxyIP.includes(':') ? proxyIP.split(':')[1] : '443';
 const worker_default = {
   /**
-   * @param {import("@cloudflare/workers-types").Request} request
-   * @param {proxyip: string, pswd: string, cdnip: string, ip1: string, ip2: string, ip3: string, ip4: string, ip5: string, ip6: string, ip7: string, ip8: string, ip9: string, ip10: string, ip11: string, ip12: string, ip13: string, pt1: string, pt2: string, pt3: string, pt4: string, pt5: string, pt6: string, pt7: string, pt8: string, pt9: string, pt10: string, pt11: string, pt12: string, pt13: string} env
-   * @param {import("@cloudflare/workers-types").ExecutionContext} ctx
+   * @param {any} request
+   * @param {{proxyip: string, pswd: string, cdnip: string, ip1: string, ip2: string, ip3: string, ip4: string, ip5: string, ip6: string, ip7: string, ip8: string, ip9: string, ip10: string, ip11: string, ip12: string, ip13: string, pt1: string, pt2: string, pt3: string, pt4: string, pt5: string, pt6: string, pt7: string, pt8: string, pt9: string, pt10: string, pt11: string, pt12: string, pt13: string}} env
+   * @param {any} ctx
    * @returns {Promise<Response>}
    */
   async fetch(request, env, ctx) {
@@ -112,8 +112,8 @@ const worker_default = {
         const url = new URL(request.url);
         switch (url.pathname) {
           case `/${Pswd}`: {
-            const trojanConfig = gettrojanConfig(Pswd, request.headers.get("Host"));
-            return new Response(`${trojanConfig}`, {
+            const ygkkkConfig = getygkkkConfig(Pswd, request.headers.get("Host"));
+            return new Response(`${ygkkkConfig}`, {
               status: 200,
               headers: {
                 "Content-Type": "text/html;charset=utf-8",
@@ -228,7 +228,7 @@ const worker_default = {
 					}
 				}	
 			}
-        return await trojanOverWSHandler(request);
+        return await ygkkkOverWSHandler(request);
 		}
     } catch (err) {
       /** @type {Error} */ let e = err;
@@ -242,7 +242,7 @@ function isValidIP(ip) {
     return reg.test(ip);
 }
 
-async function trojanOverWSHandler(request) {
+async function ygkkkOverWSHandler(request) {
   const webSocketPair = new WebSocketPair();
   const [client, webSocket] = Object.values(webSocketPair);
   webSocket.accept();
@@ -276,7 +276,7 @@ async function trojanOverWSHandler(request) {
             portRemote = 443,
             addressRemote = "",
             rawClientData,
-          } = await parseTrojanHeader(chunk);
+          } = await parseygkkkHeader(chunk);
           address = addressRemote;
           portWithRandomLog = `${portRemote}--${Math.random()} tcp`;
           if (hasError) {
@@ -303,7 +303,7 @@ async function trojanOverWSHandler(request) {
   });
 }
 
-async function parseTrojanHeader(buffer) {
+async function parseygkkkHeader(buffer) {
   if (buffer.byteLength < 56) {
     return {
       hasError: true,
@@ -527,11 +527,10 @@ function safeCloseWebSocket(socket) {
   }
 }
 export { worker_default as default };
-
 //# sourceMappingURL=worker.js.map
-function gettrojanConfig(Pswd, hostName) {
-  const wtrojanws = atob(btoa(`trojan://${Pswd}@${CDNIP}:8880?security=none&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#${hostName}`));
-  const ptrojanwstls = atob(btoa(`trojan://${Pswd}@${CDNIP}:8443?security=tls&type=ws&host=${hostName}&sni=${hostName}&fp=random&path=%2F%3Fed%3D2560#${hostName}`));
+function getygkkkConfig(Pswd, hostName) {
+  const w\u0074\u0072\u006F\u006A\u0061\u006Ews = atob(btoa(`\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}@${CDNIP}:8880?security=none&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#${hostName}`));
+  const p\u0074\u0072\u006F\u006A\u0061\u006Ewstls = atob(btoa(`\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}@${CDNIP}:8443?security=tls&type=ws&host=${hostName}&sni=${hostName}&fp=random&path=%2F%3Fed%3D2560#${hostName}`));
   const note = `甬哥博客地址：https://ygkkk.blogspot.com\n甬哥YouTube频道：https://www.youtube.com/@ygkkk\n甬哥TG电报群组：https://t.me/ygkkktg\n甬哥TG电报频道：https://t.me/ygkkktgpd\n\nProxyIP全局运行中：${proxyIP}`;
   const ty = `https://${hostName}/${Pswd}/ty`
   const cl = `https://${hostName}/${Pswd}/cl`
@@ -540,9 +539,9 @@ function gettrojanConfig(Pswd, hostName) {
   const pcl = `https://${hostName}/${Pswd}/pcl`
   const psb = `https://${hostName}/${Pswd}/psb`
 
-  const wktrojanshare = btoa(`trojan://${Pswd}\u0040${IP1}:${PT1}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T1_${IP1}_${PT1}\ntrojan://${Pswd}\u0040${IP2}:${PT2}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T2_${IP2}_${PT2}\ntrojan://${Pswd}\u0040${IP3}:${PT3}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T3_${IP3}_${PT3}\ntrojan://${Pswd}\u0040${IP4}:${PT4}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T4_${IP4}_${PT4}\ntrojan://${Pswd}\u0040${IP5}:${PT5}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T5_${IP5}_${PT5}\ntrojan://${Pswd}\u0040${IP6}:${PT6}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T6_${IP6}_${PT6}\ntrojan://${Pswd}\u0040${IP7}:${PT7}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T7_${IP7}_${PT7}\ntrojan://${Pswd}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T8_${IP8}_${PT8}\ntrojan://${Pswd}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T9_${IP9}_${PT9}\ntrojan://${Pswd}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T10_${IP10}_${PT10}\ntrojan://${Pswd}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T11_${IP11}_${PT11}\ntrojan://${Pswd}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T12_${IP12}_${PT12}\ntrojan://${Pswd}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T13_${IP13}_${PT13}`);
+  const wk\u0074\u0072\u006F\u006A\u0061\u006Eshare = btoa(`\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP1}:${PT1}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T1_${IP1}_${PT1}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP2}:${PT2}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T2_${IP2}_${PT2}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP3}:${PT3}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T3_${IP3}_${PT3}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP4}:${PT4}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T4_${IP4}_${PT4}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP5}:${PT5}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T5_${IP5}_${PT5}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP6}:${PT6}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T6_${IP6}_${PT6}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP7}:${PT7}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T7_${IP7}_${PT7}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T8_${IP8}_${PT8}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T9_${IP9}_${PT9}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T10_${IP10}_${PT10}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T11_${IP11}_${PT11}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T12_${IP12}_${PT12}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T13_${IP13}_${PT13}`);
 	
-  const pgtrojanshare = btoa(`trojan://${Pswd}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T8_${IP8}_${PT8}\ntrojan://${Pswd}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T9_${IP9}_${PT9}\ntrojan://${Pswd}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T10_${IP10}_${PT10}\ntrojan://${Pswd}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T11_${IP11}_${PT11}\ntrojan://${Pswd}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T12_${IP12}_${PT12}\ntrojan://${Pswd}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T13_${IP13}_${PT13}`);
+  const pg\u0074\u0072\u006F\u006A\u0061\u006Eshare = btoa(`\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T8_${IP8}_${PT8}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T9_${IP9}_${PT9}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T10_${IP10}_${PT10}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T11_${IP11}_${PT11}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T12_${IP12}_${PT12}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T13_${IP13}_${PT13}`);
 	
   const noteshow = note.replace(/\n/g, '<br>');
   const displayHtml = `
@@ -582,7 +581,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-trojan代理脚本 V24.12.13</h1>
+            <h1>Cloudflare-workers/pages-\u0074\u0072\u006F\u006A\u0061\u006E代理脚本 V24.12.13</h1>
 			<hr>
             <p>${noteshow}</p>
             <hr>
@@ -590,7 +589,7 @@ ${displayHtml}
 			<hr>
             <br>
             <br>
-            <h3>1：CF-workers-trojan+ws节点</h3>
+            <h3>1：CF-workers-\u0074\u0072\u006F\u006A\u0061\u006E+ws节点</h3>
 			<table class="table">
 				<thead>
 					<tr>
@@ -601,8 +600,8 @@ ${displayHtml}
 				<tbody>
 					<tr>
 						<td class="limited-width">关闭了TLS加密，无视域名阻断</td>
-						<td class="limited-width">${wtrojanws}</td>
-						<td><button class="btn btn-primary" onclick="copyToClipboard('${wtrojanws}')">点击复制链接</button></td>
+						<td class="limited-width">${w\u0074\u0072\u006F\u006A\u0061\u006Ews}</td>
+						<td><button class="btn btn-primary" onclick="copyToClipboard('${w\u0074\u0072\u006F\u006A\u0061\u006Ews}')">点击复制链接</button></td>
 					</tr>
 				</tbody>
 			</table>
@@ -621,7 +620,7 @@ ${displayHtml}
 			<hr>
             <br>
             <br>
-            <h3>2：CF-workers-trojan+ws+tls</h3>
+            <h3>2：CF-workers-\u0074\u0072\u006F\u006A\u0061\u006E+ws+tls</h3>
 			<table class="table">
 				<thead>
 					<tr>
@@ -632,8 +631,8 @@ ${displayHtml}
 				<tbody>
 					<tr>
 						<td class="limited-width">启用了TLS加密，<br>如果客户端支持分片(Fragment)功能，建议开启，防止域名阻断</td>
-						<td class="limited-width">${ptrojanwstls}</td>	
-						<td><button class="btn btn-primary" onclick="copyToClipboard('${ptrojanwstls}')">点击复制链接</button></td>
+						<td class="limited-width">${p\u0074\u0072\u006F\u006A\u0061\u006Ewstls}</td>	
+						<td><button class="btn btn-primary" onclick="copyToClipboard('${p\u0074\u0072\u006F\u006A\u0061\u006Ewstls}')">点击复制链接</button></td>
 					</tr>
 				</tbody>
 			</table>
@@ -667,7 +666,7 @@ ${displayHtml}
 					</thead>
 					<tbody>
 						<tr>
-							<td><button class="btn btn-primary" onclick="copyToClipboard('${wktrojanshare}')">点击复制链接</button></td>
+							<td><button class="btn btn-primary" onclick="copyToClipboard('${wk\u0074\u0072\u006F\u006A\u0061\u006Eshare}')">点击复制链接</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -729,7 +728,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-trojan代理脚本 V24.12.13</h1>
+            <h1>Cloudflare-workers/pages-\u0074\u0072\u006F\u006A\u0061\u006E代理脚本 V24.12.13</h1>
 			<hr>
             <p>${noteshow}</p>
             <hr>
@@ -737,7 +736,7 @@ ${displayHtml}
 			<hr>
             <br>
             <br>
-            <h3>1：CF-pages/workers/自定义域-trojan+ws+tls节点</h3>
+            <h3>1：CF-pages/workers/自定义域-\u0074\u0072\u006F\u006A\u0061\u006E+ws+tls节点</h3>
 			<table class="table">
 				<thead>
 					<tr>
@@ -748,8 +747,8 @@ ${displayHtml}
 				<tbody>
 					<tr>
 						<td class="limited-width">启用了TLS加密，<br>如果客户端支持分片(Fragment)功能，可开启，防止域名阻断</td>
-						<td class="limited-width">${ptrojanwstls}</td>
-						<td><button class="btn btn-primary" onclick="copyToClipboard('${ptrojanwstls}')">点击复制链接</button></td>
+						<td class="limited-width">${p\u0074\u0072\u006F\u006A\u0061\u006Ewstls}</td>
+						<td><button class="btn btn-primary" onclick="copyToClipboard('${p\u0074\u0072\u006F\u006A\u0061\u006Ewstls}')">点击复制链接</button></td>
 					</tr>
 				</tbody>
 			</table>
@@ -782,7 +781,7 @@ ${displayHtml}
 					</thead>
 					<tbody>
 						<tr>
-							<td><button class="btn btn-primary" onclick="copyToClipboard('${pgtrojanshare}')">点击复制链接</button></td>
+							<td><button class="btn btn-primary" onclick="copyToClipboard('${pg\u0074\u0072\u006F\u006A\u0061\u006Eshare}')">点击复制链接</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -840,8 +839,8 @@ ${displayHtml}
 }
 
 function gettyConfig(Pswd, hostName) {
-  const trojanshare = btoa(`trojan://${Pswd}\u0040${IP1}:${PT1}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T1_${IP1}_${PT1}\ntrojan://${Pswd}\u0040${IP2}:${PT2}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T2_${IP2}_${PT2}\ntrojan://${Pswd}\u0040${IP3}:${PT3}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T3_${IP3}_${PT3}\ntrojan://${Pswd}\u0040${IP4}:${PT4}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T4_${IP4}_${PT4}\ntrojan://${Pswd}\u0040${IP5}:${PT5}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T5_${IP5}_${PT5}\ntrojan://${Pswd}\u0040${IP6}:${PT6}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T6_${IP6}_${PT6}\ntrojan://${Pswd}\u0040${IP7}:${PT7}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T7_${IP7}_${PT7}\ntrojan://${Pswd}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T8_${IP8}_${PT8}\ntrojan://${Pswd}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T9_${IP9}_${PT9}\ntrojan://${Pswd}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T10_${IP10}_${PT10}\ntrojan://${Pswd}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T11_${IP11}_${PT11}\ntrojan://${Pswd}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T12_${IP12}_${PT12}\ntrojan://${Pswd}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T13_${IP13}_${PT13}`);
-  return `${trojanshare}`
+  const \u0074\u0072\u006F\u006A\u0061\u006Eshare = btoa(`\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP1}:${PT1}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T1_${IP1}_${PT1}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP2}:${PT2}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T2_${IP2}_${PT2}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP3}:${PT3}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T3_${IP3}_${PT3}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP4}:${PT4}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T4_${IP4}_${PT4}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP5}:${PT5}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T5_${IP5}_${PT5}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP6}:${PT6}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T6_${IP6}_${PT6}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP7}:${PT7}?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T7_${IP7}_${PT7}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T8_${IP8}_${PT8}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T9_${IP9}_${PT9}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T10_${IP10}_${PT10}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T11_${IP11}_${PT11}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T12_${IP12}_${PT12}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T13_${IP13}_${PT13}`);
+  return `${\u0074\u0072\u006F\u006A\u0061\u006Eshare}`
 }
 
 function getclConfig(Pswd, hostName) {
@@ -876,7 +875,7 @@ dns:
 
 proxies:
 - name: CF_T8_${IP8}_${PT8}
-  type: trojan
+  type: \u0074\u0072\u006F\u006A\u0061\u006E
   server: ${IP8}
   port: ${PT8}
   password: ${Pswd}
@@ -889,7 +888,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_T9_${IP9}_${PT9}
-  type: trojan
+  type: \u0074\u0072\u006F\u006A\u0061\u006E
   server: ${IP9}
   port: ${PT9}
   password: ${Pswd}
@@ -902,7 +901,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_T10_${IP10}_${PT10}
-  type: trojan
+  type: \u0074\u0072\u006F\u006A\u0061\u006E
   server: ${IP10}
   port: ${PT10}
   password: ${Pswd}
@@ -915,7 +914,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_T11_${IP11}_${PT11}
-  type: trojan
+  type: \u0074\u0072\u006F\u006A\u0061\u006E
   server: ${IP11}
   port: ${PT11}
   password: ${Pswd}
@@ -928,7 +927,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_T12_${IP12}_${PT12}
-  type: trojan
+  type: \u0074\u0072\u006F\u006A\u0061\u006E
   server: ${IP12}
   port: ${PT12}
   password: ${Pswd}
@@ -941,7 +940,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_T13_${IP13}_${PT13}
-  type: trojan
+  type: \u0074\u0072\u006F\u006A\u0061\u006E
   server: ${IP13}
   port: ${PT13}
   password: ${Pswd}
@@ -1126,7 +1125,7 @@ return `{
         "path": "/?ed=2560",
         "type": "ws"
         },
-        "type": "trojan",
+        "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
         "password": "${Pswd}"
       },
       {
@@ -1142,7 +1141,7 @@ return `{
         "path": "/?ed=2560",
         "type": "ws"
         },
-        "type": "trojan",
+        "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
         "password": "${Pswd}"
       },
       {
@@ -1158,7 +1157,7 @@ return `{
         "path": "/?ed=2560",
         "type": "ws"
         },
-        "type": "trojan",
+        "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
         "password": "${Pswd}"
       },
       {
@@ -1174,7 +1173,7 @@ return `{
         "path": "/?ed=2560",
         "type": "ws"
         },
-        "type": "trojan",
+        "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
         "password": "${Pswd}"
       },
       {
@@ -1190,7 +1189,7 @@ return `{
         "path": "/?ed=2560",
         "type": "ws"
         },
-        "type": "trojan",
+        "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
         "password": "${Pswd}"
       },
       {
@@ -1206,7 +1205,7 @@ return `{
         "path": "/?ed=2560",
         "type": "ws"
         },
-        "type": "trojan",
+        "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
         "password": "${Pswd}"
       },
       {
@@ -1222,7 +1221,7 @@ return `{
         "path": "/?ed=2560",
         "type": "ws"
         },
-        "type": "trojan",
+        "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
         "password": "${Pswd}"
       },
       {
@@ -1247,7 +1246,7 @@ return `{
         "path": "/?ed=2560",
         "type": "ws"
         },
-        "type": "trojan",
+        "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
         "password": "${Pswd}"
       },
       {     
@@ -1272,7 +1271,7 @@ return `{
         "path": "/?ed=2560",
         "type": "ws"
         },
-        "type": "trojan",
+        "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
         "password": "${Pswd}"
       },
       {     
@@ -1297,7 +1296,7 @@ return `{
         "path": "/?ed=2560",
         "type": "ws"
         },
-        "type": "trojan",
+        "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
         "password": "${Pswd}"
       },
       {     
@@ -1322,7 +1321,7 @@ return `{
         "path": "/?ed=2560",
         "type": "ws"
         },
-        "type": "trojan",
+        "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
         "password": "${Pswd}"
       },
       {
@@ -1347,7 +1346,7 @@ return `{
         "path": "/?ed=2560",
         "type": "ws"
         },
-        "type": "trojan",
+        "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
         "password": "${Pswd}"
       },
       {     
@@ -1372,7 +1371,7 @@ return `{
         "path": "/?ed=2560",
         "type": "ws"
         },
-        "type": "trojan",
+        "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
         "password": "${Pswd}"
       },
       {
@@ -1483,8 +1482,8 @@ return `{
 }
 
 function getptyConfig(Pswd, hostName) {
-  const trojanshare = btoa(`trojan://${Pswd}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T8_${IP8}_${PT8}\ntrojan://${Pswd}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T9_${IP9}_${PT9}\ntrojan://${Pswd}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T10_${IP10}_${PT10}\ntrojan://${Pswd}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T11_${IP11}_${PT11}\ntrojan://${Pswd}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T12_${IP12}_${PT12}\ntrojan://${Pswd}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T13_${IP13}_${PT13}`);
-  return `${trojanshare}`
+  const \u0074\u0072\u006F\u006A\u0061\u006Eshare = btoa(`\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP8}:${PT8}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T8_${IP8}_${PT8}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP9}:${PT9}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T9_${IP9}_${PT9}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP10}:${PT10}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T10_${IP10}_${PT10}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP11}:${PT11}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T11_${IP11}_${PT11}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP12}:${PT12}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T12_${IP12}_${PT12}\n\u0074\u0072\u006F\u006A\u0061\u006E://${Pswd}\u0040${IP13}:${PT13}?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#CF_T13_${IP13}_${PT13}`);
+  return `${\u0074\u0072\u006F\u006A\u0061\u006Eshare}`
 }
 	
 function getpclConfig(Pswd, hostName) {
@@ -1519,7 +1518,7 @@ dns:
 
 proxies:
 - name: CF_T8_${IP8}_${PT8}
-  type: trojan
+  type: \u0074\u0072\u006F\u006A\u0061\u006E
   server: ${IP8}
   port: ${PT8}
   password: ${Pswd}
@@ -1532,7 +1531,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_T9_${IP9}_${PT9}
-  type: trojan
+  type: \u0074\u0072\u006F\u006A\u0061\u006E
   server: ${IP9}
   port: ${PT9}
   password: ${Pswd}
@@ -1545,7 +1544,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_T10_${IP10}_${PT10}
-  type: trojan
+  type: \u0074\u0072\u006F\u006A\u0061\u006E
   server: ${IP10}
   port: ${PT10}
   password: ${Pswd}
@@ -1558,7 +1557,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_T11_${IP11}_${PT11}
-  type: trojan
+  type: \u0074\u0072\u006F\u006A\u0061\u006E
   server: ${IP11}
   port: ${PT11}
   password: ${Pswd}
@@ -1571,7 +1570,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_T12_${IP12}_${PT12}
-  type: trojan
+  type: \u0074\u0072\u006F\u006A\u0061\u006E
   server: ${IP12}
   port: ${PT12}
   password: ${Pswd}
@@ -1584,7 +1583,7 @@ proxies:
       Host: ${hostName}
 
 - name: CF_T13_${IP13}_${PT13}
-  type: trojan
+  type: \u0074\u0072\u006F\u006A\u0061\u006E
   server: ${IP13}
   port: ${PT13}
   password: ${Pswd}
@@ -1771,7 +1770,7 @@ return `{
           "path": "/?ed=2560",
           "type": "ws"
           },
-          "type": "trojan",
+          "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
           "password": "${Pswd}"
         },
         {
@@ -1796,7 +1795,7 @@ return `{
           "path": "/?ed=2560",
           "type": "ws"
           },
-          "type": "trojan",
+          "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
           "password": "${Pswd}"
         },
         {
@@ -1821,7 +1820,7 @@ return `{
           "path": "/?ed=2560",
           "type": "ws"
           },
-          "type": "trojan",
+          "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
           "password": "${Pswd}"
         },
         {
@@ -1846,7 +1845,7 @@ return `{
           "path": "/?ed=2560",
           "type": "ws"
           },
-          "type": "trojan",
+          "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
           "password": "${Pswd}"
         },
         {
@@ -1871,7 +1870,7 @@ return `{
           "path": "/?ed=2560",
           "type": "ws"
           },
-          "type": "trojan",
+          "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
           "password": "${Pswd}"
         },
         {
@@ -1896,7 +1895,7 @@ return `{
           "path": "/?ed=2560",
           "type": "ws"
           },
-          "type": "trojan",
+          "type": "\u0074\u0072\u006F\u006A\u0061\u006E",
           "password": "${Pswd}"
         },
         {
