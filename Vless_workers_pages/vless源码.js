@@ -898,7 +898,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-\u0076\u006c\u0065\u0073\u0073代理脚本 V24.12.13</h1>
+            <h1>Cloudflare-workers/pages-\u0076\u006c\u0065\u0073\u0073代理脚本 V25.4.7</h1>
 	    <hr>
             <p>${noteshow}</p>
             <hr>
@@ -1047,7 +1047,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-\u0076\u006c\u0065\u0073\u0073代理脚本 V24.12.13</h1>
+            <h1>Cloudflare-workers/pages-\u0076\u006c\u0065\u0073\u0073代理脚本 V25.4.7</h1>
 			<hr>
             <p>${noteshow}</p>
             <hr>
@@ -1197,7 +1197,7 @@ dns:
 proxies:
 - name: CF_V1_${IP1}_${PT1}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP1}
+  server: ${IP1.replace(/[\[\]]/g, '')}
   port: ${PT1}
   uuid: ${userID}
   udp: false
@@ -1210,7 +1210,7 @@ proxies:
 
 - name: CF_V2_${IP2}_${PT2}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP2}
+  server: ${IP2.replace(/[\[\]]/g, '')}
   port: ${PT2}
   uuid: ${userID}
   udp: false
@@ -1223,7 +1223,7 @@ proxies:
 
 - name: CF_V3_${IP3}_${PT3}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP3}
+  server: ${IP3.replace(/[\[\]]/g, '')}
   port: ${PT3}
   uuid: ${userID}
   udp: false
@@ -1236,7 +1236,7 @@ proxies:
 
 - name: CF_V4_${IP4}_${PT4}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP4}
+  server: ${IP4.replace(/[\[\]]/g, '')}
   port: ${PT4}
   uuid: ${userID}
   udp: false
@@ -1249,7 +1249,7 @@ proxies:
 
 - name: CF_V5_${IP5}_${PT5}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP5}
+  server: ${IP5.replace(/[\[\]]/g, '')}
   port: ${PT5}
   uuid: ${userID}
   udp: false
@@ -1262,7 +1262,7 @@ proxies:
 
 - name: CF_V6_${IP6}_${PT6}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP6}
+  server: ${IP6.replace(/[\[\]]/g, '')}
   port: ${PT6}
   uuid: ${userID}
   udp: false
@@ -1275,7 +1275,7 @@ proxies:
 
 - name: CF_V7_${IP7}_${PT7}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP7}
+  server: ${IP7.replace(/[\[\]]/g, '')}
   port: ${PT7}
   uuid: ${userID}
   udp: false
@@ -1289,7 +1289,7 @@ proxies:
 
 - name: CF_V8_${IP8}_${PT8}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP8}
+  server: ${IP8.replace(/[\[\]]/g, '')}
   port: ${PT8}
   uuid: ${userID}
   udp: false
@@ -1303,7 +1303,7 @@ proxies:
 
 - name: CF_V9_${IP9}_${PT9}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP9}
+  server: ${IP9.replace(/[\[\]]/g, '')}
   port: ${PT9}
   uuid: ${userID}
   udp: false
@@ -1317,7 +1317,7 @@ proxies:
 
 - name: CF_V10_${IP10}_${PT10}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP10}
+  server: ${IP10.replace(/[\[\]]/g, '')}
   port: ${PT10}
   uuid: ${userID}
   udp: false
@@ -1331,7 +1331,7 @@ proxies:
 
 - name: CF_V11_${IP11}_${PT11}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP11}
+  server: ${IP11.replace(/[\[\]]/g, '')}
   port: ${PT11}
   uuid: ${userID}
   udp: false
@@ -1345,7 +1345,7 @@ proxies:
 
 - name: CF_V12_${IP12}_${PT12}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP12}
+  server: ${IP12.replace(/[\[\]]/g, '')}
   port: ${PT12}
   uuid: ${userID}
   udp: false
@@ -1359,7 +1359,7 @@ proxies:
 
 - name: CF_V13_${IP13}_${PT13}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP13}
+  server: ${IP13.replace(/[\[\]]/g, '')}
   port: ${PT13}
   uuid: ${userID}
   udp: false
@@ -1972,7 +1972,7 @@ dns:
 proxies:
 - name: CF_V8_${IP8}_${PT8}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP8}
+  server: ${IP8.replace(/[\[\]]/g, '')}
   port: ${PT8}
   uuid: ${userID}
   udp: false
@@ -1986,7 +1986,7 @@ proxies:
 
 - name: CF_V9_${IP9}_${PT9}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP9}
+  server: ${IP9.replace(/[\[\]]/g, '')}
   port: ${PT9}
   uuid: ${userID}
   udp: false
@@ -2000,7 +2000,7 @@ proxies:
 
 - name: CF_V10_${IP10}_${PT10}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP10}
+  server: ${IP10.replace(/[\[\]]/g, '')}
   port: ${PT10}
   uuid: ${userID}
   udp: false
@@ -2014,7 +2014,7 @@ proxies:
 
 - name: CF_V11_${IP11}_${PT11}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP11}
+  server: ${IP11.replace(/[\[\]]/g, '')}
   port: ${PT11}
   uuid: ${userID}
   udp: false
@@ -2028,7 +2028,7 @@ proxies:
 
 - name: CF_V12_${IP12}_${PT12}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP12}
+  server: ${IP12.replace(/[\[\]]/g, '')}
   port: ${PT12}
   uuid: ${userID}
   udp: false
@@ -2042,7 +2042,7 @@ proxies:
 
 - name: CF_V13_${IP13}_${PT13}
   type: \u0076\u006c\u0065\u0073\u0073
-  server: ${IP13}
+  server: ${IP13.replace(/[\[\]]/g, '')}
   port: ${PT13}
   uuid: ${userID}
   udp: false
