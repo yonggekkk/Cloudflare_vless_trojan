@@ -581,7 +581,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-\u0074\u0072\u006F\u006A\u0061\u006E代理脚本 V24.12.13</h1>
+            <h1>Cloudflare-workers/pages-\u0074\u0072\u006F\u006A\u0061\u006E代理脚本 V25.4.7</h1>
 			<hr>
             <p>${noteshow}</p>
             <hr>
@@ -728,7 +728,7 @@ ${displayHtml}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Cloudflare-workers/pages-\u0074\u0072\u006F\u006A\u0061\u006E代理脚本 V24.12.13</h1>
+            <h1>Cloudflare-workers/pages-\u0074\u0072\u006F\u006A\u0061\u006E代理脚本 V25.4.7</h1>
 			<hr>
             <p>${noteshow}</p>
             <hr>
@@ -876,7 +876,7 @@ dns:
 proxies:
 - name: CF_T8_${IP8}_${PT8}
   type: \u0074\u0072\u006F\u006A\u0061\u006E
-  server: ${IP8}
+  server: ${IP8.replace(/[\[\]]/g, '')}
   port: ${PT8}
   password: ${Pswd}
   udp: false
@@ -889,7 +889,7 @@ proxies:
 
 - name: CF_T9_${IP9}_${PT9}
   type: \u0074\u0072\u006F\u006A\u0061\u006E
-  server: ${IP9}
+  server: ${IP9.replace(/[\[\]]/g, '')}
   port: ${PT9}
   password: ${Pswd}
   udp: false
@@ -902,7 +902,7 @@ proxies:
 
 - name: CF_T10_${IP10}_${PT10}
   type: \u0074\u0072\u006F\u006A\u0061\u006E
-  server: ${IP10}
+  server: ${IP10.replace(/[\[\]]/g, '')}
   port: ${PT10}
   password: ${Pswd}
   udp: false
@@ -915,7 +915,7 @@ proxies:
 
 - name: CF_T11_${IP11}_${PT11}
   type: \u0074\u0072\u006F\u006A\u0061\u006E
-  server: ${IP11}
+  server: ${IP11.replace(/[\[\]]/g, '')}
   port: ${PT11}
   password: ${Pswd}
   udp: false
@@ -928,7 +928,7 @@ proxies:
 
 - name: CF_T12_${IP12}_${PT12}
   type: \u0074\u0072\u006F\u006A\u0061\u006E
-  server: ${IP12}
+  server: ${IP12.replace(/[\[\]]/g, '')}
   port: ${PT12}
   password: ${Pswd}
   udp: false
@@ -941,7 +941,7 @@ proxies:
 
 - name: CF_T13_${IP13}_${PT13}
   type: \u0074\u0072\u006F\u006A\u0061\u006E
-  server: ${IP13}
+  server: ${IP13.replace(/[\[\]]/g, '')}
   port: ${PT13}
   password: ${Pswd}
   udp: false
@@ -1519,7 +1519,7 @@ dns:
 proxies:
 - name: CF_T8_${IP8}_${PT8}
   type: \u0074\u0072\u006F\u006A\u0061\u006E
-  server: ${IP8}
+  server: ${IP8.replace(/[\[\]]/g, '')}
   port: ${PT8}
   password: ${Pswd}
   udp: false
@@ -1532,7 +1532,7 @@ proxies:
 
 - name: CF_T9_${IP9}_${PT9}
   type: \u0074\u0072\u006F\u006A\u0061\u006E
-  server: ${IP9}
+  server: ${IP9.replace(/[\[\]]/g, '')}
   port: ${PT9}
   password: ${Pswd}
   udp: false
@@ -1545,7 +1545,7 @@ proxies:
 
 - name: CF_T10_${IP10}_${PT10}
   type: \u0074\u0072\u006F\u006A\u0061\u006E
-  server: ${IP10}
+  server: ${IP10.replace(/[\[\]]/g, '')}
   port: ${PT10}
   password: ${Pswd}
   udp: false
@@ -1558,7 +1558,7 @@ proxies:
 
 - name: CF_T11_${IP11}_${PT11}
   type: \u0074\u0072\u006F\u006A\u0061\u006E
-  server: ${IP11}
+  server: ${IP11.replace(/[\[\]]/g, '')}
   port: ${PT11}
   password: ${Pswd}
   udp: false
@@ -1571,7 +1571,7 @@ proxies:
 
 - name: CF_T12_${IP12}_${PT12}
   type: \u0074\u0072\u006F\u006A\u0061\u006E
-  server: ${IP12}
+  server: ${IP12.replace(/[\[\]]/g, '')}
   port: ${PT12}
   password: ${Pswd}
   udp: false
@@ -1584,7 +1584,7 @@ proxies:
 
 - name: CF_T13_${IP13}_${PT13}
   type: \u0074\u0072\u006F\u006A\u0061\u006E
-  server: ${IP13}
+  server: ${IP13.replace(/[\[\]]/g, '')}
   port: ${PT13}
   password: ${Pswd}
   udp: false
