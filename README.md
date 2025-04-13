@@ -181,9 +181,11 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 2、CF优选反代IP (电脑版，带测速)
 
-3、CF优选官方IP (美、亚、欧三地区无交互电脑版！强烈推荐！点击[视频教程](https://youtu.be/6kKIzObEZ2c))
+3、CF优选官方IP (电脑版、可选择部分国家)
 
-4、CF优选官方IP (电脑版，带测速)
+4、CF优选官方IP (美、亚、欧三地区无交互电脑版！强烈推荐！点击[视频教程](https://youtu.be/6kKIzObEZ2c))
+
+5、CF优选官方IP (电脑版，带测速)
 
 注意：多个CF节点在客户端使用负载均衡或者自动选择时，建议所有应用的节点都为同一个国家地区，以避免不同国家之间的IP乱跳现象
 
@@ -202,7 +204,7 @@ CF Trojan：在网页地址栏输入 https:// workers域名 或者 pages域名 �
 
 3、苹果Ios：Karing、Hiddify Proxy & VPN、Shadowrocket(小火箭)、Streisand、v2box
 
-4、软路由Openwrt：[homeproxy](https://github.com/yonggekkk/homeproxy/releases)，建议使用系统自带的软件库查找更新
+4、软路由Openwrt：passwall、ssr-plus、homeproxy
 
 注意：其他平台客户端未开启分片功能情况下，workers域的6个443系TLS节点是不可用的
 
