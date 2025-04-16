@@ -1,0 +1,5 @@
+{
+  "name": "yongger-vless-trojan",
+  "compatibility_date": "2025-04-16",
+  "main": "Trojan_workers_pages/_worker.js"
+}
