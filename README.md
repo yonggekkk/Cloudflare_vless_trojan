@@ -277,7 +277,7 @@ curl -sSL https://gitlab.com/rwkgyg/CFwarp/raw/main/point/cfip.sh -o cfip.sh && 
 ```
 -------------------------------------------------------------
 
-### 微信打赏甬哥侃侃侃ygkkk
+### 感谢支持！微信打赏甬哥侃侃侃ygkkk
 ![41440820a366deeb8109db5610313a1](https://github.com/user-attachments/assets/7dbaa3b1-cce4-415a-b46e-049531cf4d0d)
 
 -------------------------------------------------------------
