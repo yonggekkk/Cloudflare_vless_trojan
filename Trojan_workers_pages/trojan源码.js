@@ -71,9 +71,7 @@ const worker_default = {
 					proxyIP = proxyIP.slice(0, lastColonIndex);	
 				} else if (!proxyIP.includes(']:') && !proxyIP.includes(']')) {
 					[proxyIP, proxyPort = '443'] = proxyIP.split(':');
-				} else {
-					proxyPort = '443';
-				}	
+				}
 			}
 			console.log('ProxyIP:', proxyIP);
 			console.log('ProxyPort:', proxyPort);
