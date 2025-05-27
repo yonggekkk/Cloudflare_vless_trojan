@@ -11,6 +11,7 @@
 #### 5、Pages方式：支持vless+ws+tls、trojan+ws+tls代理节点
 #### 6、支持单节点链接、聚合通用节点链接、聚合通用节点订阅、sing-box节点订阅、clash节点订阅
 #### 7、虽然仅乱码混淆版可用，但只有修改uuid/密码时才必须使用变量
+#### 8、VLESS仅nat64套壳版将自动填充proxyip，无需proxyip设置，由[badafans](https://github.com/badafans)提供代码
 -------------------------------------------------------------
 
 ### 交流平台：[甬哥博客地址](https://ygkkk.blogspot.com)、[甬哥YouTube频道](https://www.youtube.com/@ygkkk)、[甬哥TG电报群组](https://t.me/+jZHc6-A-1QQ5ZGVl)、[甬哥TG电报频道](https://t.me/+DkC9ZZUgEFQzMTZl)
