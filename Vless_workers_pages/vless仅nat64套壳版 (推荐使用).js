@@ -1,4 +1,4 @@
-//仅nat64来自动填充proxyip，无需proxyip设置
+//nat64自动填充proxyip，无需proxyip设置
 import { connect } from "cloudflare:sockets";
 const WS_READY_STATE_OPEN = 1;
 let userID = "86c50e3a-5b87-49dd-bd20-03c7f2735e40";
