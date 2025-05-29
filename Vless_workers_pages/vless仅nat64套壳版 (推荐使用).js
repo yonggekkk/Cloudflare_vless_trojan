@@ -260,7 +260,7 @@ async function handle\u0076\u006c\u0065\u0073\u0073WebSocket(request) {
           }
           return num.toString(16).padStart(2, '0');
         });
-        const prefixes = ['2001:67c:2960:6464::','2a01:4f9:c010:3f02:64::'];
+        const prefixes = ['2001:67c:2960:6464::']; //,'2a01:4f9:c010:3f02:64::'
         const chosenPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
         return `[${chosenPrefix}${hex[0]}${hex[1]}:${hex[2]}${hex[3]}]`;
       }
